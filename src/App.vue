@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>test</h1>
+    <h1>Où sont les trous dans la raquette de l’offre d’insertion ?</h1>
     <myComponent></myComponent>
   </div>
 </template>
@@ -43,9 +43,7 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    h1{
-      color:green;
-    }
+    text-align: center;
   }
   
 </style>
