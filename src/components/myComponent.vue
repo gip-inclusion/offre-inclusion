@@ -1,6 +1,6 @@
 <template>
   <div id="myComponent">
-     <span>Je suis un composant TEST TEST TEST</span>
+     <span>Je suis un composant Bonjour le monde</span>
   </div>
 </template>
 
