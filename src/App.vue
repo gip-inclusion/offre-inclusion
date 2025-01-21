@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <h1>Où sont les trous dans la raquette de l’offre d’insertion ?</h1>
-    <myComponent></myComponent>
+    <div id="wrapper">
+      <h1>Où sont les trous dans la raquette de l’offre d’insertion ?</h1>
+      <myComponent></myComponent>
+    </div>
   </div>
 </template>
 
@@ -25,7 +27,7 @@ export default {
 
   watch:{
     dataImport:function(){
-      
+      //console.log(store.state.myData)
     }
   },
   
@@ -43,7 +45,23 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    #wrapper{
+      width: 100%;
+      max-width: 1020px;
+      margin:0 auto;
+      padding-top: 50px;
+      h1{
+      color: #000638;
+      font-family:Marianne;
+      font-feature-settings: 'liga' off, 'clig' off;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 40px;
+    }
+      
+    }
+    
   }
   
 </style>

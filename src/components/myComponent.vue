@@ -1,11 +1,11 @@
 <template>
   <div id="myComponent">
-     
+     {{myData}}
   </div>
 </template>
 
 <script>
-//import store from '@/store'
+import store from '@/store'
 
 export default {
   name: 'MyComponent',
@@ -16,6 +16,9 @@ export default {
   props: {
   },
   computed: {
+     myData() {
+      return store.state.myData
+    },
   },
   methods: {
   },
