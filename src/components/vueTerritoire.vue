@@ -7,115 +7,81 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/></svg>
       </div>
     </div>
-    <div id="map" style="height: 500px;width:500px;"></div>
-     <!-- {{servicesData}} -->
+    <div id="maps_wrapper">
+
+      <div class="map_container">
+        <div class="map_title">Les services sont principalement implantés dans les communes principales du département...</div>
+        <SymbolMap />
+      <div class="map_legend">Géolocalisation des services</div>
+      </div>
+
+      <div class="map_container">
+        <div class="map_title">... mais par rapport à leur population, elles sont moins bien loties que leurs voisines</div>
+        <ColorMap />
+        <div class="map_legend">Nombre de services  pour 10 000 habitants par commune</div>
+      </div>
+
   </div>
+    
+  </div>
+  
 </template>
 
 <script>
-import store from '@/store'
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-
-// Fix Leaflet marker icons
-delete L.Icon.Default.prototype._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-})
-
+import SymbolMap from './SymbolMap.vue'
+import ColorMap from './ColorMap.vue'
 export default {
   name: 'VueTerritoire',
-  data(){
-    return {
-      map: null,
-      center: [-21.120531560155037, 55.52042536869871],
-      zoom: 10,
-      markers: []
-    }
+  components: {
+    SymbolMap,
+    ColorMap
   },
-  props: {
-  },
-  computed: {
-     servicesData() {
-      return store.state.servicesData
-    },
-  },
-  methods: {
-    initMap() {
-      this.map = L.map('map').setView(this.center, this.zoom)
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(this.map)
-      this.updateMarkers()
-    },
-
-    updateMarkers() {
-      this.markers.forEach(marker => marker.remove())
-      this.markers = []
-
-      if (this.servicesData && Array.isArray(this.servicesData)) {
-        this.servicesData.forEach(item => {
-          if (item.Lat && item.Long) {
-            var lat = "-"+item.Lat.replace(',', '.')
-            var long = item.Long.replace(',', '.')
-            const marker = L.circleMarker([lat, long], {
-              radius: 5,
-              fillColor: '#0000ff',
-              color: '#0000ff',
-              weight: 1,
-              opacity: 0.5,
-              fillOpacity: 0.5
-            })
-              .bindTooltip(item.Nom)
-              .addTo(this.map)
-            this.markers.push(marker)
-          }
-        })
-      }
-      console.log(this.markers)
-    }
-  },
-
-  watch: {
-    servicesData: {
-      handler: 'updateMarkers',
-      deep: true
-    }
-  },
-
   created(){
     console.log("vueTerritoire created")
-  },
-
-  mounted() {
-    this.initMap()
-  },
-
-  beforeDestroy() {
-    if (this.map) {
-      this.map.remove()
-    }
   }
-
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  
-  /* overload fonts path, to delete when parent has access */
-  @import "../../css/overload-fonts.css";
-  @import '~leaflet/dist/leaflet.css';
+@import "../../css/overload-fonts.css";
 
-  span{
-    color:red;
+#maps_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 150px;
+  .map_container {
+  width: 500px;
+  height: 500px;
+  display: inline-block;
+  .map_title {
+    font-family: Marianne;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color:#000638;
+    margin-bottom: 10px;
   }
-
-  @media (max-width: 728px) {
-    span{
-      color:blue;
-    }    
+  .map {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
   }
+  .map_legend {
+    font-family: Marianne;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+}
 
 
+@media (max-width: 728px) {
+  span {
+    color: blue;
+  }    
+}
 </style>

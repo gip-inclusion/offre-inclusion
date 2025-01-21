@@ -115,6 +115,7 @@ export default {
           margin-bottom: 15px;
         }
         .filters_selector{
+          margin-bottom: 25px;
           h4{
             color: #000638;
             font-family:Marianne;
