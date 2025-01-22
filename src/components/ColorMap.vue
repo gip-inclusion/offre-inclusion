@@ -6,7 +6,8 @@
   import store from '@/store'
   import L from 'leaflet'
   import 'leaflet/dist/leaflet.css'
-  
+  import population from '../../public/data/population.json'
+
   export default {
     name: 'ColorMap',
     data() {
@@ -28,7 +29,6 @@
       initMap() {
         this.colorlMap = L.map('colorMap', {attributionControl: false}).setView(this.center, this.zoom)
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(this.colorlMap)
-        
         fetch('data/geojson/communes-974-la-reunion.geojson')
           .then(response => response.json())
           .then(data => {
@@ -85,7 +85,15 @@
             communeCounts[inseeCode] = (communeCounts[inseeCode] || 0) + 1
           }
         })
-  
+
+        // Normalize counts by population
+        for (const inseeCode in communeCounts) {
+          const populationEntry = population.find(entry => entry.insee === inseeCode);
+          if (populationEntry) {
+            communeCounts[inseeCode] = (communeCounts[inseeCode] / populationEntry.population) * 10000; // Per 1000 inhabitants
+          }
+        }
+        
         this.geojsonLayer = L.geoJSON(this.communesData, {
           style: (feature) => {
             const inseeCode = feature.properties.code
@@ -101,8 +109,9 @@
           onEachFeature: (feature, layer) => {
             const inseeCode = feature.properties.code
             const communeName = feature.properties.nom
+            const serviceCount = communeCounts[inseeCode] || 0
             layer.bindTooltip(
-              `${communeName}: ${communeCounts[inseeCode] || 0} services`
+              `${communeName}: ${serviceCount.toFixed(2)} services pour 10 000 habitants`
             )
           }
         }).addTo(this.colorlMap)
