@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     servicesData:undefined,
-    endImport:false
+    endImport:false,
+    selectedThematique: null,
   },
   mutations: {
     initializeData (state,data) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     endImport(state,value){
       state.endImport = value
-    }
+    },
+    SET_SELECTED_THEMATIQUE(state, theme) {
+      state.selectedThematique = theme;
+    },
   }
 })

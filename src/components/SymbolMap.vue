@@ -21,10 +21,22 @@ export default {
     servicesData() {
       return store.state.servicesData
     },
+    selectedThematique() {
+      return store.state.selectedThematique
+    }
   },
   methods: {
     initMap() {
-      this.symbolMap = L.map('symbolMap', {attributionControl: false}).setView(this.center, this.zoom)
+      this.symbolMap = L.map('symbolMap', {
+        attributionControl: false,
+        zoomControl: false  // Disable default zoom control
+      }).setView(this.center, this.zoom)
+      
+      // Add zoom control to bottom left
+      L.control.zoom({
+        position: 'bottomleft'
+      }).addTo(this.symbolMap)
+      
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(this.symbolMap)
       this.updateMarkers()
     },
@@ -35,7 +47,10 @@ export default {
 
       if (this.servicesData && Array.isArray(this.servicesData)) {
         this.servicesData.forEach(item => {
-          if (item.Lat && item.Long) {
+          // Convert Thematiques to array if it's a string
+          const thematiques = Array.isArray(item.Thematiques) ? item.Thematiques : [item.Thematiques];
+          if (item.Lat && item.Long && 
+              (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)))) {
             var lat = "-"+item.Lat.replace(',', '.')
             var long = item.Long.replace(',', '.')
             const marker = L.circleMarker([lat, long], {
@@ -58,6 +73,9 @@ export default {
     servicesData: {
       handler: 'updateMarkers',
       deep: true
+    },
+    selectedThematique: {
+      handler: 'updateMarkers'
     }
   },
   mounted() {
