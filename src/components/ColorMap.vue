@@ -100,10 +100,12 @@
         this.servicesData.forEach(service => {
           const thematiques = Array.isArray(service.Thematiques) ? service.Thematiques : [service.Thematiques];
           // Only count service if it matches the selected thematique or if no thematique is selected
-          if (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique))) {
-            const inseeCode = service['Code Insee']
-            if (inseeCode) {
-              this.communeCounts[inseeCode] = (this.communeCounts[inseeCode] || 0) + 1
+          if(service.Source != 'fredo'){
+            if (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique))) {
+              const inseeCode = service['Code Insee']
+              if (inseeCode) {
+                this.communeCounts[inseeCode] = (this.communeCounts[inseeCode] || 0) + 1
+              }
             }
           }
         })

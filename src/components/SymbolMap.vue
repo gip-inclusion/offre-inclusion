@@ -50,7 +50,7 @@ export default {
           // Convert Thematiques to array if it's a string
           const thematiques = Array.isArray(item.Thematiques) ? item.Thematiques : [item.Thematiques];
           if (item.Lat && item.Long && 
-              (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)))) {
+              (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)) ) && item.Source != 'fredo') {
             var lat = "-"+item.Lat.replace(',', '.')
             var long = item.Long.replace(',', '.')
             const marker = L.circleMarker([lat, long], {
