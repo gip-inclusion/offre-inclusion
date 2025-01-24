@@ -53,7 +53,7 @@
       getColor(count) {
         // Return white if count is 0
         if (count === 0) {
-          return '#ebe9e6';
+          return '#FFFFFF';
         }
 
         // Define min and max values for the scale
@@ -68,9 +68,9 @@
         
         // Convert hex colors to RGB
         const startColor = {
-          r: 0x99,
-          g: 0x99,
-          b: 0xff
+          r: 0xFF,  // Changed to white (255, 255, 255)
+          g: 0xFF,
+          b: 0xFF
         };
         
         const endColor = {
