@@ -45,7 +45,15 @@
         <div class="map_legend">Nombre de services  pour 10 000 habitants par commune</div>
       </div>
 
-  </div>
+    </div>
+
+    <h2>Quelles sont les communes les mieux et moins bien dotées en offre d’insertion ?</h2>
+
+    <div class="chart_container">
+
+      <ThematicChart />
+
+    </div>
     
   </div>
   
@@ -54,13 +62,15 @@
 <script>
 import SymbolMap from './SymbolMap.vue'
 import ColorMap from './ColorMap.vue'
+import ThematicChart from './ThematicChart.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'VueTerritoire',
   components: {
     SymbolMap,
-    ColorMap
+    ColorMap,
+    ThematicChart
   },
   data(){
     return {
@@ -118,7 +128,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "../../css/overload-fonts.css";
 
 #maps_wrapper {
@@ -194,7 +204,19 @@ export default {
     }
   }
 }
-
+.thematic-chart {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  .edito-container{
+    width: 50%;
+    height: 400px;
+  }
+  .chart-container {
+    width: 50%;
+    height: 400px;
+  }
+}
 @media (max-width: 728px) {
   span {
     color: blue;

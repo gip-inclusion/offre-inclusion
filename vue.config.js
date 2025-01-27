@@ -13,5 +13,9 @@ module.exports = {
   chainWebpack:
     config => {
       config.optimization.delete('splitChunks')
-    }
+    },
+  transpileDependencies: [
+    'vue-chartjs',
+    'chart.js'
+  ]
 }
