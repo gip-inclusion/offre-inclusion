@@ -208,9 +208,42 @@ export default {
   width: 100%;
   display: flex;
   gap: 20px;
+  margin-bottom: 50px;
   .edito-container{
     width: 50%;
     height: 400px;
+    position: relative;
+    .top_text{
+      font-family: Marianne;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      margin-bottom: 10px;
+      .highlight{
+        color: rgba(0, 120, 243, 1);
+      }
+    }
+    .flop_text{
+      font-family: Marianne;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      .highlight{
+        color: rgba(214, 77, 0, 1);
+      }
+    }
+    .legende_text{
+      font-family: Marianne;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 24px;
+      color: #000638;
+      position: absolute;
+      bottom: 0;
+    }
   }
   .chart-container {
     width: 50%;

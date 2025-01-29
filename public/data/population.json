@@ -1,98 +1,122 @@
 [
-    {
-      "insee": "97401",
-      "population": "11684"
-    },
-    {
-      "insee": "97402",
-      "population": "12899"
-    },
-    {
-      "insee": "97403",
-      "population": "6962"
-    },
-    {
-      "insee": "97404",
-      "population": "14447"
-    },
-    {
-      "insee": "97405",
-      "population": "12357"
-    },
-    {
-      "insee": "97406",
-      "population": "6454"
-    },
-    {
-      "insee": "97407",
-      "population": "35141"
-    },
-    {
-      "insee": "97408",
-      "population": "33337"
-    },
-    {
-      "insee": "97409",
-      "population": "56088"
-    },
-    {
-      "insee": "97410",
-      "population": "38466"
-    },
-    {
-      "insee": "97411",
-      "population": "149337"
-    },
-    {
-      "insee": "97412",
-      "population": "38167"
-    },
-    {
-      "insee": "97413",
-      "population": "34160"
-    },
-    {
-      "insee": "97414",
-      "population": "53832"
-    },
-    {
-      "insee": "97415",
-      "population": "106920"
-    },
-    {
-      "insee": "97416",
-      "population": "85059"
-    },
-    {
-      "insee": "97417",
-      "population": "5288"
-    },
-    {
-      "insee": "97418",
-      "population": "33587"
-    },
-    {
-      "insee": "97419",
-      "population": "6600"
-    },
-    {
-      "insee": "97420",
-      "population": "23457"
-    },
-    {
-      "insee": "97421",
-      "population": "7510"
-    },
-    {
-      "insee": "97422",
-      "population": "78366"
-    },
-    {
-      "insee": "97423",
-      "population": "7207"
-    },
-    {
-      "insee": "97424",
-      "population": "5489"
-    }
-  ]
+  {
+    "insee": "97401",
+    "nom_commune": "LES AVIRONS",
+    "population": "11684"
+  },
+  {
+    "insee": "97402",
+    "nom_commune": "BRAS-PANON",
+    "population": "12899"
+  },
+  {
+    "insee": "97403",
+    "nom_commune": "ENTRE-DEUX",
+    "population": "6962"
+  },
+  {
+    "insee": "97404",
+    "nom_commune": "L'ÉTANG-SALÉ",
+    "population": "14447"
+  },
+  {
+    "insee": "97405",
+    "nom_commune": "PETITE-ÎLE",
+    "population": "12357"
+  },
+  {
+    "insee": "97406",
+    "nom_commune": "LA PLAINE-DES-PALMISTES",
+    "population": "6454"
+  },
+  {
+    "insee": "97407",
+    "nom_commune": "LE PORT",
+    "population": "35141"
+  },
+  {
+    "insee": "97408",
+    "nom_commune": "LA POSSESSION",
+    "population": "33337"
+  },
+  {
+    "insee": "97409",
+    "nom_commune": "SAINT-ANDRÉ",
+    "population": "56088"
+  },
+  {
+    "insee": "97410",
+    "nom_commune": "SAINT-BENOÎT",
+    "population": "38466"
+  },
+  {
+    "insee": "97411",
+    "nom_commune": "SAINT-DENIS",
+    "population": "149337"
+  },
+  {
+    "insee": "97412",
+    "nom_commune": "SAINT-JOSEPH",
+    "population": "38167"
+  },
+  {
+    "insee": "97413",
+    "nom_commune": "SAINT-LEU",
+    "population": "34160"
+  },
+  {
+    "insee": "97414",
+    "nom_commune": "SAINT-LOUIS",
+    "population": "53832"
+  },
+  {
+    "insee": "97415",
+    "nom_commune": "SAINT-PAUL",
+    "population": "106920"
+  },
+  {
+    "insee": "97416",
+    "nom_commune": "SAINT-PIERRE",
+    "population": "85059"
+  },
+  {
+    "insee": "97417",
+    "nom_commune": "SAINT-PHILIPPE",
+    "population": "5288"
+  },
+  {
+    "insee": "97418",
+    "nom_commune": "SAINTE-MARIE",
+    "population": "33587"
+  },
+  {
+    "insee": "97419",
+    "nom_commune": "SAINTE-ROSE",
+    "population": "6600"
+  },
+  {
+    "insee": "97420",
+    "nom_commune": "SAINTE-SUZANNE",
+    "population": "23457"
+  },
+  {
+    "insee": "97421",
+    "nom_commune": "SALAZIE",
+    "population": "7510"
+  },
+  {
+    "insee": "97422",
+    "nom_commune": "LE TAMPON",
+    "population": "78366"
+  },
+  {
+    "insee": "97423",
+    "nom_commune": "LES TROIS-BASSINS",
+    "population": "7207"
+  },
+  {
+    "insee": "97424",
+    "nom_commune": "CILAOS",
+    "population": "5489"
+  }
+]

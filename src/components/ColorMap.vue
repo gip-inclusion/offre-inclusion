@@ -75,8 +75,8 @@
         
         const endColor = {
           r: 0x00,
-          g: 0x00,
-          b: 0x91
+          g: 0x78,
+          b: 0xf3
         };
         
         // Linear interpolation between colors

@@ -55,8 +55,8 @@ export default {
             var long = item.Long.replace(',', '.')
             const marker = L.circleMarker([lat, long], {
               radius: 5,
-              fillColor: '#000091',
-              color: '#000091',
+              fillColor: '#0078f3',
+              color: '#0078f3',
               weight: 1,
               opacity: 0.2,
               fillOpacity: 0.2
