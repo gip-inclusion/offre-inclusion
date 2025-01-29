@@ -11,7 +11,7 @@
 
       <span class="intro">Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage  Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage</span>
 
-      <vueTerritoire class="datavue"></vueTerritoire>
+      <vueTerritoire v-if="page=='ensemble'" class="datavue"></vueTerritoire>
 
     </div>
   </div>
