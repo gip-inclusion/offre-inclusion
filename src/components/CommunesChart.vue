@@ -35,9 +35,9 @@
       </div>
 
       <div class="top_text"><span class="highlight">{{positiveCount}} communes sont mieux dotées</span> en services que la moyenne dans le département</div>
-      <div class="flop_text"><span class="highlight">{{negativeCount}} communes sont moins bien</span> dotées en services que la moyenne dans le département</div>
+      <div class="flop_text"><span class="highlight">{{negativeCount}} communes sont moins bien dotées</span> en services que la moyenne dans le département</div>
 
-      <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par habitants</div>
+      <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par habitants dans le département</div>
     </div>
 
     <div class="chart-container">
@@ -65,7 +65,7 @@ ChartJS.register(
 )
 
 export default {
-  name: 'ThematicChart',
+  name: 'CommunesChart',
   components: {
     Bar
   },

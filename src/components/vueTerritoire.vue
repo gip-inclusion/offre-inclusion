@@ -51,7 +51,15 @@
 
     <div class="chart_container">
 
-      <ThematicChart />
+      <CommunesChart />
+
+    </div>
+
+    <h2>Quelles sont les thématiques les mieux et moins bien dotées en offre d’insertion ?</h2>
+
+    <div class="chart_container">
+
+      <ThematiquesChart />
 
     </div>
     
@@ -62,7 +70,8 @@
 <script>
 import SymbolMap from './SymbolMap.vue'
 import ColorMap from './ColorMap.vue'
-import ThematicChart from './ThematicChart.vue'
+import CommunesChart from './CommunesChart.vue'
+import ThematiquesChart from './ThematiquesChart.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -70,7 +79,8 @@ export default {
   components: {
     SymbolMap,
     ColorMap,
-    ThematicChart
+    CommunesChart,
+    ThematiquesChart
   },
   data(){
     return {
@@ -217,21 +227,23 @@ export default {
       font-family: Marianne;
       font-size: 16px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 400;
       line-height: 24px;
       margin-bottom: 10px;
       .highlight{
         color: rgba(0, 120, 243, 1);
+        font-weight: 700;
       }
     }
     .flop_text{
       font-family: Marianne;
       font-size: 16px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 400;
       line-height: 24px;
       .highlight{
         color: rgba(214, 77, 0, 1);
+        font-weight: 700;
       }
     }
     .legende_text{
