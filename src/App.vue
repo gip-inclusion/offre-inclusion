@@ -9,9 +9,8 @@
         <div class="page_btn" @click="(page='zoom')" :class="page=='ensemble'?'':'active'">Zoom sur les données</div>
       </div>
 
-      <span class="intro">Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage  Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage</span>
-
       <vueTerritoire v-if="page=='ensemble'" class="datavue"></vueTerritoire>
+      <vueTableau v-if="page=='zoom'" class="datavue"></vueTableau>
 
     </div>
   </div>
@@ -20,17 +19,19 @@
 <script>
 
 import VueTerritoire from './components/vueTerritoire.vue'
+import VueTableau from './components/vueTableau.vue'
 import store from '@/store'
 import { getData } from './import.js'
 
 export default {
   name: 'App',
   components: {
-    VueTerritoire
+    VueTerritoire,
+    VueTableau
   },
   data(){
     return {
-      "page":"ensemble"
+      "page":"zoom"
     }
   },
   computed: {
@@ -104,7 +105,6 @@ export default {
         line-height: 24px;
       }
       .datavue{
-        margin-top: 25px;
         h2{
           color: #000638;
           font-family:Marianne;
@@ -112,7 +112,8 @@ export default {
           font-style: normal;
           font-weight: 700;
           line-height: 32px;
-          margin-bottom: 15px;
+          margin-bottom: 35px;
+          margin-top: 25px;
         }
         .filters_selector{
           margin-bottom: 25px;

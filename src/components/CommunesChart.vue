@@ -36,6 +36,7 @@
 
       <div class="top_text"><span class="highlight">{{positiveCount}} communes sont mieux dotées</span> en services que la moyenne dans le département</div>
       <div class="flop_text"><span class="highlight">{{negativeCount}} communes sont moins bien dotées</span> en services que la moyenne dans le département</div>
+      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} communes n'ont aucun </span>service couvrant cette thématique</div>
 
       <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par habitants dans le département</div>
     </div>
@@ -74,7 +75,7 @@ export default {
       chartData: [],
       selectedThematique: null,
       isDropdownOpen: false,
-      thematiques: ['numerique', 'sante', 'acces', 'citoyennete', 'mobilite', 'creation', 'activite', 'financiere', 'metier', 'souvrir', 'linternational', 'francais'],
+      thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
       chartConfig: {
         type: 'bar',
         data: {
@@ -126,7 +127,8 @@ export default {
         }
       },
       positiveCount: 0,
-      negativeCount: 0
+      negativeCount: 0,
+      zeroCount: 0
     }
   },
   computed: {
@@ -149,30 +151,28 @@ export default {
     },
     formatThemeName(theme) {
       const accentsMap = {
-        'numerique': 'numérique',
-        'sante': 'santé',
-        'acces': 'accès',
-        'citoyennete': 'citoyenneté',
-        'mobilite': 'mobilité',
-        'creation': 'création',
-        'activite': 'activité',
-        'financiere': 'financière',
-        'metier': 'métier',
-        'souvrir': "s'ouvrir",
-        'linternational': "l'international",
-        'francais': 'français'
-      };
-      
-      // Replace hyphens with spaces
-      let formattedName = theme.replace(/-/g, ' ');
-      
-      // Apply accents replacements
-      Object.entries(accentsMap).forEach(([key, value]) => {
-        formattedName = formattedName.replace(new RegExp(key, 'g'), value);
-      });
-      
-      // Capitalize first letter
-      return formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
+          "famille": "Famille",
+          "numerique": "Numérique",
+          "remobilisation": "Remobilisation",
+          "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
+          "sante": "Santé",
+          "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
+          "handicap": "Handicap",
+          "se-former": "Se former",
+          "mobilite": "Mobilité",
+          "preparer-sa-candidature": "Préparer sa candidature",
+          "logement-hebergement": "Logement et hébergement",
+          "creation-activite": "Création d'activité",
+          "trouver-un-emploi": "Trouver un emploi",
+          "gestion-financiere": "Gestion financière",
+          "choisir-un-metier": "Choisir un métier",
+          "equipement-et-alimentation": "Equipement et alimentation",
+          "illettrisme": "Illetrisme",
+          "souvrir-a-linternational": "S'ouvrir à l'international",
+          "apprendre-francais": "Apprendre le français"
+        };
+        
+        return accentsMap[theme] || theme;
     },
     createChart() {
       if (!this.servicesData) return;
@@ -209,7 +209,6 @@ export default {
 
       // Calculate average of normalized counts
       const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
-      console.log(average)
 
       // Calculate difference from average in percentage points
       var differencesFromAverage = sortedEntries.map(([commune, count]) => {
@@ -234,8 +233,10 @@ export default {
       // Count number of communes with positive difference
       const positiveCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) > 0).length;
       this.positiveCount = positiveCount;
-      const negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < 0).length;
+      const negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < 0 && parseFloat(diff) > -100).length;
       this.negativeCount = negativeCount;
+      const zeroCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) <= -100).length;
+      this.zeroCount = zeroCount;
 
       // Convert to arrays for chart.js
       const communes = differencesFromAverage.map(([commune]) => commune);
@@ -247,12 +248,16 @@ export default {
           labels: communes,
           datasets: [{
             data: counts,
-            backgroundColor: counts.map(value => 
-              parseFloat(value) >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)'
-            ),
-            borderColor: counts.map(value => 
-              parseFloat(value) >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)'
-            ),
+            backgroundColor: counts.map(value => {
+              const numValue = parseFloat(value);
+              if (numValue <= -100) return 'rgba(214, 77, 0, 0.2)';
+              return numValue >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
+            }),
+            borderColor: counts.map(value => {
+              const numValue = parseFloat(value);
+              if (numValue <= -100) return 'rgba(214, 77, 0, 0.2)';
+              return numValue >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
+            }),
             borderWidth: 1
           }]
         },

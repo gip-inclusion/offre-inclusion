@@ -1,8 +1,6 @@
 <template>
     <div class="thematic-chart">
       
-     
-  
       <div class="chart-container">
         <Bar :data="chartConfig.data" :options="chartConfig.options" />
       </div>
@@ -41,9 +39,9 @@
           </div>
     
           <div class="top_text"><span class="highlight">{{positiveCount}} thématiques sont mieux dotées</span> en services que la moyenne dans le département</div>
-          <div class="flop_text"><span class="highlight">{{negativeCount}} thématiques sont moins bien dotées</span> en services que la moyenne dans le département</div>
-    
-          <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par habitants dans le département</div>
+          <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{negativeCount}} thématiques sont moins bien dotées</span> en services que la moyenne dans le département</div>
+          <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} thématiques n'ont aucun </span>service couvrant cette commune</div>
+          <div class="legende_text">Ecart par rapport à la moyenne du nombre de service par habitants dans le département</div>
         </div>
   
     </div>
@@ -129,7 +127,8 @@
           }
         },
         positiveCount: 0,
-        negativeCount: 0
+        negativeCount: 0,
+        zeroCount: 0
       }
     },
     computed: {
@@ -153,30 +152,28 @@
       },
       formatThemeName(theme) {
         const accentsMap = {
-          'numerique': 'numérique',
-          'sante': 'santé',
-          'acces': 'accès',
-          'citoyennete': 'citoyenneté',
-          'mobilite': 'mobilité',
-          'creation': 'création',
-          'activite': 'activité',
-          'financiere': 'financière',
-          'metier': 'métier',
-          'souvrir': "s'ouvrir",
-          'linternational': "l'international",
-          'francais': 'français'
+          "famille": "Famille",
+          "numerique": "Numérique",
+          "remobilisation": "Remobilisation",
+          "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
+          "sante": "Santé",
+          "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
+          "handicap": "Handicap",
+          "se-former": "Se former",
+          "mobilite": "Mobilité",
+          "preparer-sa-candidature": "Préparer sa candidature",
+          "logement-hebergement": "Logement et hébergement",
+          "creation-activite": "Création d'activité",
+          "trouver-un-emploi": "Trouver un emploi",
+          "gestion-financiere": "Gestion financière",
+          "choisir-un-metier": "Choisir un métier",
+          "equipement-et-alimentation": "Equipement et alimentation",
+          "illettrisme": "Illetrisme",
+          "souvrir-a-linternational": "S'ouvrir à l'international",
+          "apprendre-francais": "Apprendre le français"
         };
         
-        // Replace hyphens with spaces
-        let formattedName = theme.replace(/-/g, ' ');
-        
-        // Apply accents replacements
-        Object.entries(accentsMap).forEach(([key, value]) => {
-          formattedName = formattedName.replace(new RegExp(key, 'g'), value);
-        });
-        
-        // Capitalize first letter
-        return formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
+        return accentsMap[theme] || theme;
       },
       formatCommuneName(name) {
         return name.toLowerCase()
@@ -200,8 +197,6 @@
           });
         });
         
-
-
         // Sort by normalized count in descending order
         const sortedEntries = Object.entries(thematicCount)
           .sort(([, countA], [, countB]) => countB - countA);
@@ -215,27 +210,27 @@
           return [thematique, difference];
         });
 
-        // Truncate thematique names to 17 characters
-        differencesFromAverage = differencesFromAverage.map(([thematique, difference]) => {
-          let truncatedName = thematique;
-          if (truncatedName.length > 17) {
-            truncatedName = truncatedName.slice(0, 14) + '...';
-          }
-          return [truncatedName, difference];
-        });
-
         // Format thematic names
         differencesFromAverage = differencesFromAverage.map(([thematique, difference]) => {
           return [this.formatThemeName(thematique), difference];
         });
 
+        // Truncate thematique names to 17 characters
+        differencesFromAverage = differencesFromAverage.map(([thematique, difference]) => {
+          let truncatedName = thematique;
+          truncatedName = truncatedName.length > 17 ? truncatedName.slice(0, 15) + '...' : truncatedName;
+          return [truncatedName, difference];
+        });
+
         // Count number of thematiques with positive/negative differences
         this.positiveCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) > 0).length;
-        this.negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < 0).length;
+        this.negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < 0 && parseFloat(diff) > -100).length;
+        this.zeroCount =  differencesFromAverage.filter(([, diff]) => parseFloat(diff) <= -100).length;
 
         // Convert to arrays for chart.js
         const thematiques = differencesFromAverage.map(([thematique]) => thematique);
         const counts = differencesFromAverage.map(([, count]) => count);
+
 
         this.chartConfig = {
           type: 'bar',
@@ -243,12 +238,16 @@
             labels: thematiques,
             datasets: [{
               data: counts,
-              backgroundColor: counts.map(value => 
-                parseFloat(value) >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)'
-              ),
-              borderColor: counts.map(value => 
-                parseFloat(value) >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)'
-              ),
+              backgroundColor: counts.map(value => {
+              const numValue = parseFloat(value);
+              if (numValue <= -100) return 'rgba(214, 77, 0, 0.2)';
+              return numValue >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
+            }),
+            borderColor: counts.map(value => {
+              const numValue = parseFloat(value);
+              if (numValue <= -100) return 'rgba(204, 164, 141, 0.2)';
+              return numValue >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
+            }),
               borderWidth: 1
             }]
           },

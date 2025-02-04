@@ -6,12 +6,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     servicesData:undefined,
+    structuresData:undefined,
     endImport:false,
     selectedThematique: null,
   },
   mutations: {
     initializeData (state,data) {
       state.servicesData = data
+    },
+    initializeStructuresData (state,data) {
+      state.structuresData = data
     },
     endImport(state,value){
       state.endImport = value

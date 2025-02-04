@@ -1,6 +1,10 @@
 <template>
   <div id="vueTerritoire">
+
+    <span class="intro">Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage  Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage</span>
+
     <h2>Le territoire est-il couvert de manière équilibrée ?</h2>
+    
     <div class="filters_selector">
       <h4>Sélectionnez une thématique</h4>
       <div class="filters_box" ref="dropdown">
@@ -92,7 +96,7 @@ export default {
     ...mapState(['selectedThematique']),
   },
   created(){
-    console.log("vueTerritoire created")
+    
   },
   methods: {
     toggleDropdown() {
@@ -109,30 +113,28 @@ export default {
     },
     formatThemeName(theme) {
       const accentsMap = {
-        'numerique': 'numérique',
-        'sante': 'santé',
-        'acces': 'accès',
-        'citoyennete': 'citoyenneté',
-        'mobilite': 'mobilité',
-        'creation': 'création',
-        'activite': 'activité',
-        'financiere': 'financière',
-        'metier': 'métier',
-        'souvrir': "s'ouvrir",
-        'linternational': "l'international",
-        'francais': 'français'
+        "famille": "Famille",
+        "numerique": "Numérique",
+        "remobilisation": "Remobilisation",
+        "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
+        "sante": "Santé",
+        "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
+        "handicap": "Handicap",
+        "se-former": "Se former",
+        "mobilite": "Mobilité",
+        "preparer-sa-candidature": "Préparer sa candidature",
+        "logement-hebergement": "Logement et hébergement",
+        "creation-activite": "Création d'activité",
+        "trouver-un-emploi": "Trouver un emploi",
+        "gestion-financiere": "Gestion financière",
+        "choisir-un-metier": "Choisir un métier",
+        "equipement-et-alimentation": "Equipement et alimentation",
+        "illettrisme": "Illetrisme",
+        "souvrir-a-linternational": "S'ouvrir à l'international",
+        "apprendre-francais": "Apprendre le français"
       };
       
-      // Replace hyphens with spaces
-      let formattedName = theme.replace(/-/g, ' ');
-      
-      // Apply accents replacements
-      Object.entries(accentsMap).forEach(([key, value]) => {
-        formattedName = formattedName.replace(new RegExp(key, 'g'), value);
-      });
-      
-      // Capitalize first letter
-      return formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
+      return accentsMap[theme] || theme;
     }
   }
 }
@@ -241,8 +243,22 @@ export default {
       font-style: normal;
       font-weight: 400;
       line-height: 24px;
+      margin-bottom: 10px;
       .highlight{
         color: rgba(214, 77, 0, 1);
+        font-weight: 700;
+      }
+    }
+    .zero_text{
+      font-family: Marianne;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      margin-bottom: 10px;
+      opacity: 1;
+      .highlight{
+        color: #FF9B51;
         font-weight: 700;
       }
     }
