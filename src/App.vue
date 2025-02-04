@@ -31,7 +31,7 @@ export default {
   },
   data(){
     return {
-      "page":"zoom"
+      "page":"ensemble"
     }
   },
   computed: {
