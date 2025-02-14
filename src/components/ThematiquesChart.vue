@@ -1,10 +1,6 @@
 <template>
     <div class="thematic-chart">
-      
-      <div class="chart-container">
-        <Bar :data="chartConfig.data" :options="chartConfig.options" />
-      </div>
-
+    
       <div class="edito-container">
           
           <div class="filters_selector">
@@ -37,11 +33,19 @@
                   </div>
               </div>
           </div>
-    
+          
+          <div class="average_text">En moyenne, chaque thématique est couverte par <span class="highlight">{{average.toFixed(1).toLocaleString()}}</span> services <span v-if="selectedCommune">dans cette commune</span></div>
           <div class="top_text"><span class="highlight">{{positiveCount}} thématiques sont mieux dotées</span> en services que la moyenne dans le département</div>
           <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{negativeCount}} thématiques sont moins bien dotées</span> en services que la moyenne dans le département</div>
           <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} thématiques n'ont aucun </span>service couvrant cette commune</div>
-          <div class="legende_text">Ecart par rapport à la moyenne du nombre de service par habitants dans le département</div>
+          <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par thématiques
+            <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
+            <div class="legende_tooltip">L'indicateur mesure pour chaque thématique l'écart par rapport à la moyenne du nombre de services par thématiques dans le département. À titre d'exemple, un indicateur à 50% signifie que la thématique est couverte par 50% de plus de services que la moyenne.</div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <Bar :data="chartConfig.data" :options="chartConfig.options" />
         </div>
   
     </div>
@@ -74,6 +78,7 @@
         chartData: [],
         selectedCommune: null,
         isDropdownOpen: false,
+        average: 0,
         population,
         thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
         chartConfig: {
@@ -146,7 +151,7 @@
         this.createChart();
       },
       handleClickOutside(event) {
-        if (!this.$refs.dropdown.contains(event.target)) {
+        if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
           this.isDropdownOpen = false;
         }
       },
@@ -203,7 +208,7 @@
 
         // Calculate average of normalized counts
         const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
-
+        this.average = average;
         // Calculate difference from average in percentage points
         var differencesFromAverage = sortedEntries.map(([thematique, count]) => {
           const difference = ((parseFloat(count) - average) / average * 100).toFixed(1);
@@ -262,7 +267,7 @@
                 displayColors: false,
                 callbacks: {
                   label: function(context) {
-                    return context.parsed.y + '% de services par habitant';
+                    return context.parsed.y + '% de services par habitant par rapport à la moyenne';
                   }
                 }
               }
@@ -302,7 +307,11 @@
       }
     },
     mounted() {
-      this.createChart()
+      this.createChart();
+      document.addEventListener('click', this.handleClickOutside);
+    },
+    beforeDestroy() {
+      document.removeEventListener('click', this.handleClickOutside);
     }
   }
   </script>

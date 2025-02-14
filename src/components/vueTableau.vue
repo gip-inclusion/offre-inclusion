@@ -2,9 +2,9 @@
   <div id="vueTerritoire">
     
     <div class="filters_selector">
-        <h4>Filtrez les données</h4>
+        <h4>Appliquez des filtres</h4>
         <div class="filters_selector_item">
-            <div class="filters_box" ref="communeDropdown">
+            <div class="filters_box" ref="communeDropdown" id="communeDropdown">
                 <div @click="toggleDropdown">
                 {{ selectedCommune ? formatCommuneName(population.find(c => c.insee === selectedCommune).nom_commune) : 'Toutes les communes' }}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="filters_selector_item">
-            <div class="filters_box" ref="thematiqueDropdown">
+            <div class="filters_box" ref="thematiqueDropdown" id="thematiqueDropdown">
                 <div @click="toggleThematiqueDropdown">
                     {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -63,7 +63,7 @@
     </div>
 
     
-    <h2>Chiffres clés</h2>
+    <h2>Indicateurs clés</h2>
     
     <div v-if="structuresData&&servicesData" class="chiffre_box_container">
         <div class="chiffre_box">
@@ -83,16 +83,17 @@
             <span class="text">services pour<br>10 000 habitants</span>
         </div>
     </div>
-    <h2>Zoom sur les structures</h2>
+    <h2>Détail des structures</h2>
     <div v-if="!structuresData" class="loading">Chargement des structures...</div>
     <template v-else>
       <table class="structures-table">
         <thead>
           <tr>
-            <th>NOM</th>
-            <th>COMMUNE</th>
+            <th>Nom de la structure</th>
+            <th>Commune</th>
             <!-- <th>ADRESSE</th> -->
-            <th>SERVICES</th>
+            <th>Nombre de services</th>
+            <th>Typologie</th>
           </tr>
         </thead>
         <tbody>
@@ -101,6 +102,7 @@
             <td>{{ structure.Commune }}</td>
             <!-- <td>{{ structure.Adresse }}</td> -->
             <td>{{ countServicesForStructure(structure.ID) }}</td>
+            <td>{{ structure.Typologie }}</td>
           </tr>
         </tbody>
       </table>
@@ -110,29 +112,32 @@
           :disabled="structuresCurrentPage === 1" 
           @click="structuresCurrentPage--"
         >
-          <span>Précédent</span>
+          <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m10.828 12 4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414-4.95 4.95Z'/></svg></span>
         </button>
-        <span class="pagination-counter">Page {{ structuresCurrentPage }} sur {{ structuresTotalPages }}</span>
+        <span class="pagination-counter">{{ structuresCurrentPage }} sur {{ structuresTotalPages }}</span>
         <button 
           :disabled="structuresCurrentPage === structuresTotalPages" 
           @click="structuresCurrentPage++"
         >
-          <span>Suivant</span>
+          <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m13.172 12-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414 4.95-4.95Z'/></svg></span>
         </button>
       </div>
     </template>
 
 
-    <h2>Zoom sur les services</h2>
+    <h2>Détail des services</h2>
     
     <div v-if="!servicesData" class="loading">Chargement des services...</div>
     <template v-else>
       <table class="services-table">
         <thead>
           <tr>
-            <th>NOM</th>
-            <th>Structure</th>
-            <th>THEMATIQUES</th>
+            <th>Nom du service</th>
+            <th>Nom de la structure</th>
+            <th>Thématiques</th>
+            <th>Profils visés</th>
+            <th>Frais</th>
+            <th>Accueil</th>
           </tr>
         </thead>
         <tbody>
@@ -140,6 +145,9 @@
             <td>{{ service.Nom }}</td>
             <td>{{ getStructureName(service['Structure ID']) }}</td>
             <td>{{ formatThematiques(service.Thematiques) }}</td>
+            <td>{{ formatProfils(service.Profils) }}</td>
+            <td>{{ formatProfils(service.Frais) }}</td>
+            <td>{{ formatProfils(service["Modes Accueil"]) }}</td>
           </tr>
         </tbody>
       </table>
@@ -149,14 +157,14 @@
           :disabled="currentPage === 1" 
           @click="currentPage--"
         >
-          <span>Précédent</span>
+        <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m10.828 12 4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414-4.95 4.95Z'/></svg></span>
         </button>
-        <span class="pagination-counter">Page {{ currentPage }} sur {{ totalPages }}</span>
+        <span class="pagination-counter">{{ currentPage }} sur {{ totalPages }}</span>
         <button 
           :disabled="currentPage === totalPages" 
           @click="currentPage++"
         >
-          <span>Suivant</span>
+        <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m13.172 12-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414 4.95-4.95Z'/></svg></span>
         </button>
       </div>
     </template>
@@ -252,12 +260,22 @@ export default {
   created(){
     
   },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleClickOutside);
+  },
   methods: {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
     selectCommune(commune) {
-      this.selectedCommune = commune.insee;
+      if(commune){
+        this.selectedCommune = commune.insee;
+      }else{
+        this.selectedCommune = null;
+      }
       this.isDropdownOpen = false;
     },
     handleClickOutside(event) {
@@ -282,6 +300,27 @@ export default {
         .join(', ');
       return matchingThemes;
     },
+
+    formatProfils(profilsString) {
+      if (!profilsString) return '';
+      return profilsString
+        .replace(/[{}]/g, '')
+        .split(',')
+        .map(word => word.trim()
+          .replace(/salaries/g, 'salariés')
+          .replace(/Salaries/g, 'Salariés')
+          .replace(/en-/g, '')
+          .replace(/a-/g, '')
+          .charAt(0).toUpperCase() + 
+          word.trim()
+            .replace(/salaries/g, 'salariés')
+            .replace(/Salaries/g, 'Salariés')
+            .replace(/en-/g, '')
+            .replace(/a-/g, '')
+            .slice(1))
+        .join(', ');
+    },
+    
     formatThemeName(theme) {
         const accentsMap = {
         "famille": "Famille",
@@ -312,7 +351,7 @@ export default {
     },
     getStructureName(structureId) {
       const structure = this.structuresData.find(s => s.ID === structureId);
-      return structure ? structure.Nom : structureId;
+      return structure ? structure.Nom : "";
     },
     toggleThematiqueDropdown() {
       this.isThematiqueDropdownOpen = !this.isThematiqueDropdownOpen;
@@ -370,7 +409,9 @@ export default {
     font-size:14px;
   }
   th{
-    font-weight: 500;
+    font-weight: 700;
+    background-color: #F2F3F5;
+    border-bottom: 1px solid transparent;
   }
   tr{
     font-weight: 400;
@@ -384,12 +425,13 @@ export default {
   justify-content: center;
   gap: 1rem;
     button {
-    padding: 0.5rem 1rem;
-    background-color: #1212ff;
+    padding: 0px 15px;
+    background-color: #000091;
     border:none;
-    font-family: 'Marianne';
-    font-weight: 500;
     cursor: pointer;
+    &:hover{
+      background-color: #1212ff;
+    }
     span{
         color:white;
     }
@@ -427,7 +469,9 @@ export default {
     font-size: 14px;
   }
   th {
-    font-weight: 500;
+    font-weight: 700;
+    background-color: #F2F3F5;
+    border-bottom: 1px solid transparent;
   }
   tr {
     font-weight: 400;

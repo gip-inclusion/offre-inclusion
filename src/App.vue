@@ -2,11 +2,11 @@
   <div id="app">
     <div id="wrapper">
 
-      <h1>Où sont les trous dans la raquette de l’offre d’insertion ?</h1>
+      <h1>Comment est repartie l’offre d’insertion sur mon territoire ?</h1>
 
       <div id="pages_controler">
-        <div class="page_btn" @click="(page='ensemble')" :class="page=='ensemble'?'active':''">Vision d'ensemble</div>
-        <div class="page_btn" @click="(page='zoom')" :class="page=='ensemble'?'':'active'">Zoom sur les données</div>
+        <div class="page_btn" @click="(page='ensemble')" :class="page=='ensemble'?'active':''">Analyse</div>
+        <div class="page_btn" @click="(page='zoom')" :class="page=='ensemble'?'':'active'">Indicateurs clés</div>
       </div>
 
       <vueTerritoire v-if="page=='ensemble'" class="datavue"></vueTerritoire>
@@ -103,6 +103,9 @@ export default {
         font-style: normal;
         font-weight: 400;
         line-height: 24px;
+        b{
+          font-weight: 700;
+        }
       }
       .datavue{
         h2{
@@ -139,6 +142,9 @@ export default {
             font-weight: 400;
             line-height: 24px;
             border-radius: 365px;
+            &:hover{
+              background: #ccc;
+            }
           }
         }
       }

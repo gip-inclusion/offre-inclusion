@@ -1,9 +1,14 @@
 <template>
   <div id="vueTerritoire">
 
-    <span class="intro">Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage  Texte de présentation du cas d’usage Texte de présentation du cas d’usage Texte de présentation du cas d’usage</span>
+    <span class="intro">
+    Cet outil vous accompagne dans <b>l'analyse de l'offre d'insertion sur un territoire donné</b> afin de mieux piloter la politique publique. Vous pouvez y découvrir la répartition de l'offre sur un territoire, les territoires moins biens couverts en offre d'insertion ou encore les thématiques d'offre d'insertion. L'outil propose également des indicateurs clés sur l'offre d'insertion utiles à la rédaction de vos rapports d'analyse.
+    <br><br>
+    À noter que cet outil n'est pas un catalogue d'offre d'insertion. Pour consulter dans le détail les offres d'insertion sur un territoire, vous êtes invités à utiliser l'<a href="https://dora.inclusion.beta.gouv.fr/" target="_blank">outil DORA</a>.
+    <br><br>
+    Sources de données : les indicateurs proposés dans cet outil sont issus de la base de données de <a href="https://inclusion.gouv.fr/nos-services/datainclusion/" target="_blank"></a> data inclusion. Ainsi, les services qui ne sont pas référencés dans data inclusion (et donc DORA) ne sont pas valorisés sur cet outil. Dans ce contexte, des précautions d'usage et d'analyse sont à garder en tête.</span>
 
-    <h2>Le territoire est-il couvert de manière équilibrée ?</h2>
+    <h2>L'offre d'insertion est-elle répartie de manière équilibrée ?</h2>
     
     <div class="filters_selector">
       <h4>Sélectionnez une thématique</h4>
@@ -51,7 +56,7 @@
 
     </div>
 
-    <h2>Quelles sont les communes les mieux et moins bien dotées en offre d’insertion ?</h2>
+    <h2>Certaines communes sont-elles mieux ou moins bien dotées ?</h2>
 
     <div class="chart_container">
 
@@ -59,7 +64,7 @@
 
     </div>
 
-    <h2>Quelles sont les thématiques les mieux et moins bien dotées en offre d’insertion ?</h2>
+    <h2>Certaines thématiques d'insertion sont-elles moins bien couvertes ?</h2>
 
     <div class="chart_container">
 
@@ -98,6 +103,12 @@ export default {
   created(){
     
   },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  unmounted() {
+    document.removeEventListener('click', this.handleClickOutside);
+  },
   methods: {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
@@ -107,7 +118,7 @@ export default {
       this.isDropdownOpen = false;
     },
     handleClickOutside(event) {
-      if (!this.$refs.dropdown.contains(event.target)) {
+      if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
         this.isDropdownOpen = false;
       }
     },
@@ -222,9 +233,20 @@ export default {
   gap: 20px;
   margin-bottom: 50px;
   .edito-container{
-    width: 50%;
+    width: 45%;
     height: 400px;
     position: relative;
+    .average_text{
+      font-family: Marianne;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      margin-bottom: 10px;
+      .highlight{
+        font-weight: 700;
+      }
+    }
     .top_text{
       font-family: Marianne;
       font-size: 16px;
@@ -271,10 +293,32 @@ export default {
       color: #000638;
       position: absolute;
       bottom: 0;
+      &:hover{
+        .legende_tooltip{
+          display: block;
+        }
+      }
+      .legende_btn{
+        color: #000638;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .legende_tooltip{
+        display: none;
+        position: absolute;
+        top:-20px;
+        left: 50% ;
+        transform:translate(-50%,-100%);
+        background-color:white;
+        padding: 20px;
+        width: 80%;
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);      
+      }
     }
   }
   .chart-container {
-    width: 50%;
+    width: 55%;
     height: 400px;
   }
 }
