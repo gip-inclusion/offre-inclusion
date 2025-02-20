@@ -13,7 +13,7 @@ export const getData = async function (store) {
 	
 	var API_KEY = process.env.VUE_APP_MB_API_KEY
 	
-	const options = {method: 'GET', headers: {'Content-Type': 'application/json', 'X-API-KEY': API_KEY}, url: 'https://stats.inclusion.beta.gouv.fr/api/card/5707'};
+	const options = {method: 'POST', headers: {'Content-Type': 'application/json', 'X-API-KEY': API_KEY}, url: 'https://stats.inclusion.beta.gouv.fr/api/card/5707/query/json'};
 
 	try {
 		const { data } = await axios.request(options);
