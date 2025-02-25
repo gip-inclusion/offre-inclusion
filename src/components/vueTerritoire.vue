@@ -1,74 +1,76 @@
 <template>
   <div id="vueTerritoire">
-
-    <span class="intro">
-    Cet outil vous accompagne dans <b>l'analyse de l'offre d'insertion sur un territoire donné</b> afin de mieux piloter la politique publique. Vous pouvez y découvrir la répartition de l'offre sur un territoire, les territoires moins biens couverts en offre d'insertion ou encore les thématiques d'offre d'insertion. L'outil propose également des indicateurs clés sur l'offre d'insertion utiles à la rédaction de vos rapports d'analyse.
-    <br><br>
-    À noter que cet outil n'est pas un catalogue d'offre d'insertion. Pour consulter dans le détail les offres d'insertion sur un territoire, vous êtes invités à utiliser l'<a href="https://dora.inclusion.beta.gouv.fr/" target="_blank">outil DORA</a>.
-    <br><br>
-    Sources de données : les indicateurs proposés dans cet outil sont issus de la base de données de <a href="https://inclusion.gouv.fr/nos-services/datainclusion/" target="_blank"></a> data inclusion. Ainsi, les services qui ne sont pas référencés dans data inclusion (et donc DORA) ne sont pas valorisés sur cet outil. Dans ce contexte, des précautions d'usage et d'analyse sont à garder en tête.</span>
-
-    <h2>L'offre d'insertion est-elle répartie de manière équilibrée ?</h2>
     
-    <div class="filters_selector">
-      <h4>Sélectionnez une thématique</h4>
-      <div class="filters_box" ref="dropdown">
-        <div @click="toggleDropdown">
-          {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
-          </svg>
-        </div>
-        <div class="dropdown-content" v-if="isDropdownOpen">
-          <div 
-            class="dropdown-item"
-            @click="selectThematique(null)"
-          >
-            Toutes les thématiques
+    <div class="vueTerritoire_container">
+      <h2>L'offre d'insertion est-elle répartie de manière équilibrée ?</h2>  
+      <div class="filters_selector">
+        <h4>Thématique</h4>
+        <div class="filters_box" ref="dropdown">
+          <div @click="toggleDropdown">
+            {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
+            </svg>
           </div>
-          <div 
-            class="dropdown-separator"
-          ></div>
-          <div 
-            v-for="theme in thematiques" 
-            :key="theme"
-            class="dropdown-item"
-            @click="selectThematique(theme)"
-          >
-            {{ formatThemeName(theme) }}
+          <div class="dropdown-content" v-if="isDropdownOpen">
+            <div 
+              class="dropdown-item"
+              @click="selectThematique(null)"
+            >
+              Toutes les thématiques
+            </div>
+            <div 
+              class="dropdown-separator"
+            ></div>
+            <div 
+              v-for="theme in thematiques" 
+              :key="theme"
+              class="dropdown-item"
+              @click="selectThematique(theme)"
+            >
+              {{ formatThemeName(theme) }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="maps_wrapper">
+      <div id="maps_wrapper">
 
-      <div class="map_container">
-        <div class="map_title">Les services sont principalement implantés dans les communes principales du département...</div>
-        <SymbolMap />
-      <div class="map_legend">Géolocalisation des services</div>
+        <div class="map_container">
+          <div class="map_title">Location des services sur le territoire</div>
+          <SymbolMap />
+        <div class="map_legend">Géolocalisation des services</div>
+        </div>
+
+        <div class="map_container">
+          <div class="map_title">Répartition de l'offre par densité de population</div>
+          <ColorMap />
+          <div class="map_legend">Nombre de services  pour 10 000 habitants par commune</div>
+        </div>
+
       </div>
 
-      <div class="map_container">
-        <div class="map_title">... mais par rapport à leur population, elles sont moins bien loties que leurs voisines</div>
-        <ColorMap />
-        <div class="map_legend">Nombre de services  pour 10 000 habitants par commune</div>
+    </div>
+
+    <div class="vueTerritoire_container">
+      <h2>Certaines communes sont-elles mieux ou moins bien dotées ?</h2>
+
+      <div class="chart_container">
+
+        <CommunesChart />
+
       </div>
 
     </div>
 
-    <h2>Certaines communes sont-elles mieux ou moins bien dotées ?</h2>
+    <div class="vueTerritoire_container">
 
-    <div class="chart_container">
+      <h2>Certaines thématiques d'insertion sont-elles moins bien couvertes ?</h2>
 
-      <CommunesChart />
+      <div class="chart_container">
 
-    </div>
+        <ThematiquesChart />
 
-    <h2>Certaines thématiques d'insertion sont-elles moins bien couvertes ?</h2>
-
-    <div class="chart_container">
-
-      <ThematiquesChart />
+      </div>
 
     </div>
     
@@ -154,20 +156,27 @@ export default {
 <style lang="scss">
 @import "../../css/overload-fonts.css";
 
+.vueTerritoire_container{
+  border: 1px solid #E6E6EB;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
 #maps_wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 150px;
+  margin-bottom: 0px;
+  padding-bottom: 65px;
   .map_container {
-  width: 500px;
-  height: 500px;
+  width: 460px;
+  height: 460px;
   display: inline-block;
   .map_title {
     font-family: Marianne;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 24px;
     color:#000638;
     margin-bottom: 10px;
@@ -188,16 +197,6 @@ export default {
 }
 
 .filters_box {
-  position: relative;
-  cursor: pointer;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: fit-content;
-  
   .dropdown-content {
     position: absolute;
     top: 100%;
@@ -231,7 +230,7 @@ export default {
   width: 100%;
   display: flex;
   gap: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   .edito-container{
     width: 45%;
     height: 400px;
@@ -320,6 +319,7 @@ export default {
   .chart-container {
     width: 55%;
     height: 400px;
+
   }
 }
 @media (max-width: 728px) {

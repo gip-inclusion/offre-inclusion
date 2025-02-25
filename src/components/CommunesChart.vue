@@ -4,7 +4,7 @@
     <div class="edito-container">
         
       <div class="filters_selector">
-          <h4>Sélectionnez une thématique</h4>
+          <h4>Thématique</h4>
           <div class="filters_box" ref="dropdown">
               <div @click="toggleDropdown">
               {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
@@ -34,7 +34,7 @@
           </div>
       </div>
 
-      <div class="average_text">En moyenne, chaque commune est couverte par <span class="highlight">{{average.toFixed(1).toLocaleString()}}</span> services pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
+      <div class="average_text">En moyenne, chaque commune est couverte par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}</span> services pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
       <div class="top_text"><span class="highlight">{{positiveCount}} communes sont mieux dotées</span> en services que la moyenne dans le département</div>
       <div class="flop_text"><span class="highlight">{{negativeCount}} communes sont moins bien dotées</span> en services que la moyenne dans le département</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} communes n'ont aucun </span>service couvrant cette thématique</div>

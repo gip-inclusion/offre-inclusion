@@ -62,73 +62,77 @@
             </div>
     </div>
 
-    
-    <h2>Indicateurs clés</h2>
-    
-    <div v-if="structuresData&&servicesData" class="chiffre_box_container">
-        <div class="chiffre_box">
-            <span class="chiffre">{{filteredStructures.length.toLocaleString()}}</span>
-            <span class="text">structures</span>
-        </div>
-        <div class="chiffre_box">
-            <span class="chiffre">{{filteredServices.length.toLocaleString()}}</span>
-            <span class="text">services</span>
-        </div>
-        <div class="chiffre_box">
-            <span class="chiffre">{{(filteredServices.length/filteredStructures.length).toFixed(1).toLocaleString()}}</span>
-            <span class="text">services<br>par structure</span>
-        </div>
-        <div class="chiffre_box">
-            <span class="chiffre">{{ populationRatio.toFixed(1).toLocaleString() }}</span>
-            <span class="text">services pour<br>10 000 habitants</span>
-        </div>
-    </div>
-    <h2>Détail des structures</h2>
-    <div v-if="!structuresData" class="loading">Chargement des structures...</div>
-    <template v-else>
-      <table class="structures-table">
-        <thead>
-          <tr>
-            <th>Nom de la structure</th>
-            <th>Commune</th>
-            <!-- <th>ADRESSE</th> -->
-            <th>Nombre de services</th>
-            <th>Typologie</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(structure, index) in paginatedStructures" :key="index">
-            <td>{{ structure.Nom }}</td>
-            <td>{{ structure.Commune }}</td>
-            <!-- <td>{{ structure.Adresse }}</td> -->
-            <td>{{ countServicesForStructure(structure.ID) }}</td>
-            <td>{{ structure.Typologie }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="vueTableau_container">
+      <h2>Indicateurs clés</h2>
       
-      <div class="pagination-controls">
-        <button 
-          :disabled="structuresCurrentPage === 1" 
-          @click="structuresCurrentPage--"
-        >
-          <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m10.828 12 4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414-4.95 4.95Z'/></svg></span>
-        </button>
-        <span class="pagination-counter">{{ structuresCurrentPage }} sur {{ structuresTotalPages }}</span>
-        <button 
-          :disabled="structuresCurrentPage === structuresTotalPages" 
-          @click="structuresCurrentPage++"
-        >
-          <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m13.172 12-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414 4.95-4.95Z'/></svg></span>
-        </button>
+      <div v-if="structuresData&&servicesData" class="chiffre_box_container">
+          <div class="chiffre_box">
+              <span class="chiffre">{{filteredStructures.length.toLocaleString()}}</span>
+              <span class="text">structures</span>
+          </div>
+          <div class="chiffre_box">
+              <span class="chiffre">{{filteredServices.length.toLocaleString()}}</span>
+              <span class="text">services</span>
+          </div>
+          <div class="chiffre_box">
+              <span class="chiffre">{{(filteredServices.length/filteredStructures.length).toFixed(1).toLocaleString()}}</span>
+              <span class="text">services<br>par structure</span>
+          </div>
+          <div class="chiffre_box">
+              <span class="chiffre">{{ populationRatio.toFixed(1).toLocaleString() }}</span>
+              <span class="text">services pour<br>10 000 habitants</span>
+          </div>
       </div>
-    </template>
+    </div>
 
+    <div class="vueTableau_container">
+      <h2>Détail des structures</h2>
+      <div v-if="!structuresData" class="loading">Chargement des structures...</div>
+      <template v-else>
+        <table class="structures-table">
+          <thead>
+            <tr>
+              <th>Nom de la structure</th>
+              <th>Commune</th>
+              <!-- <th>ADRESSE</th> -->
+              <th>Nombre de services</th>
+              <th>Typologie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(structure, index) in paginatedStructures" :key="index">
+              <td>{{ structure.Nom }}</td>
+              <td>{{ structure.Commune }}</td>
+              <!-- <td>{{ structure.Adresse }}</td> -->
+              <td>{{ countServicesForStructure(structure.ID) }}</td>
+              <td>{{ structure.Typologie }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="pagination-controls">
+          <button 
+            :disabled="structuresCurrentPage === 1" 
+            @click="structuresCurrentPage--"
+          >
+            <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m10.828 12 4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414-4.95 4.95Z'/></svg></span>
+          </button>
+          <span class="pagination-counter">{{ structuresCurrentPage }} sur {{ structuresTotalPages }}</span>
+          <button 
+            :disabled="structuresCurrentPage === structuresTotalPages" 
+            @click="structuresCurrentPage++"
+          >
+            <span><svg viewBox='0 0 24 24' width='24' height='24' fill="#fff"><path d='m13.172 12-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414 4.95-4.95Z'/></svg></span>
+          </button>
+        </div>
+      </template>
+    </div>
 
-    <h2>Détail des services</h2>
-    
-    <div v-if="!servicesData" class="loading">Chargement des services...</div>
-    <template v-else>
+    <div class="vueTableau_container">
+      <h2>Détail des services</h2>
+      
+      <div v-if="!servicesData" class="loading">Chargement des services...</div>
+      <template v-else>
       <table class="services-table">
         <thead>
           <tr>
@@ -168,6 +172,7 @@
         </button>
       </div>
     </template>
+    </div>
   </div>
   
 </template>
@@ -367,8 +372,16 @@ export default {
 <style lang="scss">
 @import "../../css/overload-fonts.css";
 
+
 .datavue{
     margin-bottom: 100px;
+}
+
+.vueTableau_container{
+  border: 1px solid #E6E6EB;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
 .chiffre_box_container {
