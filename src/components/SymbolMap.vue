@@ -12,8 +12,8 @@ export default {
   data() {
     return {
       map: null,
-      center: [-21.120531560155037, 55.52042536869871],
-      zoom: 10,
+      center: [46.3622,1.5231],
+      zoom: 8,
       markers: []
     }
   },
@@ -23,6 +23,9 @@ export default {
     },
     selectedThematique() {
       return store.state.selectedThematique
+    },
+    selectedZoomAndCenter() {
+      return store.state.selectedZoomAndCenter
     }
   },
   methods: {
@@ -37,17 +40,32 @@ export default {
         position: 'bottomleft'
       }).addTo(this.symbolMap)
       
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(this.symbolMap)
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(this.symbolMap)
       this.updateMarkers()
+      
+    },
+
+    getMapBounds() {
+      if (!this.markers || this.markers.length === 0) {
+        return {
+          center: this.center,
+          zoom: this.zoom
+        }
+      }
+
+      const validCoordinates = this.markers.map(marker => marker.getLatLng());
+      const bounds = L.latLngBounds(validCoordinates);
+      return {
+        center: bounds.getCenter(),
+        zoom: this.symbolMap.getBoundsZoom(bounds, false)
+      }
     },
 
     updateMarkers() {
       this.markers.forEach(marker => marker.remove())
       this.markers = []
-
       if (this.servicesData && Array.isArray(this.servicesData)) {
         this.servicesData.forEach(item => {
-          // Convert Thematiques to array if it's a string
           const thematiques = Array.isArray(item.Thematiques) ? item.Thematiques : [item.Thematiques];
           if (item.Latitude && item.Longitude && 
               (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)) ) && item.Source != 'fredo') {
@@ -66,7 +84,14 @@ export default {
             this.markers.push(marker)
           }
         })
+
+        const { center, zoom } = this.getMapBounds();
+        store.commit('SET_SELECTED_ZOOM_AND_CENTER', { zoom, center });
       }
+    },
+    updateMapZoomAndCenter() {
+      const { zoom, center } = this.selectedZoomAndCenter;
+      this.symbolMap.flyTo(center, zoom);
     }
   },
   watch: {
@@ -76,6 +101,10 @@ export default {
     },
     selectedThematique: {
       handler: 'updateMarkers'
+    },
+    selectedZoomAndCenter: {
+      deep: true,
+      handler: 'updateMapZoomAndCenter'
     }
   },
   mounted() {

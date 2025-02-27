@@ -5,8 +5,8 @@
       <h2>L'offre d'insertion est-elle répartie de manière équilibrée ?</h2>  
       <div class="filters_selector">
         <h4>Thématique</h4>
-        <div class="filters_box" ref="dropdown">
-          <div @click="toggleDropdown">
+        <div class="filters_box" ref="dropdown"  @click="toggleDropdown">
+          <div>
             {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>

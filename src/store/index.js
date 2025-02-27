@@ -9,6 +9,12 @@ export default new Vuex.Store({
     structuresData:undefined,
     endImport:false,
     selectedThematique: null,
+    selectedRegion: null,
+    selectedDepartement: "01",
+    selectedZoomAndCenter: {
+      zoom: 10,
+      center: [46.3622,1.5231]
+    }
   },
   mutations: {
     initializeData (state,data) {
@@ -23,5 +29,11 @@ export default new Vuex.Store({
     SET_SELECTED_THEMATIQUE(state, theme) {
       state.selectedThematique = theme;
     },
+    SET_SELECTED_DEPARTEMENT(state, departement) {
+      state.selectedDepartement = departement;
+    },
+    SET_SELECTED_ZOOM_AND_CENTER(state, zoomAndCenter) {
+      state.selectedZoomAndCenter = zoomAndCenter;
+    }
   }
 })

@@ -13,6 +13,7 @@
 
       <div class="locfiltres_container">
         <h2>Filtres</h2>
+        <GeoFilters />
       </div>
 
       <div id="pages_controler">
@@ -31,14 +32,17 @@
 
 import VueTerritoire from './components/vueTerritoire.vue'
 import VueTableau from './components/vueTableau.vue'
+import GeoFilters from './components/GeoFilters.vue'
 import store from '@/store'
 import { getData } from './import.js'
+import { mapState } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     VueTerritoire,
-    VueTableau
+    VueTableau,
+    GeoFilters
   },
   data(){
     return {
@@ -49,11 +53,15 @@ export default {
     dataImport() {
       return store.state.endImport
     },
+    ...mapState(['selectedDepartement'])
   },
 
   watch:{
     dataImport:function(){
       //console.log(store.state.myData)
+    },
+    selectedDepartement:function(){
+      getData(store)
     }
   },
   
@@ -172,7 +180,12 @@ export default {
           line-height: 32px;
           margin-bottom: 15px;
         }
-        .filters_selector{
+      }
+      .filters_selector{
+          .filters_selector_item{
+            display: inline-block;
+            margin-right: 1rem;
+          }
           margin-bottom: 25px;
           h4{
             color: #000638;
@@ -185,8 +198,8 @@ export default {
           }
           .filters_box{
             display: inline-flex;
-            padding: 8px 16px 8px 16px;
-            justify-content: center;
+            padding: 8px 35px 8px 16px;
+            justify-content: left;
             align-items: center;
             font-family: Marianne;
             font-size: 14px;
@@ -198,12 +211,18 @@ export default {
             border: 1px solid black;
             width: fit-content;
             position: relative;
+            min-width: 115px;
             &:hover{
               background: #f5f5f5;
             }
+            svg{
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+            }
           }
         }
-      }
     }
     
   }

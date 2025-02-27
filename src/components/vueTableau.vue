@@ -179,7 +179,7 @@
 
 <script>
 import store from '@/store'
-import population from '../../public/data/population.json'
+import francePopulation from '../../public/data/population.json'
 
 export default {
   name: 'VueTableau',
@@ -196,7 +196,6 @@ export default {
       selectedCommune: null,
       isDropdownOpen: false,
       isThematiqueDropdownOpen: false,
-      population,
     }
   },
   computed: {
@@ -205,6 +204,12 @@ export default {
     },
     structuresData() {
       return store.state.structuresData
+    },
+    selectedDepartement() {
+      return store.state.selectedDepartement
+    },
+    population() {
+      return francePopulation.filter(commune => commune.insee.startsWith(this.selectedDepartement))
     },
     filteredServices() {
       var communesFiltredServices
@@ -254,10 +259,15 @@ export default {
     populationRatio(){
         var totalPopulation
         if (!this.selectedCommune) {
-            totalPopulation = population.reduce((sum, commune) => sum + parseInt(commune.population), 0);
+            totalPopulation = 0
+            this.population.forEach(commune => {
+                if(!isNaN(parseInt(commune.population))){
+                    totalPopulation += parseInt(commune.population)
+                }
+            })
             return (this.filteredServices.length / totalPopulation) * 10000;
         }else{
-            totalPopulation = population.find(commune => commune.insee === this.selectedCommune).population;
+            totalPopulation = this.population.find(commune => commune.insee === this.selectedCommune).population;
             return (this.filteredServices.length / totalPopulation) * 10000;
         }
     }
@@ -489,11 +499,6 @@ export default {
   tr {
     font-weight: 400;
   }
-}
-
-.filters_selector_item{
-    display: inline-block;
-    margin-right: 1rem;
 }
 
 </style>

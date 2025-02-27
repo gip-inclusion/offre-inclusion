@@ -13,8 +13,8 @@
     data() {
       return {
         map: null,
-        center: [-21.120531560155037, 55.52042556869871],
-        zoom: 10,
+        center: [46.3622,1.5231],
+        zoom: 8,
         markers: [],
         geojsonLayer: null,
         communesData: null,
@@ -27,6 +27,12 @@
       },
       selectedThematique() {
         return store.state.selectedThematique
+      },
+      selectedZoomAndCenter() {
+        return store.state.selectedZoomAndCenter
+      },
+      selectedDepartement() {
+        return store.state.selectedDepartement
       }
     },
     methods: {
@@ -41,8 +47,12 @@
           position: 'bottomleft'
         }).addTo(this.colorMap)
         
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(this.colorMap)
-        fetch('data/geojson/communes-974-la-reunion.geojson')
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(this.colorMap)
+        this.updateLayer()
+      },
+
+      updateLayer(){
+        fetch('data/geojson/communes-'+this.selectedDepartement+'.geojson')
           .then(response => response.json())
           .then(data => {
             this.communesData = data
@@ -53,7 +63,7 @@
       getColor(count) {
         // Return white if count is 0
         if (count === 0) {
-          return '#FFFFFF';
+          return '#E6E6EB';
         }
 
         // Define min and max values for the scale
@@ -68,15 +78,15 @@
         
         // Convert hex colors to RGB
         const startColor = {
-          r: 0xFF,  // Changed to white (255, 255, 255)
-          g: 0xFF,
-          b: 0xFF
+          r: 99,
+          g: 174,
+          b: 251
         };
         
         const endColor = {
-          r: 0x00,
-          g: 0x78,
-          b: 0xf3
+          r: 0,
+          g: 30,
+          b: 61
         };
         
         // Linear interpolation between colors
@@ -120,19 +130,19 @@
         
         this.geojsonLayer = L.geoJSON(this.communesData, {
           style: (feature) => {
-            const inseeCode = feature.properties.code
+            const inseeCode = feature.properties.com_code[0]
             return {
               fillColor: this.getColor(this.communeCounts[inseeCode] || 0),
-              weight: 2,
+              weight: 1,
               opacity: 1,
               color: 'white',
-              dashArray: '3',
-              fillOpacity: 0.7
+              dashArray: '0',
+              fillOpacity: 1
             }
           },
           onEachFeature: (feature, layer) => {
-            const inseeCode = feature.properties.code
-            const communeName = feature.properties.nom
+            const inseeCode = feature.properties.com_code[0]
+            const communeName = feature.properties.com_name_upper
             const serviceCount = this.communeCounts[inseeCode] || 0
             layer.bindTooltip(
               `${communeName}: ${serviceCount.toFixed(2)} services pour 10 000 habitants`
@@ -144,7 +154,11 @@
       updateMarkers() {
         this.markers.forEach(marker => marker.remove())
         this.markers = []
-        this.updateChoropleth()
+        this.updateLayer()
+      },
+      updateMapZoomAndCenter() {
+        const { zoom, center } = this.selectedZoomAndCenter;
+        this.colorMap.flyTo(center, zoom);
       }
     },
     watch: {
@@ -154,6 +168,10 @@
       },
       selectedThematique: {
         handler: 'updateMarkers'
+      },
+      selectedZoomAndCenter: {
+        deep: true,
+        handler: 'updateMapZoomAndCenter'
       }
     },
     mounted() {
