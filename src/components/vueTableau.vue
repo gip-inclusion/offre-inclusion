@@ -2,36 +2,7 @@
   <div id="vueTerritoire">
     
     <div class="filters_selector">
-        <h4>Appliquez des filtres</h4>
-        <div class="filters_selector_item">
-            <div class="filters_box" ref="communeDropdown" id="communeDropdown">
-                <div @click="toggleDropdown">
-                {{ selectedCommune ? formatCommuneName(population.find(c => c.insee === selectedCommune).nom_commune) : 'Toutes les communes' }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
-                </svg>
-                </div>
-                <div class="dropdown-content" v-if="isDropdownOpen">
-                <div 
-                    class="dropdown-item"
-                    @click="selectCommune(null)"
-                >
-                    Toutes les communes
-                </div>
-                <div 
-                    class="dropdown-separator"
-                ></div>
-                <div 
-                    v-for="commune in population" 
-                    :key="commune.insee"
-                    class="dropdown-item"
-                    @click="selectCommune(commune)"
-                >
-                    {{ formatCommuneName(commune.nom_commune) }}
-                </div>
-                </div>
-            </div>
-        </div>
+        <h4>Thématiques</h4>
 
         <div class="filters_selector_item">
             <div class="filters_box" ref="thematiqueDropdown" id="thematiqueDropdown">
@@ -75,7 +46,7 @@
               <span class="text">services</span>
           </div>
           <div class="chiffre_box">
-              <span class="chiffre">{{(filteredServices.length/filteredStructures.length).toFixed(1).toLocaleString()}}</span>
+              <span class="chiffre">{{filteredServices.length == 0 ? "0" : (filteredServices.length/filteredStructures.length).toFixed(1).toLocaleString()}}</span>
               <span class="text">services<br>par structure</span>
           </div>
           <div class="chiffre_box">
@@ -85,7 +56,7 @@
       </div>
     </div>
 
-    <div class="vueTableau_container">
+    <div class="vueTableau_container" v-if="filteredStructures.length > 0">
       <h2>Détail des structures</h2>
       <div v-if="!structuresData" class="loading">Chargement des structures...</div>
       <template v-else>
@@ -128,7 +99,7 @@
       </template>
     </div>
 
-    <div class="vueTableau_container">
+    <div class="vueTableau_container" v-if="filteredServices.length > 0">
       <h2>Détail des services</h2>
       
       <div v-if="!servicesData" class="loading">Chargement des services...</div>
@@ -193,8 +164,6 @@ export default {
       itemsPerPage: 5,
       thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
       selectedThematique: null,
-      selectedCommune: null,
-      isDropdownOpen: false,
       isThematiqueDropdownOpen: false,
     }
   },
@@ -207,6 +176,9 @@ export default {
     },
     selectedDepartement() {
       return store.state.selectedDepartement
+    },
+    selectedCommune() {
+      return store.state.selectedCommune
     },
     population() {
       return francePopulation.filter(commune => commune.insee.startsWith(this.selectedDepartement))
@@ -282,17 +254,7 @@ export default {
     document.removeEventListener('click', this.handleClickOutside);
   },
   methods: {
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-    selectCommune(commune) {
-      if(commune){
-        this.selectedCommune = commune.insee;
-      }else{
-        this.selectedCommune = null;
-      }
-      this.isDropdownOpen = false;
-    },
+    
     handleClickOutside(event) {
       if (this.$refs.communeDropdown && !this.$refs.communeDropdown.contains(event.target)) {
         this.isDropdownOpen = false;
@@ -301,12 +263,7 @@ export default {
         this.isThematiqueDropdownOpen = false;
       }
     },
-    formatCommuneName(name) {
-        return name.toLowerCase()
-          .split(/(?=[- ])|(?<=[- ])/)
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join('');
-    },
+    
     formatThematiques(thematiquesString) {
       if (!thematiquesString) return '';
       const matchingThemes = this.thematiques

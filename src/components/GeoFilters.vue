@@ -11,15 +11,15 @@
                 </svg>
                 </div>
                 <div class="dropdown-content" v-if="isRegionDropdownOpen">
-                <div 
+                <!-- <div 
                     class="dropdown-item"
                     @click="selectRegion(null)"
                 >
                     Choisir une région
-                </div>
+                </div> 
                 <div 
                     class="dropdown-separator"
-                ></div>
+                ></div> -->
                 <div 
                     v-for="region in regions" 
                     :key="region.nom"
@@ -42,7 +42,7 @@
                 </svg>
                 </div>
                 <div class="dropdown-content" v-if="isDropdownOpen">
-                <div 
+                <!-- <div 
                     class="dropdown-item"
                     @click="selectDepartement(null)"
                 >
@@ -50,14 +50,45 @@
                 </div>
                 <div 
                     class="dropdown-separator"
-                ></div>
+                ></div> -->
                 <div 
-                    v-for="departement in departements" 
+                    v-for="departement in departements.filter(d => selectedRegion ? selectedRegion.départements.includes(d.Code) : true)" 
                     :key="departement.Code"
                     class="dropdown-item"
                     @click="selectDepartement(departement)"
                 >
                     {{ departement.Nom }}
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters_selector_item" v-if="page == 'zoom'&&selectedDepartement">
+            <h4>Commune</h4>
+            <div class="filters_box" ref="communeDropdown" id="communeDropdown">
+                <div @click="toggleCommuneDropdown">
+                {{ selectedCommune ? formatCommuneName(population.find(c => c.insee === selectedCommune).nom_commune) : 'Toutes les communes' }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
+                </svg>
+                </div>
+                <div class="dropdown-content" v-if="isCommuneDropdownOpen">
+                <div 
+                    class="dropdown-item"
+                    @click="selectCommune(null)"
+                >
+                    Toutes les communes
+                </div>
+                <div 
+                    class="dropdown-separator"
+                ></div>
+                <div 
+                    v-for="commune in population" 
+                    :key="commune.insee"
+                    class="dropdown-item"
+                    @click="selectCommune(commune)"
+                >
+                    {{ formatCommuneName(commune.nom_commune) }}
                 </div>
                 </div>
             </div>
@@ -69,6 +100,7 @@
   
   <script>
   //import { mapState } from 'vuex'
+  import francePopulation from '../../public/data/population.json'
   
   export default {
     name: 'GeoFilters',
@@ -534,13 +566,24 @@
             {"nom": "Nouvelle-Aquitaine", "départements": ["16", "17", "19", "23", "24", "33", "40", "47", "64", "79", "86", "87"]},
             {"nom": "Occitanie", "départements": ["09", "11", "12", "30", "31", "32", "34", "46", "48", "65", "66", "81", "82"]},
             {"nom": "Pays de la Loire", "départements": ["44", "49", "53", "72", "85"]},
-            {"nom": "Provence-Alpes-Côte d'Azur", "départements": ["04", "05", "06", "13", "83", "84"]}
+            {"nom": "Provence-Alpes-Côte d'Azur", "départements": ["04", "05", "06", "13", "83", "84"]},
+            {"nom": "Régions ultramarines", "départements": ["971", "972", "973", "974", "975", "976", "977","978"]}
         ],
         selectedRegion: {"nom": "Auvergne-Rhône-Alpes", "départements": ["01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"]},
-        isRegionDropdownOpen: false
+        isRegionDropdownOpen: false,
+        selectedCommune: null,
+        isCommuneDropdownOpen: false
       }
     },
     computed: {
+
+        population() {
+            return francePopulation.filter(commune => commune.insee.startsWith(this.selectedDepartement.Code))
+        },
+
+        page() {
+            return this.$parent.page;
+        },
       
     },
     created(){
@@ -559,7 +602,9 @@
       },
       selectDepartement(departement) {
         this.selectedDepartement = departement;
+        this.selectedCommune = null;
         this.$store.commit('SET_SELECTED_DEPARTEMENT', departement.Code);
+        this.$store.commit('SET_SELECTED_COMMUNE', null);
         this.isDropdownOpen = false;
       },
       toggleRegionDropdown() {
@@ -567,7 +612,30 @@
       },
       selectRegion(region) {
         this.selectedRegion = region;
+        this.selectedDepartement = this.departements.find(d => this.selectedRegion["départements"].includes(d.Code));
+        this.selectedCommune = null;
+        this.$store.commit('SET_SELECTED_DEPARTEMENT', this.selectedDepartement.Code);
+        this.$store.commit('SET_SELECTED_COMMUNE', null);
         this.isRegionDropdownOpen = false;
+      },
+      toggleCommuneDropdown() {
+        this.isCommuneDropdownOpen = !this.isCommuneDropdownOpen;
+      },
+      selectCommune(commune) {
+        if(commune){
+            this.selectedCommune = commune.insee;
+            this.$store.commit('SET_SELECTED_COMMUNE', commune.insee);
+        }else{
+            this.selectedCommune = null;
+            this.$store.commit('SET_SELECTED_COMMUNE', null);
+        }
+        this.isCommuneDropdownOpen = false;
+      },
+      formatCommuneName(name) {
+        return name.toLowerCase()
+          .split(/(?=[- ])|(?<=[- ])/)
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join('');
       },
       handleClickOutside(event) {
         if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
