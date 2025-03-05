@@ -53,6 +53,7 @@
 
       updateLayer(){
         fetch('data/geojson/communes-'+this.selectedDepartement+'.geojson')
+        //fetch('https://geo.api.gouv.fr/departements/'+this.selectedDepartement+'/communes')
           .then(response => response.json())
           .then(data => {
             this.communesData = data
@@ -104,7 +105,6 @@
         }
   
         if (!this.communesData || !this.servicesData) return
-  
         // Count services per commune using INSEE code, filtering by thematique
         this.communeCounts = {}  // Store as instance property so getColor can access it
         this.servicesData.forEach(service => {
