@@ -12,6 +12,7 @@ export default new Vuex.Store({
     selectedRegion: null,
     selectedDepartement: "01",
     selectedCommune: null,
+    selectedBassin: null,
     selectedZoomAndCenter: {
       zoom: 10,
       center: [46.3622,1.5231]
@@ -38,6 +39,9 @@ export default new Vuex.Store({
     },
     SET_SELECTED_COMMUNE(state, commune) {
       state.selectedCommune = commune;
+    },
+    SET_SELECTED_BASSIN(state, bassin) {
+      state.selectedBassin = bassin;
     }
   }
 })

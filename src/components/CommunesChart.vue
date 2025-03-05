@@ -34,10 +34,10 @@
           </div>
       </div>
 
-      <div class="average_text">En moyenne, chaque commune est couverte par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}</span> services pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
-      <div class="top_text"><span class="highlight">{{positiveCount}} communes sont mieux dotées</span> en services que la moyenne dans le département</div>
-      <div class="flop_text"><span class="highlight">{{negativeCount}} communes sont moins bien dotées</span> en services que la moyenne dans le département</div>
-      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} communes n'ont aucun </span>service couvrant cette thématique</div>
+      <div class="average_text">En moyenne, chaque {{ selectedBassin ? "commune est couverte" : "bassin est couvert" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}</span> services pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
+      <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins sont mieux dotés" }}</span> en services que la moyenne dans le département</div>
+      <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins sont moins bien dotés" }}</span> en services que la moyenne dans le département</div>
+      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} {{ selectedBassin ? "communes n'ont aucun" : "bassins n'ont aucun" }}</span> service couvrant cette thématique</div>
 
       <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par habitants
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
@@ -58,6 +58,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'vue-chartjs'
 import store from '@/store'
 import population from '../../public/data/population.json'
+import bassins from '../../public/data/bassins.json'
+import { mapState } from 'vuex'
 
 // Register Chart.js components
 ChartJS.register(
@@ -133,13 +135,14 @@ export default {
       },
       positiveCount: 0,
       negativeCount: 0,
-      zeroCount: 0
+      zeroCount: 0,
     }
   },
   computed: {
     servicesData() {
       return store.state.servicesData
     },
+    ...mapState(['selectedBassin','selectedDepartement'])
   },
   methods: {
     toggleDropdown() {
@@ -224,17 +227,43 @@ export default {
         const difference = ((parseFloat(count) - average) / average * 100).toFixed(1);
         return [commune, difference];
       });
+      var differencesWithNames
+      if(this.selectedBassin){
+        var communesList = bassins[this.selectedDepartement][this.selectedBassin];
+        differencesFromAverage = differencesFromAverage.filter(([insee]) => communesList.includes(insee));
+        differencesWithNames = differencesFromAverage.map(([insee, difference]) => {
+          const communeEntry = population.find(entry => entry.insee === insee);
+          const communeName = communeEntry ? communeEntry.nom_commune : insee;
+          // Format name: capitalize first letter of each word and after hyphens
+          let formattedName = communeName.toLowerCase().replace(/(^\w|\s\w|-\w)/g, letter => letter.toUpperCase());
+          // Truncate to 15 characters and add ellipsis if needed
+          formattedName = formattedName.length > 17 ? formattedName.slice(0, 15) + '...' : formattedName;
+          return [formattedName, difference];
+        });
+      }else{
+        var bassinsToDisplay = Object.keys(bassins[this.selectedDepartement])
+        const bassinsAverages = bassinsToDisplay.map(bassinName => {
+          const communesInBassin = bassins[this.selectedDepartement][bassinName];
+          const relevantDifferences = differencesFromAverage.filter(([insee]) => communesInBassin.includes(insee));
+          const bassinAverage = (relevantDifferences.reduce((sum, [, diff]) => sum + parseFloat(diff), 0) / relevantDifferences.length).toFixed(1);
+          return [bassinName, bassinAverage];
+        }).sort(([,avgA], [,avgB]) => avgB - avgA);
+        
+        /*differencesWithNames = differencesFromAverage.map(([insee, difference]) => {
+          const communeEntry = population.find(entry => entry.insee === insee);
+          const communeName = communeEntry ? communeEntry.nom_commune : insee;
+          // Format name: capitalize first letter of each word and after hyphens
+          let formattedName = communeName.toLowerCase().replace(/(^\w|\s\w|-\w)/g, letter => letter.toUpperCase());
+          // Truncate to 15 characters and add ellipsis if needed
+          formattedName = formattedName.length > 17 ? formattedName.slice(0, 15) + '...' : formattedName;
+          return [formattedName, difference];
+        }); */
+        differencesWithNames = bassinsAverages;
+        //console.log(differencesWithNames);
+      }
 
       // Replace INSEE codes with commune names and format them
-      var differencesWithNames = differencesFromAverage.map(([insee, difference]) => {
-        const communeEntry = population.find(entry => entry.insee === insee);
-        const communeName = communeEntry ? communeEntry.nom_commune : insee;
-        // Format name: capitalize first letter of each word and after hyphens
-        let formattedName = communeName.toLowerCase().replace(/(^\w|\s\w|-\w)/g, letter => letter.toUpperCase());
-        // Truncate to 15 characters and add ellipsis if needed
-        formattedName = formattedName.length > 17 ? formattedName.slice(0, 15) + '...' : formattedName;
-        return [formattedName, difference];
-      });
+      
       
       // Update differencesFromAverage with the named version
       differencesFromAverage = differencesWithNames;
@@ -320,6 +349,9 @@ export default {
       immediate: true
     },
     selectedThematique() {
+      this.createChart();
+    },
+    selectedBassin() {
       this.createChart();
     }
   },

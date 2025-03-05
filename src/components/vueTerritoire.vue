@@ -52,7 +52,8 @@
     </div>
 
     <div class="vueTerritoire_container">
-      <h2>Certaines communes sont-elles mieux ou moins bien dotées ?</h2>
+      <h2 v-if="!selectedBassin">Certains bassins d'emploi sont-ils mieux ou moins bien dotés ?</h2>
+      <h2 v-else>Certaines communes sont-elles mieux ou moins bien dotées ?</h2>
 
       <div class="chart_container">
 
@@ -100,7 +101,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['selectedThematique']),
+    ...mapState(['selectedThematique','selectedBassin']),
   },
   created(){
     

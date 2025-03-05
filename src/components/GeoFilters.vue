@@ -11,15 +11,6 @@
                 </svg>
                 </div>
                 <div class="dropdown-content" v-if="isRegionDropdownOpen">
-                <!-- <div 
-                    class="dropdown-item"
-                    @click="selectRegion(null)"
-                >
-                    Choisir une région
-                </div> 
-                <div 
-                    class="dropdown-separator"
-                ></div> -->
                 <div 
                     v-for="region in regions" 
                     :key="region.nom"
@@ -42,15 +33,6 @@
                 </svg>
                 </div>
                 <div class="dropdown-content" v-if="isDropdownOpen">
-                <!-- <div 
-                    class="dropdown-item"
-                    @click="selectDepartement(null)"
-                >
-                    Toutes les départements
-                </div>
-                <div 
-                    class="dropdown-separator"
-                ></div> -->
                 <div 
                     v-for="departement in departements.filter(d => selectedRegion ? selectedRegion.départements.includes(d.Code) : true)" 
                     :key="departement.Code"
@@ -58,6 +40,37 @@
                     @click="selectDepartement(departement)"
                 >
                     {{ departement.Nom }}
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters_selector_item" v-if="page == 'ensemble'&&selectedDepartement">
+            <h4>Bassin d'emploi</h4>
+            <div class="filters_box" ref="bassinDropdown" id="bassinDropdown" @click="toggleBassinDropdown">
+                <div>
+                {{ selectedBassin ? selectedBassin : 'Tous les bassins' }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
+                </svg>
+                </div>
+                <div class="dropdown-content" v-if="isBassinDropdownOpen">
+                <div 
+                    class="dropdown-item"
+                    @click="selectBassin(null)"
+                >
+                    Tous les bassins
+                </div>
+                <div 
+                    class="dropdown-separator"
+                ></div>
+                <div 
+                    v-for="bassin,i in bassins" 
+                    :key="i"
+                    class="dropdown-item"
+                    @click="selectBassin(i)"
+                >
+                    {{ i }}
                 </div>
                 </div>
             </div>
@@ -93,6 +106,8 @@
                 </div>
             </div>
         </div>
+
+
       
     </div>
     
@@ -101,7 +116,8 @@
   <script>
   //import { mapState } from 'vuex'
   import francePopulation from '../../public/data/population.json'
-  
+  import bassins from '../../public/data/bassins.json'
+
   export default {
     name: 'GeoFilters',
     components: {
@@ -571,6 +587,8 @@
         ],
         selectedRegion: {"nom": "Auvergne-Rhône-Alpes", "départements": ["01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"]},
         isRegionDropdownOpen: false,
+        selectedBassin: null,
+        isBassinDropdownOpen: false,
         selectedCommune: null,
         isCommuneDropdownOpen: false
       }
@@ -579,6 +597,9 @@
 
         population() {
             return francePopulation.filter(commune => commune.insee.startsWith(this.selectedDepartement.Code))
+        },
+        bassins() {
+            return bassins[this.selectedDepartement.Code]
         },
 
         page() {
@@ -602,10 +623,9 @@
       },
       selectDepartement(departement) {
         this.selectedDepartement = departement;
-        this.selectedCommune = null;
         this.$store.commit('SET_SELECTED_DEPARTEMENT', departement.Code);
-        this.$store.commit('SET_SELECTED_COMMUNE', null);
         this.isDropdownOpen = false;
+        this.resetFilters();
       },
       toggleRegionDropdown() {
         this.isRegionDropdownOpen = !this.isRegionDropdownOpen;
@@ -613,15 +633,14 @@
       selectRegion(region) {
         this.selectedRegion = region;
         this.selectedDepartement = this.departements.find(d => this.selectedRegion["départements"].includes(d.Code));
-        this.selectedCommune = null;
-        this.$store.commit('SET_SELECTED_DEPARTEMENT', this.selectedDepartement.Code);
-        this.$store.commit('SET_SELECTED_COMMUNE', null);
         this.isRegionDropdownOpen = false;
+        this.resetFilters();
       },
       toggleCommuneDropdown() {
         this.isCommuneDropdownOpen = !this.isCommuneDropdownOpen;
       },
       selectCommune(commune) {
+        this.resetFilters();
         if(commune){
             this.selectedCommune = commune.insee;
             this.$store.commit('SET_SELECTED_COMMUNE', commune.insee);
@@ -631,6 +650,22 @@
         }
         this.isCommuneDropdownOpen = false;
       },
+      toggleBassinDropdown() {
+        this.isBassinDropdownOpen = !this.isBassinDropdownOpen;
+      },
+      selectBassin(bassin) {
+        this.resetFilters();
+        this.selectedBassin = bassin;
+        this.$store.commit('SET_SELECTED_BASSIN', bassin);
+        this.isBassinDropdownOpen = false;
+      },
+      resetFilters() {
+        this.selectedBassin = null;
+        this.selectedCommune = null;
+        this.$store.commit('SET_SELECTED_BASSIN', null);
+        this.$store.commit('SET_SELECTED_COMMUNE', null);
+      },
+
       formatCommuneName(name) {
         return name.toLowerCase()
           .split(/(?=[- ])|(?<=[- ])/)
@@ -643,6 +678,12 @@
         }
         if (this.$refs.regionDropdown && !this.$refs.regionDropdown.contains(event.target)) {
           this.isRegionDropdownOpen = false;
+        }
+        if (this.$refs.bassinDropdown && !this.$refs.bassinDropdown.contains(event.target)) {
+          this.isBassinDropdownOpen = false;
+        }
+        if (this.$refs.communeDropdown && !this.$refs.communeDropdown.contains(event.target)) {
+          this.isCommuneDropdownOpen = false;
         }
       }
     }
