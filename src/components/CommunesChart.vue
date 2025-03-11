@@ -35,11 +35,11 @@
       </div>
 
       <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin chaque commune est couverte" : "les communes de chaque bassin sont couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}&nbsp;services</span> pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
-      <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins sont mieux dotés" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
-      <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins sont moins bien dotés" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
+      <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins ont des communes mieux dotées" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
+      <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins ont des communes moins bien dotées" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} {{ selectedBassin ? "communes n'ont aucun" : "bassins n'ont aucun" }}</span> service couvrant cette thématique</div>
 
-      <div class="legende_text">Services par 10 000 habitants
+      <div class="legende_text">Services par 10 000 habitants par commune
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
         <div class="legende_tooltip">L'indicateur mesure pour chaque commune le nombre de services par habitants dans le département.</div>
       </div>
@@ -245,54 +245,60 @@ export default {
           }
         }
       
-        
       // Sort by normalized count in descending order
-      const sortedEntries = Object.entries(communeCount)
+      var sortedEntries = Object.entries(communeCount)
       .sort(([, countA], [, countB]) => countB - countA);
 
-      // Calculate difference from average in percentage points
-      var differencesFromAverage = sortedEntries.map(([commune, count]) => {
-        //const difference = ((parseFloat(count) - average) / average * 100).toFixed(1);
-        return [commune, count];
-      });
-      var differencesWithNames
+      var entriesWithNames
+
       if(this.selectedBassin){
+
         var communesList = bassins[this.selectedDepartement][this.selectedBassin];
-        differencesFromAverage = differencesFromAverage.filter(([insee]) => communesList.includes(insee));
-        // Calculate average of normalized counts
-        const average = differencesFromAverage.reduce((sum, [, count]) => sum + parseFloat(count), 0) / differencesFromAverage.length;
+        sortedEntries = sortedEntries.filter(([insee]) => communesList.includes(insee));
+
+        const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
         this.average = average;
-        differencesWithNames = differencesFromAverage.map(([insee, difference]) => {
+
+        entriesWithNames = sortedEntries.map(([insee, difference]) => {
           const communeEntry = population.find(entry => entry.insee === insee);
           const communeName = communeEntry ? communeEntry.nom_commune : insee;
           return [communeName, difference];
         });
+
       }else{
+
         var bassinsToDisplay = Object.keys(bassins[this.selectedDepartement])
+
         const bassinsAverages = bassinsToDisplay.map(bassinName => {
+
           const communesInBassin = bassins[this.selectedDepartement][bassinName];
-          const relevantDifferences = differencesFromAverage.filter(([insee]) => communesInBassin.includes(insee));
-          const average = differencesFromAverage.reduce((sum, [, count]) => sum + parseFloat(count), 0) / differencesFromAverage.length;
-        this.average = average;
-          const bassinAverage = (relevantDifferences.reduce((sum, [, diff]) => sum + parseFloat(diff), 0) / relevantDifferences.length).toFixed(1);
+          const relevantCommunes = sortedEntries.filter(([insee]) => communesInBassin.includes(insee));
+
+          const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
+          this.average = average;
+
+          const bassinAverage = (relevantCommunes.reduce((sum, [, diff]) => sum + parseFloat(diff), 0) / relevantCommunes.length).toFixed(1);
           return [bassinName, bassinAverage];
+
         }).sort(([,avgA], [,avgB]) => avgB - avgA);
-        differencesWithNames = bassinsAverages;
+
+        entriesWithNames = bassinsAverages;
+
       }
 
-      differencesFromAverage = differencesWithNames;
+      sortedEntries = entriesWithNames;
 
       // Count number of communes with positive difference
-      const positiveCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) > this.average).length;
+      const positiveCount = sortedEntries.filter(([, diff]) => parseFloat(diff) > this.average).length;
       this.positiveCount = positiveCount;
-      const negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < this.average && parseFloat(diff) > 0).length;
+      const negativeCount = sortedEntries.filter(([, diff]) => parseFloat(diff) < this.average && parseFloat(diff) > 0).length;
       this.negativeCount = negativeCount;
-      const zeroCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) <= 0).length;
+      const zeroCount = sortedEntries.filter(([, diff]) => parseFloat(diff) <= 0).length;
       this.zeroCount = zeroCount;
 
       // Convert to arrays for chart.js
-      const communes = differencesFromAverage.map(([commune]) => commune);
-      const counts = differencesFromAverage.map(([, count]) => count);
+      const communes = sortedEntries.map(([commune]) => commune);
+      const counts = sortedEntries.map(([, count]) => count);
       
       this.chartConfig = {
         type: 'bar',

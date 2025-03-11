@@ -32,7 +32,12 @@ export default {
     initMap() {
       this.symbolMap = L.map('symbolMap', {
         attributionControl: false,
-        zoomControl: false  // Disable default zoom control
+        zoomControl: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        touchZoom: false,
+        dragging: true
       }).setView(this.center, this.zoom)
       
       // Add zoom control to bottom left
@@ -79,7 +84,7 @@ export default {
               opacity: 1,
               fillOpacity: 0.2
             })
-              .bindTooltip(item.Nom)
+              .bindTooltip(item.Nom.toUpperCase() + '<br>' + item.Commune)
               .addTo(this.symbolMap)
             this.markers.push(marker)
           }

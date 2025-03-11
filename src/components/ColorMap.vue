@@ -39,7 +39,12 @@
       initMap() {
         this.colorMap = L.map('colorMap', {
           attributionControl: false,
-          zoomControl: false  // Disable default zoom control
+          zoomControl: false,
+          scrollWheelZoom: false,
+          doubleClickZoom: false,
+          boxZoom: false,
+          touchZoom: false,
+          dragging: true
         }).setView(this.center, this.zoom)
         
         // Add zoom control to bottom left
@@ -145,7 +150,7 @@
             const communeName = feature.properties.com_name_upper
             const serviceCount = this.communeCounts[inseeCode] || 0
             layer.bindTooltip(
-              `${communeName}: ${serviceCount.toFixed(2)} services pour 10 000 habitants`
+              `${communeName}<br> ${serviceCount.toFixed(2)} services pour 10 000 habitants`
             )
           }
         }).addTo(this.colorMap)
