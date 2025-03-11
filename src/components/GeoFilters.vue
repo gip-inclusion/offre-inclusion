@@ -633,6 +633,7 @@
       selectRegion(region) {
         this.selectedRegion = region;
         this.selectedDepartement = this.departements.find(d => this.selectedRegion["départements"].includes(d.Code));
+        this.selectDepartement(this.selectedDepartement);
         this.isRegionDropdownOpen = false;
         this.resetFilters();
       },

@@ -272,8 +272,9 @@ export default {
         const bassinsAverages = bassinsToDisplay.map(bassinName => {
 
           const communesInBassin = bassins[this.selectedDepartement][bassinName];
+          
           const relevantCommunes = sortedEntries.filter(([insee]) => communesInBassin.includes(insee));
-
+          console.log(relevantCommunes)
           const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
           this.average = average;
 
