@@ -34,14 +34,14 @@
           </div>
       </div>
 
-      <div class="average_text">En moyenne, chaque {{ selectedBassin ? "commune est couverte" : "bassin est couvert" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}</span> services pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
-      <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins sont mieux dotés" }}</span> en services que la moyenne dans le département</div>
-      <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins sont moins bien dotés" }}</span> en services que la moyenne dans le département</div>
+      <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin chaque commune est couverte" : "les communes de chaque bassin sont couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}&nbsp;services</span> pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
+      <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins sont mieux dotés" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
+      <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins sont moins bien dotés" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} {{ selectedBassin ? "communes n'ont aucun" : "bassins n'ont aucun" }}</span> service couvrant cette thématique</div>
 
-      <div class="legende_text">Ecart par rapport à la moyenne du nombre de services par habitants
+      <div class="legende_text">Services par 10 000 habitants
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
-        <div class="legende_tooltip">L'indicateur mesure pour chaque commune l'écart par rapport à la moyenne du nombre de services par habitants dans le département. À titre d'exemple, un indicateur à 50% signifie que la commune propose 50% de plus de services par habitants que la moyenne.</div>
+        <div class="legende_tooltip">L'indicateur mesure pour chaque commune le nombre de services par habitants dans le département.</div>
       </div>
     </div>
 
@@ -60,6 +60,7 @@ import store from '@/store'
 import population from '../../public/data/population.json'
 import bassins from '../../public/data/bassins.json'
 import { mapState } from 'vuex'
+import annotationPlugin from 'chartjs-plugin-annotation'
 
 // Register Chart.js components
 ChartJS.register(
@@ -68,7 +69,8 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  annotationPlugin
 )
 
 export default {
@@ -107,6 +109,23 @@ export default {
                   return context.parsed.y + '%';
                 }
               }
+            },
+            annotation: {
+              annotations: {
+                averageLine: {
+                  type: 'line',
+                  yMin: 0,
+                  yMax: 0,
+                  borderColor: 'rgba(0, 0, 145, 1)',
+                  borderWidth: 1,
+                  borderDash: [5, 5],
+                  label: {
+                    enabled: true,
+                    content: 'Moyenne',
+                    position: 'end'
+                  }
+                }
+              }
             }
           },
           scales: {
@@ -115,9 +134,12 @@ export default {
                 display: false
               },
               ticks: {
-                autoSkip: false,
+                autoSkip: true,
                 maxRotation: 90,
-                minRotation: 90
+                minRotation: 90,
+                callback: function(value, index, ticks) {
+                  return self.formatCommuneName(this.chart.data.labels[index]);
+                }
               }
             },
             y: {
@@ -183,7 +205,18 @@ export default {
         
         return accentsMap[theme] || theme;
     },
+    formatCommuneName(communeName) {
+      let formattedName
+      if(this.selectedBassin){
+        formattedName = communeName.toLowerCase().replace(/(^\w|\s\w|-\w)/g, letter => letter.toUpperCase());
+        formattedName = formattedName.length > 17 && formattedName.includes('-') ? formattedName.slice(0, formattedName.lastIndexOf('-')) : formattedName;
+      }else{
+        formattedName = communeName;
+      }
+      return formattedName;
+    },
     createChart() {
+      var self = this;
       if (!this.servicesData) return;
       // Count services by commune
       const communeCount = {};
@@ -217,69 +250,50 @@ export default {
       const sortedEntries = Object.entries(communeCount)
       .sort(([, countA], [, countB]) => countB - countA);
 
-      // Calculate average of normalized counts
-      const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
-      this.average = average;
-
-
       // Calculate difference from average in percentage points
       var differencesFromAverage = sortedEntries.map(([commune, count]) => {
-        const difference = ((parseFloat(count) - average) / average * 100).toFixed(1);
-        return [commune, difference];
+        //const difference = ((parseFloat(count) - average) / average * 100).toFixed(1);
+        return [commune, count];
       });
       var differencesWithNames
       if(this.selectedBassin){
         var communesList = bassins[this.selectedDepartement][this.selectedBassin];
         differencesFromAverage = differencesFromAverage.filter(([insee]) => communesList.includes(insee));
+        // Calculate average of normalized counts
+        const average = differencesFromAverage.reduce((sum, [, count]) => sum + parseFloat(count), 0) / differencesFromAverage.length;
+        this.average = average;
         differencesWithNames = differencesFromAverage.map(([insee, difference]) => {
           const communeEntry = population.find(entry => entry.insee === insee);
           const communeName = communeEntry ? communeEntry.nom_commune : insee;
-          // Format name: capitalize first letter of each word and after hyphens
-          let formattedName = communeName.toLowerCase().replace(/(^\w|\s\w|-\w)/g, letter => letter.toUpperCase());
-          // Truncate to 15 characters and add ellipsis if needed
-          formattedName = formattedName.length > 17 ? formattedName.slice(0, 15) + '...' : formattedName;
-          return [formattedName, difference];
+          return [communeName, difference];
         });
       }else{
         var bassinsToDisplay = Object.keys(bassins[this.selectedDepartement])
         const bassinsAverages = bassinsToDisplay.map(bassinName => {
           const communesInBassin = bassins[this.selectedDepartement][bassinName];
           const relevantDifferences = differencesFromAverage.filter(([insee]) => communesInBassin.includes(insee));
+          const average = differencesFromAverage.reduce((sum, [, count]) => sum + parseFloat(count), 0) / differencesFromAverage.length;
+        this.average = average;
           const bassinAverage = (relevantDifferences.reduce((sum, [, diff]) => sum + parseFloat(diff), 0) / relevantDifferences.length).toFixed(1);
           return [bassinName, bassinAverage];
         }).sort(([,avgA], [,avgB]) => avgB - avgA);
-        
-        /*differencesWithNames = differencesFromAverage.map(([insee, difference]) => {
-          const communeEntry = population.find(entry => entry.insee === insee);
-          const communeName = communeEntry ? communeEntry.nom_commune : insee;
-          // Format name: capitalize first letter of each word and after hyphens
-          let formattedName = communeName.toLowerCase().replace(/(^\w|\s\w|-\w)/g, letter => letter.toUpperCase());
-          // Truncate to 15 characters and add ellipsis if needed
-          formattedName = formattedName.length > 17 ? formattedName.slice(0, 15) + '...' : formattedName;
-          return [formattedName, difference];
-        }); */
         differencesWithNames = bassinsAverages;
-        //console.log(differencesWithNames);
       }
 
-      // Replace INSEE codes with commune names and format them
-      
-      
-      // Update differencesFromAverage with the named version
       differencesFromAverage = differencesWithNames;
 
       // Count number of communes with positive difference
-      const positiveCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) > 0).length;
+      const positiveCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) > this.average).length;
       this.positiveCount = positiveCount;
-      const negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < 0 && parseFloat(diff) > -100).length;
+      const negativeCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) < this.average && parseFloat(diff) > 0).length;
       this.negativeCount = negativeCount;
-      const zeroCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) <= -100).length;
+      const zeroCount = differencesFromAverage.filter(([, diff]) => parseFloat(diff) <= 0).length;
       this.zeroCount = zeroCount;
 
       // Convert to arrays for chart.js
       const communes = differencesFromAverage.map(([commune]) => commune);
       const counts = differencesFromAverage.map(([, count]) => count);
-
+      
       this.chartConfig = {
         type: 'bar',
         data: {
@@ -288,13 +302,13 @@ export default {
             data: counts,
             backgroundColor: counts.map(value => {
               const numValue = parseFloat(value);
-              if (numValue <= -100) return 'rgba(214, 77, 0, 0.2)';
-              return numValue >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
+              if (numValue <= 0) return 'rgba(214, 77, 0, 0.2)';
+              return numValue >= this.average ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
             }),
             borderColor: counts.map(value => {
               const numValue = parseFloat(value);
-              if (numValue <= -100) return 'rgba(214, 77, 0, 0.2)';
-              return numValue >= 0 ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
+              if (numValue <= 0) return 'rgba(214, 77, 0, 0.2)';
+              return numValue >= this.average ? 'rgba(0, 120, 243, 1)' : 'rgba(214, 77, 0, 1)';
             }),
             borderWidth: 1
           }]
@@ -310,7 +324,33 @@ export default {
               displayColors: false,
               callbacks: {
                 label: function(context) {
-                  return context.parsed.y + '% de services par habitant par rapport à la moyenne';
+                  return context.parsed.y + ' services pour 10 000 habitants';
+                }
+              }
+            },
+            annotation: {
+              annotations: {
+                averageLine: {
+                  type: 'line',
+                  yMin: this.average,
+                  yMax: this.average,
+                  borderColor: '#000000',
+                  borderWidth: 1,
+                  borderDash: [5, 5],
+                  label: {
+                    display: true,
+                    content: 'moyenne',
+                    position: 'end',
+                    backgroundColor: 'white',
+                    color: '#000000',
+                    padding: 0,
+                    xAdjust: 0,
+                    yAdjust: -10,
+                    font: {
+                      size: 12,
+                      weight: 'normal'
+                    }
+                  }
                 }
               }
             }
@@ -321,9 +361,12 @@ export default {
                 display: false
               },
               ticks: {
-                autoSkip: false,
-                maxRotation: 90,
-                minRotation: 90
+                autoSkip: true,
+                maxRotation: 45,
+                minRotation: 45,
+                callback: function(value, index, ticks) {
+                  return self.formatCommuneName(this.chart.data.labels[index]);
+                }
               }
             },
             y: {
@@ -333,7 +376,7 @@ export default {
               },
               title: {
                 display: true,
-                text: '% de différence par rapport à la moyenne'
+                text: 'services pour 10 000 habitants'
               }
             }
           }
