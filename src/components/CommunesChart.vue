@@ -3,7 +3,7 @@
     
     <div class="edito-container">
         
-      <div class="filters_selector">
+      <!-- <div class="filters_selector">
           <h4>Thématique</h4>
           <div class="filters_box" ref="dropdown" @click="toggleDropdown">
               <div>
@@ -32,14 +32,19 @@
               </div>
               </div>
           </div>
-      </div>
+      </div> -->
+
+      <div v-if="!selectedBassin" class="filter_rappel">{{ departements.find(d => d.Code === selectedDepartement)?.Nom }}</div>
+      <div v-if="selectedBassin" class="filter_rappel">{{selectedBassin}}</div>
+      <div v-if="!selectedThematique" class="filter_rappel">Toutes les thématiques</div>
+      <div v-if="selectedThematique" class="filter_rappel">{{selectedThematique}}</div>
 
       <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin chaque commune est couverte" : "les communes de chaque bassin sont couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}&nbsp;services</span> pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
       <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins ont des communes mieux dotées" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
       <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins ont des communes moins bien dotées" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} {{ selectedBassin ? "communes n'ont aucun" : "bassins n'ont aucun" }}</span> service couvrant cette thématique</div>
 
-      <div class="legende_text">Services par 10 000 habitants par commune
+      <div class="legende_text">Nombre de services pour 10 000 habitants par commune
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
         <div class="legende_tooltip">L'indicateur mesure pour chaque commune le nombre de services par habitants dans le département.</div>
       </div>
@@ -85,6 +90,448 @@ export default {
       isDropdownOpen: false,
       average: 0,
       thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
+      departements:[
+        {
+            "Code": "01",
+            "Nom": "Ain"
+        },
+        {
+            "Code": "02",
+            "Nom": "Aisne"
+        },
+        {
+            "Code": "03",
+            "Nom": "Allier"
+        },
+        {
+            "Code": "04",
+            "Nom": "Alpes-de-Haute-Provence"
+        },
+        {
+            "Code": "05",
+            "Nom": "Hautes-Alpes"
+        },
+        {
+            "Code": "06",
+            "Nom": "Alpes-Maritimes"
+        },
+        {
+            "Code": "07",
+            "Nom": "Ardèche"
+        },
+        {
+            "Code": "08",
+            "Nom": "Ardennes"
+        },
+        {
+            "Code": "09",
+            "Nom": "Ariège"
+        },
+        {
+            "Code": "10",
+            "Nom": "Aube"
+        },
+        {
+            "Code": "11",
+            "Nom": "Aude"
+        },
+        {
+            "Code": "12",
+            "Nom": "Aveyron"
+        },
+        {
+            "Code": "13",
+            "Nom": "Bouches-du-Rhône"
+        },
+        {
+            "Code": "14",
+            "Nom": "Calvados"
+        },
+        {
+            "Code": "15",
+            "Nom": "Cantal"
+        },
+        {
+            "Code": "16",
+            "Nom": "Charente"
+        },
+        {
+            "Code": "17",
+            "Nom": "Charente-Maritime"
+        },
+        {
+            "Code": "18",
+            "Nom": "Cher"
+        },
+        {
+            "Code": "19",
+            "Nom": "Corrèze"
+        },
+        {
+            "Code": "2A",
+            "Nom": "Corse-du-Sud"
+        },
+        {
+            "Code": "2B",
+            "Nom": "Haute-Corse"
+        },
+        {
+            "Code": "21",
+            "Nom": "Côte-d'Or"
+        },
+        {
+            "Code": "22",
+            "Nom": "Côtes-d'Armor"
+        },
+        {
+            "Code": "23",
+            "Nom": "Creuse"
+        },
+        {
+            "Code": "24",
+            "Nom": "Dordogne"
+        },
+        {
+            "Code": "25",
+            "Nom": "Doubs"
+        },
+        {
+            "Code": "26",
+            "Nom": "Drôme"
+        },
+        {
+            "Code": "27",
+            "Nom": "Eure"
+        },
+        {
+            "Code": "28",
+            "Nom": "Eure-et-Loir"
+        },
+        {
+            "Code": "29",
+            "Nom": "Finistère"
+        },
+        {
+            "Code": "30",
+            "Nom": "Gard"
+        },
+        {
+            "Code": "31",
+            "Nom": "Haute-Garonne"
+        },
+        {
+            "Code": "32",
+            "Nom": "Gers"
+        },
+        {
+            "Code": "33",
+            "Nom": "Gironde"
+        },
+        {
+            "Code": "34",
+            "Nom": "Hérault"
+        },
+        {
+            "Code": "35",
+            "Nom": "Ille-et-Vilaine"
+        },
+        {
+            "Code": "36",
+            "Nom": "Indre"
+        },
+        {
+            "Code": "37",
+            "Nom": "Indre-et-Loire"
+        },
+        {
+            "Code": "38",
+            "Nom": "Isère"
+        },
+        {
+            "Code": "39",
+            "Nom": "Jura"
+        },
+        {
+            "Code": "40",
+            "Nom": "Landes"
+        },
+        {
+            "Code": "41",
+            "Nom": "Loir-et-Cher"
+        },
+        {
+            "Code": "42",
+            "Nom": "Loire"
+        },
+        {
+            "Code": "43",
+            "Nom": "Haute-Loire"
+        },
+        {
+            "Code": "44",
+            "Nom": "Loire-Atlantique"
+        },
+        {
+            "Code": "45",
+            "Nom": "Loiret"
+        },
+        {
+            "Code": "46",
+            "Nom": "Lot"
+        },
+        {
+            "Code": "47",
+            "Nom": "Lot-et-Garonne"
+        },
+        {
+            "Code": "48",
+            "Nom": "Lozère"
+        },
+        {
+            "Code": "49",
+            "Nom": "Maine-et-Loire"
+        },
+        {
+            "Code": "50",
+            "Nom": "Manche"
+        },
+        {
+            "Code": "51",
+            "Nom": "Marne"
+        },
+        {
+            "Code": "52",
+            "Nom": "Haute-Marne"
+        },
+        {
+            "Code": "53",
+            "Nom": "Mayenne"
+        },
+        {
+            "Code": "54",
+            "Nom": "Meurthe-et-Moselle"
+        },
+        {
+            "Code": "55",
+            "Nom": "Meuse"
+        },
+        {
+            "Code": "56",
+            "Nom": "Morbihan"
+        },
+        {
+            "Code": "57",
+            "Nom": "Moselle"
+        },
+        {
+            "Code": "58",
+            "Nom": "Nièvre"
+        },
+        {
+            "Code": "59",
+            "Nom": "Nord"
+        },
+        {
+            "Code": "60",
+            "Nom": "Oise"
+        },
+        {
+            "Code": "61",
+            "Nom": "Orne"
+        },
+        {
+            "Code": "62",
+            "Nom": "Pas-de-Calais"
+        },
+        {
+            "Code": "63",
+            "Nom": "Puy-de-Dôme"
+        },
+        {
+            "Code": "64",
+            "Nom": "Pyrénées-Atlantiques"
+        },
+        {
+            "Code": "65",
+            "Nom": "Hautes-Pyrénées"
+        },
+        {
+            "Code": "66",
+            "Nom": "Pyrénées-Orientales"
+        },
+        {
+            "Code": "67",
+            "Nom": "Bas-Rhin"
+        },
+        {
+            "Code": "68",
+            "Nom": "Haut-Rhin"
+        },
+        {
+            "Code": "69D",
+            "Nom": "Rhône"
+        },
+        {
+            "Code": "69M",
+            "Nom": "Métropole de Lyon"
+        },
+        {
+            "Code": "70",
+            "Nom": "Haute-Saône"
+        },
+        {
+            "Code": "71",
+            "Nom": "Saône-et-Loire"
+        },
+        {
+            "Code": "72",
+            "Nom": "Sarthe"
+        },
+        {
+            "Code": "73",
+            "Nom": "Savoie"
+        },
+        {
+            "Code": "74",
+            "Nom": "Haute-Savoie"
+        },
+        {
+            "Code": "75",
+            "Nom": "Paris"
+        },
+        {
+            "Code": "76",
+            "Nom": "Seine-Maritime"
+        },
+        {
+            "Code": "77",
+            "Nom": "Seine-et-Marne"
+        },
+        {
+            "Code": "78",
+            "Nom": "Yvelines"
+        },
+        {
+            "Code": "79",
+            "Nom": "Deux-Sèvres"
+        },
+        {
+            "Code": "80",
+            "Nom": "Somme"
+        },
+        {
+            "Code": "81",
+            "Nom": "Tarn"
+        },
+        {
+            "Code": "82",
+            "Nom": "Tarn-et-Garonne"
+        },
+        {
+            "Code": "83",
+            "Nom": "Var"
+        },
+        {
+            "Code": "84",
+            "Nom": "Vaucluse"
+        },
+        {
+            "Code": "85",
+            "Nom": "Vendée"
+        },
+        {
+            "Code": "86",
+            "Nom": "Vienne"
+        },
+        {
+            "Code": "87",
+            "Nom": "Haute-Vienne"
+        },
+        {
+            "Code": "88",
+            "Nom": "Vosges"
+        },
+        {
+            "Code": "89",
+            "Nom": "Yonne"
+        },
+        {
+            "Code": "90",
+            "Nom": "Territoire de Belfort"
+        },
+        {
+            "Code": "91",
+            "Nom": "Essonne"
+        },
+        {
+            "Code": "92",
+            "Nom": "Hauts-de-Seine"
+        },
+        {
+            "Code": "93",
+            "Nom": "Seine-Saint-Denis"
+        },
+        {
+            "Code": "94",
+            "Nom": "Val-de-Marne"
+        },
+        {
+            "Code": "95",
+            "Nom": "Val-d'Oise"
+        },
+        {
+            "Code": "971",
+            "Nom": "Guadeloupe"
+        },
+        {
+            "Code": "972",
+            "Nom": "Martinique"
+        },
+        {
+            "Code": "973",
+            "Nom": "Guyane"
+        },
+        {
+            "Code": "974",
+            "Nom": "La Réunion"
+        },
+        {
+            "Code": "975",
+            "Nom": "Saint-Pierre-et-Miquelon"
+        },
+        {
+            "Code": "976",
+            "Nom": "Mayotte"
+        },
+        {
+            "Code": "977",
+            "Nom": "Saint-Barthélemy"
+        },
+        {
+            "Code": "978",
+            "Nom": "Saint-Martin"
+        },
+        {
+            "Code": "984",
+            "Nom": "Terres australes et antarctiques françaises"
+        },
+        {
+            "Code": "986",
+            "Nom": "Wallis-et-Futuna"
+        },
+        {
+            "Code": "987",
+            "Nom": "Polynésie française"
+        },
+        {
+            "Code": "988",
+            "Nom": "Nouvelle-Calédonie"
+        },
+        {
+            "Code": "989",
+            "Nom": "Île de Clipperton"
+        }
+      ],
       chartConfig: {
         type: 'bar',
         data: {
@@ -274,7 +721,7 @@ export default {
           const communesInBassin = bassins[this.selectedDepartement][bassinName];
           
           const relevantCommunes = sortedEntries.filter(([insee]) => communesInBassin.includes(insee));
-          console.log(relevantCommunes)
+          
           const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
           this.average = average;
 

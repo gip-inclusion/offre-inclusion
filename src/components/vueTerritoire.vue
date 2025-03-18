@@ -52,8 +52,8 @@
     </div>
 
     <div class="vueTerritoire_container">
-      <h2 v-if="!selectedBassin">{{ departements.find(d => d.Code === selectedDepartement)?.Nom }} : certains bassins d'emploi sont-ils mieux ou moins bien dotés dans ce département ?</h2>
-      <h2 v-else>{{selectedBassin}} : certaines communes sont-elles mieux ou moins bien dotées dans ce bassin ?</h2>
+      <h2 v-if="!selectedBassin">Certains bassins d'emploi sont-ils mieux ou moins bien dotés dans ce département ?</h2>
+      <h2 v-else>Certaines communes sont-elles mieux ou moins bien dotées dans ce bassin ?</h2>
 
       <div class="chart_container">
 
@@ -66,6 +66,7 @@
     <div class="vueTerritoire_container">
 
       <h2>Certaines thématiques d'insertion sont-elles moins bien couvertes ?</h2>
+      
 
       <div class="chart_container">
 
@@ -539,7 +540,7 @@ export default {
             "Code": "989",
             "Nom": "Île de Clipperton"
         }
-        ],
+      ],
     }
   },
   computed: {
@@ -675,9 +676,21 @@ export default {
   gap: 20px;
   margin-bottom: 20px;
   .edito-container{
-    width: 45%;
+    width: 35%;
     height: 400px;
     position: relative;
+    .filter_rappel{
+      font-family: Marianne;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      margin-bottom: 10px;
+      background-color: #F5F5F5;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-right: 10px;
+    }
     .average_text{
       font-family: Marianne;
       font-size: 16px;
@@ -762,7 +775,7 @@ export default {
     }
   }
   .chart-container {
-    width: 55%;
+    width: 65%;
     height: 400px;
 
   }
