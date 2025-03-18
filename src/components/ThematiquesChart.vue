@@ -9,7 +9,7 @@
           <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin" : "dans ce département" }} chaque thématique est couverte par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }} services</span> <span v-if="selectedCommune">dans cette commune</span></div>
           <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{positiveText}}</span> en services que la moyenne</div>
           <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{negativeText}}</span> en services que la moyenne</div>
-          <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroText}}</span> couvrant cette commune</div>
+          <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroText}}</span> {{ selectedBassin ? "dans ce bassin" : "dans ce département" }}</div>
           <div class="legende_text">Nombre de services par thématiques
             <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
             <div class="legende_tooltip">L'indicateur mesure pour chaque thématique le nombre de services</div>
@@ -557,7 +557,28 @@
       servicesData() {
         return store.state.servicesData
       },
-      ...mapState(['selectedBassin','selectedDepartement'])
+      ...mapState(['selectedBassin','selectedDepartement']),
+      positiveText(){
+        if(this.positiveCount == 1){
+          return this.positiveCount + " thématique est mieux dotée"
+        }else{
+          return this.positiveCount + " thématiques sont mieux dotées"
+        }
+      },
+      negativeText(){
+        if(this.negativeCount == 1){
+          return this.negativeCount + " thématique est moins bien dotée"
+        }else{
+          return this.negativeCount + " thématiques sont moins bien dotées"
+        }
+      },
+      zeroText(){
+        if(this.zeroCount == 1){
+          return this.zeroCount + " thématique n'a aucun service"
+        }else{
+          return this.zeroCount + " thématiques n'ont aucun service"
+        }
+      }
     },
     methods: {
       formatThemeName(theme) {
