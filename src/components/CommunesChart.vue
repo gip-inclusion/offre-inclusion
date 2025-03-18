@@ -2,47 +2,16 @@
   <div class="thematic-chart">
     
     <div class="edito-container">
-        
-      <!-- <div class="filters_selector">
-          <h4>Thématique</h4>
-          <div class="filters_box" ref="dropdown" @click="toggleDropdown">
-              <div>
-              {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
-              </svg>
-              </div>
-              <div class="dropdown-content" v-if="isDropdownOpen">
-              <div 
-                  class="dropdown-item"
-                  @click="selectThematique(null)"
-              >
-                  Toutes les thématiques
-              </div>
-              <div 
-                  class="dropdown-separator"
-              ></div>
-              <div 
-                  v-for="theme in thematiques" 
-                  :key="theme"
-                  class="dropdown-item"
-                  @click="selectThematique(theme)"
-              >
-                  {{ formatThemeName(theme) }}
-              </div>
-              </div>
-          </div>
-      </div> -->
 
       <div v-if="!selectedBassin" class="filter_rappel">{{ departements.find(d => d.Code === selectedDepartement)?.Nom }}</div>
       <div v-if="selectedBassin" class="filter_rappel">{{selectedBassin}}</div>
       <div v-if="!selectedThematique" class="filter_rappel">Toutes les thématiques</div>
-      <div v-if="selectedThematique" class="filter_rappel">{{selectedThematique}}</div>
+      <div v-if="selectedThematique" class="filter_rappel">{{formatThemeName(selectedThematique)}}</div>
 
       <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin chaque commune est couverte" : "les communes de chaque bassin sont couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}&nbsp;services</span> pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
-      <div class="top_text"><span class="highlight">{{positiveCount}} {{ selectedBassin ? "communes sont mieux dotées" : "bassins ont des communes mieux dotées" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
-      <div class="flop_text"><span class="highlight">{{negativeCount}} {{ selectedBassin ? "communes sont moins bien dotées" : "bassins ont des communes moins bien dotées" }}</span> en services que la moyenne {{ selectedBassin ? "dans ce bassin" : "dans le département" }}</div>
-      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} {{ selectedBassin ? "communes n'ont aucun" : "bassins n'ont aucun" }}</span> service couvrant cette thématique</div>
+      <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> en services que la moyenne</div>
+      <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> en services que la moyenne</div>
+      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{ zeroText }}</span> service cette thématique</div>
 
       <div class="legende_text">Nombre de services pour 10 000 habitants par commune
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
@@ -86,8 +55,6 @@ export default {
   data() {
     return {
       chartData: [],
-      selectedThematique: null,
-      isDropdownOpen: false,
       average: 0,
       thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
       departements:[
@@ -611,22 +578,31 @@ export default {
     servicesData() {
       return store.state.servicesData
     },
-    ...mapState(['selectedBassin','selectedDepartement'])
-  },
-  methods: {
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-    selectThematique(theme) {
-      this.selectedThematique = theme;
-      this.isDropdownOpen = false;
-    },
-    handleClickOutside(event) {
-      const filtersSelector = this.$el.querySelector('.filters_selector');
-      if (filtersSelector && !filtersSelector.contains(event.target)) {
-        this.isDropdownOpen = false;
+    ...mapState(['selectedThematique','selectedBassin', 'selectedDepartement']),
+    positiveText(){
+      if(this.positiveCount == 1){
+        return this.selectedBassin ? this.positiveCount + " commune est mieux dotée" : this.positiveCount + " bassin a des communes mieux dotées"
+      }else{
+        return this.selectedBassin ? this.positiveCount + " communes sont mieux dotées" : this.positiveCount + " bassins ont des communes mieux dotées"
       }
     },
+    negativeText(){
+      if(this.negativeCount == 1){
+        return this.selectedBassin ? this.negativeCount + " commune est moins bien dotée" : this.negativeCount + " bassin a des communes moins bien dotées"
+      }else{
+        return this.selectedBassin ? this.negativeCount + " communes sont moins bien dotées" : this.negativeCount + " bassins ont des communes moins bien dotées"
+      }
+    },
+    zeroText(){
+      if(this.zeroCount == 1){
+        return this.selectedBassin ? this.zeroCount + " commune n'a aucun service" : this.zeroCount + " bassin n'a aucun service"
+      }else{
+        return this.selectedBassin ? this.zeroCount + " communes n'ont aucun service" : this.zeroCount + " bassins n'ont aucun service"
+      }
+    }
+  },
+  methods: {
+    
     formatThemeName(theme) {
       const accentsMap = {
           "famille": "Famille",
@@ -854,11 +830,7 @@ export default {
   },
   mounted() {
     this.createChart();
-    document.addEventListener('click', this.handleClickOutside);
   },
-  beforeUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
-  }
 }
 </script>
 

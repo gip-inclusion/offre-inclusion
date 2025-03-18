@@ -3,44 +3,13 @@
     
       <div class="edito-container">
           
-          <!-- <div class="filters_selector">
-              <h4>Commune</h4>
-              <div class="filters_box" ref="dropdown" @click="toggleDropdown">
-                  <div>
-                  {{ selectedCommune ? selectedCommune.nom_commune : 'Toutes les communes' }}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
-                  </svg>
-                  </div>
-                  <div class="dropdown-content" v-if="isDropdownOpen">
-                  <div 
-                      class="dropdown-item"
-                      @click="selectCommune(null)"
-                  >
-                      Toutes les communes
-                  </div>
-                  <div 
-                      class="dropdown-separator"
-                  ></div>
-                  <div 
-                      v-for="commune in population" 
-                      :key="commune.insee"
-                      class="dropdown-item"
-                      @click="selectCommune(commune)"
-                  >
-                      {{ formatCommuneName(commune.nom_commune) }}
-                  </div>
-                  </div>
-              </div>
-          </div> -->
-
           <div v-if="!selectedBassin" class="filter_rappel">{{ departements.find(d => d.Code === selectedDepartement)?.Nom }}</div>
           <div v-if="selectedBassin" class="filter_rappel">{{selectedBassin}}</div>
           
           <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin" : "dans ce département" }} chaque thématique est couverte par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }} services</span> <span v-if="selectedCommune">dans cette commune</span></div>
-          <div class="top_text"><span class="highlight">{{positiveCount}} thématiques sont mieux dotées</span> en services que la moyenne</div>
-          <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{negativeCount}} thématiques sont moins bien dotées</span> en services que la moyenne</div>
-          <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroCount}} thématiques n'ont aucun </span>service couvrant cette commune</div>
+          <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{positiveText}}</span> en services que la moyenne</div>
+          <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{negativeText}}</span> en services que la moyenne</div>
+          <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{zeroText}}</span> couvrant cette commune</div>
           <div class="legende_text">Nombre de services par thématiques
             <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
             <div class="legende_tooltip">L'indicateur mesure pour chaque thématique le nombre de services</div>
@@ -591,19 +560,6 @@
       ...mapState(['selectedBassin','selectedDepartement'])
     },
     methods: {
-      toggleDropdown() {
-        this.isDropdownOpen = !this.isDropdownOpen;
-      },
-      selectCommune(commune) {
-        this.selectedCommune = commune;
-        this.isDropdownOpen = false;
-        this.createChart();
-      },
-      handleClickOutside(event) {
-        if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
-          this.isDropdownOpen = false;
-        }
-      },
       formatThemeName(theme) {
         const accentsMap = {
           "famille": "Famille",
@@ -777,11 +733,8 @@
     },
     mounted() {
       this.createChart();
-      document.addEventListener('click', this.handleClickOutside);
     },
-    beforeDestroy() {
-      document.removeEventListener('click', this.handleClickOutside);
-    }
+    
   }
   </script>
   

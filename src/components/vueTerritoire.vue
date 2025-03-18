@@ -698,6 +698,7 @@ export default {
       font-weight: 400;
       line-height: 24px;
       margin-bottom: 10px;
+      margin-top: 10px;
       .highlight{
         //text-decoration: underline;
         //text-decoration-style: dashed; 
