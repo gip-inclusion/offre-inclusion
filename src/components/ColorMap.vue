@@ -119,6 +119,7 @@
             if (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique))) {
               const inseeCode = service['Code Insee']
               if (inseeCode) {
+                console.log(inseeCode)
                 this.communeCounts[inseeCode] = (this.communeCounts[inseeCode] || 0) + 1
               }
             }
