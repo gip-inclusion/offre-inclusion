@@ -6,6 +6,7 @@
 import store from '@/store'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import bassins from '../../public/data/bassins.json'
 
 export default {
   name: 'SymbolMap',
@@ -26,6 +27,12 @@ export default {
     },
     selectedZoomAndCenter() {
       return store.state.selectedZoomAndCenter
+    },
+    selectedBassin() {
+      return store.state.selectedBassin
+    },
+    selectedDepartement() {
+      return store.state.selectedDepartement
     }
   },
   methods: {
@@ -60,17 +67,28 @@ export default {
 
       const validCoordinates = this.markers.map(marker => marker.getLatLng());
       const bounds = L.latLngBounds(validCoordinates);
+      var zoom = this.symbolMap.getBoundsZoom(bounds, false)
+      if(zoom > 11){
+        zoom = 11
+      }
       return {
         center: bounds.getCenter(),
-        zoom: this.symbolMap.getBoundsZoom(bounds, false)
+        zoom: zoom
       }
     },
 
     updateMarkers() {
       this.markers.forEach(marker => marker.remove())
       this.markers = []
-      if (this.servicesData && Array.isArray(this.servicesData)) {
-        this.servicesData.forEach(item => {
+      var communesList = bassins[this.selectedDepartement][this.selectedBassin]
+      var listOfServices 
+      if(this.selectedBassin){
+        listOfServices = this.servicesData.filter(service => service["Code Insee"] && communesList.includes(service["Code Insee"]))
+      }else{
+        listOfServices = this.servicesData
+      }
+      if (listOfServices && listOfServices.length > 0 && Array.isArray(listOfServices)) {
+        listOfServices.forEach(item => {
           const thematiques = Array.isArray(item.Thematiques) ? item.Thematiques : [item.Thematiques];
           if (item.Latitude && item.Longitude && 
               (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)) ) && item.Source != 'fredo') {
@@ -105,6 +123,9 @@ export default {
       deep: true
     },
     selectedThematique: {
+      handler: 'updateMarkers'
+    },
+    selectedBassin: {
       handler: 'updateMarkers'
     },
     selectedZoomAndCenter: {
