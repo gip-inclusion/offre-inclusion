@@ -5,9 +5,15 @@ export const getData = async function (store,param) {
 	
 	var API_KEY = process.env.VUE_APP_MB_API_KEY
 	
-	var servicesBody = 'query=%7B%22database%22%3A+2%2C+%22type%22%3A+%22query%22%2C+%22query%22%3A+%7B%22source-table%22%3A+2052%2C+%22filter%22%3A+%5B%22starts-with%22%2C+%5B%22field%22%2C+59654%2C+%7B%22base-type%22%3A+%22type%2FText%22%7D%5D%2C+%22'+store.state.selectedDepartement+'%22%2C+%7B%22case-sensitive%22%3A+false%7D%5D%7D%7D'
-	const servicesOptions = {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-API-KEY': API_KEY}, data:servicesBody, url: 'https://stats.inclusion.beta.gouv.fr/api/dataset/json'};
-	
+	//var servicesBody = 'query=%7B%22database%22%3A+2%2C+%22type%22%3A+%22query%22%2C+%22query%22%3A+%7B%22source-table%22%3A+2052%2C+%22filter%22%3A+%5B%22starts-with%22%2C+%5B%22field%22%2C+59654%2C+%7B%22base-type%22%3A+%22type%2FText%22%7D%5D%2C+%22'+store.state.selectedDepartement+'%22%2C+%7B%22case-sensitive%22%3A+false%7D%5D%7D%7D'
+	// const servicesOptions = {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-API-KEY': API_KEY}, data:servicesBody, url: 'https://stats.inclusion.beta.gouv.fr/api/dataset/json'};
+	const servicesOptions = {
+		method: 'GET',
+		url: 'https://pilotage.inclusion.beta.gouv.fr/api/dataset/di_services?department='+store.state.selectedDepartement,
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	};
 	try {
 		const { data } = await axios.request(servicesOptions);
 		store.commit('initializeData',data)
@@ -15,8 +21,16 @@ export const getData = async function (store,param) {
 		console.error(error);
 	}
 	
-	var structuresBody = 'query=%7B%22database%22%3A+2%2C+%22type%22%3A+%22query%22%2C+%22query%22%3A+%7B%22source-table%22%3A+2051%2C+%22filter%22%3A+%5B%22starts-with%22%2C+%5B%22field%22%2C+59588%2C+%7B%22base-type%22%3A+%22type%2FText%22%7D%5D%2C+%22'+store.state.selectedDepartement+'%22%2C+%7B%22case-sensitive%22%3A+false%7D%5D%7D%7D'
-	const structuresOptions = {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-API-KEY': API_KEY}, data:structuresBody, url: 'https://stats.inclusion.beta.gouv.fr/api/dataset/json'};
+	//var structuresBody = 'query=%7B%22database%22%3A+2%2C+%22type%22%3A+%22query%22%2C+%22query%22%3A+%7B%22source-table%22%3A+2051%2C+%22filter%22%3A+%5B%22starts-with%22%2C+%5B%22field%22%2C+59588%2C+%7B%22base-type%22%3A+%22type%2FText%22%7D%5D%2C+%22'+store.state.selectedDepartement+'%22%2C+%7B%22case-sensitive%22%3A+false%7D%5D%7D%7D'
+	//const structuresOptions = {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded', 'X-API-KEY': API_KEY}, data:structuresBody, url: 'https://stats.inclusion.beta.gouv.fr/api/dataset/json'};
+
+	const structuresOptions = {
+		method: 'GET',
+		url: 'https://pilotage.inclusion.beta.gouv.fr/api/dataset/di_structures?department='+store.state.selectedDepartement,
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	};
 	
 	try {
 		const { data } = await axios.request(structuresOptions);
