@@ -16,6 +16,7 @@ module.exports = {
     },
   transpileDependencies: [
     'vue-chartjs',
-    'chart.js'
+    'chart.js',
+    '@iframe-resizer/child'
   ]
 }
