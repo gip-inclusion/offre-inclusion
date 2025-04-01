@@ -103,6 +103,7 @@ export default {
               fillOpacity: 0.2
             })
               .bindTooltip(item.Nom.toUpperCase() + '<br>' + item.Commune)
+              .on('click', () => console.log(item["ID"]))
               .addTo(this.symbolMap)
             this.markers.push(marker)
           }
