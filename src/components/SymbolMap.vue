@@ -87,10 +87,8 @@ export default {
       }else{
         listOfServices = this.servicesData
       }
-      console.log(listOfServices)
       if (listOfServices && listOfServices.length > 0 && Array.isArray(listOfServices)) {
         listOfServices.forEach(item => {
-          console.log(item["ID"])
           const thematiques = Array.isArray(item.Thematiques) ? item.Thematiques : [item.Thematiques];
           if (item.Latitude && item.Longitude && 
               (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)) ) && item.Source != 'fredo') {

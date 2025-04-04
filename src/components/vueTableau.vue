@@ -275,7 +275,7 @@ export default {
 
     formatProfils(profilsString) {
       if (!profilsString) return '';
-      return profilsString
+      return profilsString.toString()
         .replace(/[{}]/g, '')
         .split(',')
         .map(word => word.trim()
