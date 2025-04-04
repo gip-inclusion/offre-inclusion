@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <div id="wrapper">
-
-      <h1>L’offre d’insertion est-elle bien répartie sur mon territoire ?</h1>
-
       <div class="intro">
         <h2>Informations sur ce tableau</h2>
         Cet outil vous accompagne dans l'analyse de l'offre d'insertion dans les territoires. Vous pouvez analyser la répartition de l'offre sur un territoire et identifier les zones ou thématiques moins dotées en offre. L'outil propose également des indicateurs clés utiles à la rédaction de vos rapports d'analyse.
@@ -83,7 +80,6 @@ export default {
       width: 100%;
       max-width: 1020px;
       margin:0 auto;
-      padding-top: 50px;
       h1{
         color: #000638;
         font-family:Marianne;
