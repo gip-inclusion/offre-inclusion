@@ -15,7 +15,8 @@ export default {
       map: null,
       center: [46.3622,1.5231],
       zoom: 8,
-      markers: []
+      markers: [],
+      servicesBlacklist:["Hub-lo_247-mediation-numerique","Hub-lo_313-mediation-numerique","Hub-lo_293-mediation-numerique","Mednum-BFC_mednumBFC_TL_360_-mediation-numerique","Hub-lo_76-mediation-numerique","Hub-lo_147-mediation-numerique","Hub-lo_192-mediation-numerique","Hub-lo_349-mediation-numerique","530ed428-ec68-5701-408e-7e7063578598","Mednum-BFC_mednumBFC_TL_534_-mediation-numerique","Hub-lo_417-mediation-numerique","b9d94234-2bdb-4caa-a541-45fa83406882","Nouvelle-Calédonie_66-mediation-numerique","Hub-Bretagne_935-mediation-numerique","Hub-Bretagne_1883__Hub-Bretagne_1915-mediation-numerique","ac995056-9612-e264-a78e-bb5877458ecf","a6a5c9d6-b995-4dac-9b23-b5dc94ae3da8","5d48cae5-c30d-4a8b-8e10-e125645cce5c","4630cf6c-31ec-e530-b7cd-a5221821ea55","Hinaura_CentreSocialMartinLutherKingDeLivron3-mediation-numerique","Fibre-64_37-mediation-numerique","La-Creuse_26-mediation-numerique","15_1397120","15_1397959","15_1400114","Aidants-Connect_59b66a81-dbc5-4be3-80ab-862d1e63bb14-mediation-numerique","15_1386576","15_1346378","Coop-numérique_72033070-1a30-47c3-9b75-19bf656285d0-mediation-numerique","e7682d62-e897-46df-b4d0-31f39e482366","e555b871-3a0e-487f-b24c-06cca575e647"]
     }
   },
   computed: {
@@ -91,7 +92,7 @@ export default {
         listOfServices.forEach(item => {
           const thematiques = Array.isArray(item.Thematiques) ? item.Thematiques : [item.Thematiques];
           if (item.Latitude && item.Longitude && 
-              (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)) ) && item.Source != 'fredo') {
+              (!this.selectedThematique || thematiques.some(t => t.includes(this.selectedThematique)) ) && item.Source != 'fredo' && !this.servicesBlacklist.includes(item["ID"])) {
             var lat = item.Latitude
             var long = item.Longitude
             const marker = L.circleMarker([lat, long], {

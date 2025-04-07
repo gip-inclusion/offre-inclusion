@@ -3,36 +3,7 @@
     
     <div class="vueTerritoire_container">
       <h2>L'offre d'insertion est-elle répartie de manière équilibrée ?</h2>  
-      <div class="filters_selector">
-        <h4>Thématique</h4>
-        <div class="filters_box" ref="dropdown"  @click="toggleDropdown">
-          <div>
-            {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
-            </svg>
-          </div>
-          <div class="dropdown-content" v-if="isDropdownOpen">
-            <div 
-              class="dropdown-item"
-              @click="selectThematique(null)"
-            >
-              Toutes les thématiques
-            </div>
-            <div 
-              class="dropdown-separator"
-            ></div>
-            <div 
-              v-for="theme in thematiques" 
-              :key="theme"
-              class="dropdown-item"
-              @click="selectThematique(theme)"
-            >
-              {{ formatThemeName(theme) }}
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <div id="maps_wrapper">
 
         <div class="map_container">
@@ -549,50 +520,7 @@ export default {
   created(){
     
   },
-  mounted() {
-    document.addEventListener('click', this.handleClickOutside);
-  },
-  unmounted() {
-    document.removeEventListener('click', this.handleClickOutside);
-  },
   methods: {
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
-    },
-    selectThematique(theme) {
-      this.$store.commit('SET_SELECTED_THEMATIQUE', theme);
-      this.isDropdownOpen = false;
-    },
-    handleClickOutside(event) {
-      if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
-        this.isDropdownOpen = false;
-      }
-    },
-    formatThemeName(theme) {
-      const accentsMap = {
-        "famille": "Famille",
-        "numerique": "Numérique",
-        "remobilisation": "Remobilisation",
-        "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
-        "sante": "Santé",
-        "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
-        "handicap": "Handicap",
-        "se-former": "Se former",
-        "mobilite": "Mobilité",
-        "preparer-sa-candidature": "Préparer sa candidature",
-        "logement-hebergement": "Logement et hébergement",
-        "creation-activite": "Création d'activité",
-        "trouver-un-emploi": "Trouver un emploi",
-        "gestion-financiere": "Gestion financière",
-        "choisir-un-metier": "Choisir un métier",
-        "equipement-et-alimentation": "Equipement et alimentation",
-        "illettrisme": "Illetrisme",
-        "souvrir-a-linternational": "S'ouvrir à l'international",
-        "apprendre-francais": "Apprendre le français"
-      };
-      
-      return accentsMap[theme] || theme;
-    }
   }
 }
 </script>

@@ -1,38 +1,6 @@
 <template>
   <div id="vueTerritoire">
     
-    <div class="filters_selector">
-        <h4>Thématiques</h4>
-
-        <div class="filters_selector_item">
-            <div class="filters_box" ref="thematiqueDropdown" id="thematiqueDropdown">
-                <div @click="toggleThematiqueDropdown">
-                    {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
-                    </svg>
-                </div>
-                <div class="dropdown-content" v-if="isThematiqueDropdownOpen">
-                    <div 
-                        class="dropdown-item"
-                        @click="selectThematique(null)"
-                    >
-                        Toutes les thématiques
-                    </div>
-                    <div class="dropdown-separator"></div>
-                    <div 
-                        v-for="thematique in thematiques" 
-                        :key="thematique"
-                        class="dropdown-item"
-                        @click="selectThematique(thematique)"
-                    >
-                        {{ formatThemeName(thematique) }}
-                    </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-
     <div class="vueTableau_container">
       <h2>Indicateurs clés</h2>
       
@@ -151,6 +119,7 @@
 <script>
 import store from '@/store'
 import francePopulation from '../../public/data/population.json'
+import { mapState } from 'vuex'
 
 export default {
   name: 'VueTableau',
@@ -163,8 +132,6 @@ export default {
       structuresCurrentPage: 1,
       itemsPerPage: 5,
       thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
-      selectedThematique: null,
-      isThematiqueDropdownOpen: false,
     }
   },
   computed: {
@@ -183,6 +150,7 @@ export default {
     population() {
       return francePopulation.filter(commune => commune.insee.startsWith(this.selectedDepartement))
     },
+    ...mapState(['selectedThematique']),
     filteredServices() {
       var communesFiltredServices
       if (!this.selectedCommune) {
@@ -247,31 +215,48 @@ export default {
   created(){
     
   },
-  mounted() {
-    document.addEventListener('click', this.handleClickOutside);
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.handleClickOutside);
-  },
+
   methods: {
     
-    handleClickOutside(event) {
-      if (this.$refs.communeDropdown && !this.$refs.communeDropdown.contains(event.target)) {
-        this.isDropdownOpen = false;
-      }
-      if (this.$refs.thematiqueDropdown && !this.$refs.thematiqueDropdown.contains(event.target)) {
-        this.isThematiqueDropdownOpen = false;
-      }
-    },
-    
     formatThematiques(thematiquesString) {
+      if (Array.isArray(thematiquesString)) {
+        thematiquesString = thematiquesString.join(',');
+      }
       if (!thematiquesString) return '';
       const matchingThemes = this.thematiques
         .filter(theme => thematiquesString.includes(theme))
         .map(theme => this.formatThemeName(theme))
         .join(', ');
+      
       return matchingThemes;
+      
     },
+
+    formatThemeName(theme) {
+        const accentsMap = {
+            "famille": "Famille",
+            "numerique": "Numérique",
+            "remobilisation": "Remobilisation",
+            "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
+            "sante": "Santé",
+            "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
+            "handicap": "Handicap",
+            "se-former": "Se former",
+            "mobilite": "Mobilité",
+            "preparer-sa-candidature": "Préparer sa candidature",
+            "logement-hebergement": "Logement et hébergement",
+            "creation-activite": "Création d'activité",
+            "trouver-un-emploi": "Trouver un emploi",
+            "gestion-financiere": "Gestion financière",
+            "choisir-un-metier": "Choisir un métier",
+            "equipement-et-alimentation": "Equipement et alimentation",
+            "illettrisme": "Illetrisme",
+            "souvrir-a-linternational": "S'ouvrir à l'international",
+            "apprendre-francais": "Apprendre le français"
+        };
+        
+        return accentsMap[theme] || theme;
+      },
 
     formatProfils(profilsString) {
       if (!profilsString) return '';
@@ -293,31 +278,6 @@ export default {
         .join(', ');
     },
     
-    formatThemeName(theme) {
-        const accentsMap = {
-        "famille": "Famille",
-        "numerique": "Numérique",
-        "remobilisation": "Remobilisation",
-        "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
-        "sante": "Santé",
-        "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
-        "handicap": "Handicap",
-        "se-former": "Se former",
-        "mobilite": "Mobilité",
-        "preparer-sa-candidature": "Préparer sa candidature",
-        "logement-hebergement": "Logement et hébergement",
-        "creation-activite": "Création d'activité",
-        "trouver-un-emploi": "Trouver un emploi",
-        "gestion-financiere": "Gestion financière",
-        "choisir-un-metier": "Choisir un métier",
-        "equipement-et-alimentation": "Equipement et alimentation",
-        "illettrisme": "Illetrisme",
-        "souvrir-a-linternational": "S'ouvrir à l'international",
-        "apprendre-francais": "Apprendre le français"
-      };
-      
-      return accentsMap[theme] || theme;
-    },
     countServicesForStructure(structureId) {
       return this.filteredServices.filter(service => service['Structure ID'] === structureId).length;
     },
@@ -325,13 +285,7 @@ export default {
       const structure = this.structuresData.find(s => s.ID === structureId);
       return structure ? structure.Nom : "";
     },
-    toggleThematiqueDropdown() {
-      this.isThematiqueDropdownOpen = !this.isThematiqueDropdownOpen;
-    },
-    selectThematique(thematique) {
-      this.selectedThematique = thematique;
-      this.isThematiqueDropdownOpen = false;
-    },
+
   }
 }
 </script>

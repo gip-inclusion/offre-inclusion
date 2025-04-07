@@ -42,6 +42,6 @@ export default new Vuex.Store({
     },
     SET_SELECTED_BASSIN(state, bassin) {
       state.selectedBassin = bassin;
-    }
+    },
   }
 })

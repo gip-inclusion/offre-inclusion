@@ -78,8 +78,8 @@
 
         <div class="filters_selector_item" v-if="page == 'zoom'&&selectedDepartement">
             <h4>Commune</h4>
-            <div class="filters_box" ref="communeDropdown" id="communeDropdown">
-                <div @click="toggleCommuneDropdown">
+            <div class="filters_box" ref="communeDropdown" id="communeDropdown" @click="toggleCommuneDropdown">
+                <div>
                 {{ selectedCommune ? formatCommuneName(population.find(c => c.insee === selectedCommune).nom_commune) : 'Toutes les communes' }}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
@@ -107,8 +107,36 @@
             </div>
         </div>
 
-
-      
+        <div class="filters_selector_item">
+            <h4>Thématique</h4>
+            <div class="filters_box" ref="thematiqueDropdown" id="thematiqueDropdown" @click="toggleThematiqueDropdown">
+            <div>
+                {{ selectedThematique ? formatThemeName(selectedThematique) : 'Toutes les thématiques' }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M7.99999 9.99997L5.17133 7.1713L6.11466 6.22864L7.99999 8.11464L9.88533 6.22864L10.8287 7.1713L7.99999 9.99997Z" fill="black"/>
+                </svg>
+            </div>
+            <div class="dropdown-content" v-if="isThematiqueDropdownOpen">
+                <div 
+                class="dropdown-item"
+                @click="selectThematique(null)"
+                >
+                Toutes les thématiques
+                </div>
+                <div 
+                class="dropdown-separator"
+                ></div>
+                <div 
+                v-for="theme in thematiques" 
+                :key="theme"
+                class="dropdown-item"
+                @click="selectThematique(theme)"
+                >
+                {{ formatThemeName(theme) }}
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
     
   </template>
@@ -586,11 +614,14 @@
             {"nom": "Régions ultramarines", "départements": ["971", "972", "973", "974", "975", "976"]}
         ],
         selectedRegion: {"nom": "Auvergne-Rhône-Alpes", "départements": ["01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"]},
+        thematiques: ["famille","numerique","remobilisation","accompagnement-social-et-professionnel-personnalise","sante","acces-aux-droits-et-citoyennete","handicap","se-former","mobilite","preparer-sa-candidature","logement-hebergement","creation-activite","trouver-un-emploi","gestion-financiere","choisir-un-metier","equipement-et-alimentation","illettrisme","souvrir-a-linternational","apprendre-francais"],
         isRegionDropdownOpen: false,
         selectedBassin: null,
         isBassinDropdownOpen: false,
         selectedCommune: null,
-        isCommuneDropdownOpen: false
+        isCommuneDropdownOpen: false,
+        selectedThematique: null,
+        isThematiqueDropdownOpen: false
       }
     },
     computed: {
@@ -660,6 +691,14 @@
         this.$store.commit('SET_SELECTED_BASSIN', bassin);
         this.isBassinDropdownOpen = false;
       },
+      toggleThematiqueDropdown() {
+        this.isThematiqueDropdownOpen = !this.isThematiqueDropdownOpen;
+      },
+      selectThematique(theme) {
+        this.selectedThematique = theme;
+        this.$store.commit('SET_SELECTED_THEMATIQUE', theme);
+        this.isThematiqueDropdownOpen = false;
+      },
       resetFilters() {
         this.selectedBassin = null;
         this.selectedCommune = null;
@@ -686,7 +725,36 @@
         if (this.$refs.communeDropdown && !this.$refs.communeDropdown.contains(event.target)) {
           this.isCommuneDropdownOpen = false;
         }
-      }
+        if (this.$refs.thematiqueDropdown && !this.$refs.thematiqueDropdown.contains(event.target)) {
+          this.isThematiqueDropdownOpen = false;
+        }
+      },
+      formatThemeName(theme) {
+        const accentsMap = {
+            "famille": "Famille",
+            "numerique": "Numérique",
+            "remobilisation": "Remobilisation",
+            "accompagnement-social-et-professionnel-personnalise": "Accompagnement social et professionnel personnalisé",
+            "sante": "Santé",
+            "acces-aux-droits-et-citoyennete": "Accès aux droits et citoyenneté",
+            "handicap": "Handicap",
+            "se-former": "Se former",
+            "mobilite": "Mobilité",
+            "preparer-sa-candidature": "Préparer sa candidature",
+            "logement-hebergement": "Logement et hébergement",
+            "creation-activite": "Création d'activité",
+            "trouver-un-emploi": "Trouver un emploi",
+            "gestion-financiere": "Gestion financière",
+            "choisir-un-metier": "Choisir un métier",
+            "equipement-et-alimentation": "Equipement et alimentation",
+            "illettrisme": "Illetrisme",
+            "souvrir-a-linternational": "S'ouvrir à l'international",
+            "apprendre-francais": "Apprendre le français"
+        };
+        
+        return accentsMap[theme] || theme;
+        }
+      
     }
   }
   </script>

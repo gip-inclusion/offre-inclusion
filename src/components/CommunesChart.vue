@@ -8,10 +8,10 @@
       <div v-if="!selectedThematique" class="filter_rappel">Toutes les thématiques</div>
       <div v-if="selectedThematique" class="filter_rappel">{{formatThemeName(selectedThematique)}}</div>
 
-      <div class="average_text">En moyenne, {{ selectedBassin ? "dans ce bassin chaque commune est couverte" : "les communes de chaque bassin sont couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString() : average.toFixed(1).toLocaleString() }}&nbsp;services</span> pour 10 000 habitants <span v-if="selectedThematique">pour cette thématique</span></div>
+      <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 10 000 habitants en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
       <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> en services que la moyenne</div>
       <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> en services que la moyenne</div>
-      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{ zeroText }}</span> service cette thématique</div>
+      <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{ zeroText }}</span> couvrant cette thématique</div>
 
       <div class="legende_text">Nombre de services pour 10 000 habitants par commune
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
@@ -701,12 +701,19 @@ export default {
           const average = sortedEntries.reduce((sum, [, count]) => sum + parseFloat(count), 0) / sortedEntries.length;
           this.average = average;
 
-          const bassinAverage = (relevantCommunes.reduce((sum, [, diff]) => sum + parseFloat(diff), 0) / relevantCommunes.length).toFixed(1);
+          var bassinAverage = (relevantCommunes.reduce((sum, [, diff]) => sum + parseFloat(diff), 0) / relevantCommunes.length)
+          if(bassinAverage > 1){
+            bassinAverage = bassinAverage.toFixed(1)
+          }else{
+            bassinAverage = bassinAverage.toFixed(3)
+          }
+          
           return [bassinName, bassinAverage];
 
         }).sort(([,avgA], [,avgB]) => avgB - avgA);
 
         entriesWithNames = bassinsAverages;
+        
 
       }
 
@@ -807,7 +814,9 @@ export default {
               title: {
                 display: true,
                 text: 'services pour 10 000 habitants'
-              }
+              },
+              min: 0,
+              max: Math.max(1, Math.max(...counts) > 10 ? Math.ceil(Math.max(...counts) / 10) * 10 : Math.max(...counts))
             }
           }
         }
