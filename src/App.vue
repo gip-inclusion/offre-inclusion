@@ -181,6 +181,10 @@ export default {
           .filters_selector_item{
             display: inline-block;
             margin-right: 1rem;
+            &:last-child{
+              display: block;
+              margin-top: 20px;
+            }
           }
           margin-bottom: 25px;
           h4{
