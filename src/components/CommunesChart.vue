@@ -9,8 +9,8 @@
       <div v-if="selectedThematique" class="filter_rappel">{{formatThemeName(selectedThematique)}}</div>
 
       <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 10 000 habitants en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
-      <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> en services que la moyenne</div>
-      <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> en services que la moyenne</div>
+      <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> de services que la moyenne</div>
+      <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> de services que la moyenne</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{ zeroText }}</span> couvrant cette thématique</div>
 
       <div class="legende_text">Nombre de services pour 10 000 habitants par commune
@@ -581,16 +581,16 @@ export default {
     ...mapState(['selectedThematique','selectedBassin', 'selectedDepartement']),
     positiveText(){
       if(this.positiveCount == 1){
-        return this.selectedBassin ? this.positiveCount + " commune est mieux dotée" : this.positiveCount + " bassin a des communes mieux dotées"
+        return this.selectedBassin ? this.positiveCount + " commune a plus" : this.positiveCount + " bassin a des communes qui ont moins de"
       }else{
-        return this.selectedBassin ? this.positiveCount + " communes sont mieux dotées" : this.positiveCount + " bassins ont des communes mieux dotées"
+        return this.selectedBassin ? this.positiveCount + " communes ont plus" : this.positiveCount + " bassins ont des communes qui ont plus"
       }
     },
     negativeText(){
       if(this.negativeCount == 1){
-        return this.selectedBassin ? this.negativeCount + " commune est moins bien dotée" : this.negativeCount + " bassin a des communes moins bien dotées"
+        return this.selectedBassin ? this.negativeCount + " commune a moins" : this.negativeCount + " bassin a des communes qui ont moins"
       }else{
-        return this.selectedBassin ? this.negativeCount + " communes sont moins bien dotées" : this.negativeCount + " bassins ont des communes moins bien dotées"
+        return this.selectedBassin ? this.negativeCount + " communes ont moins" : this.negativeCount + " bassins ont des communes qui ont moins"
       }
     },
     zeroText(){

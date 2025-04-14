@@ -2,7 +2,7 @@
   <div id="vueTerritoire">
     
     <div class="vueTerritoire_container">
-      <h2>L'offre d'insertion est-elle répartie de manière équilibrée ?</h2>  
+      <h2>Comment l'offre d'insertion est-elle répartie sur le territoire ?</h2>  
       
       <div id="maps_wrapper">
 
@@ -23,8 +23,8 @@
     </div>
 
     <div class="vueTerritoire_container">
-      <h2 v-if="!selectedBassin">Certains bassins d'emploi sont-ils mieux ou moins bien dotés dans ce département ?</h2>
-      <h2 v-else>Certaines communes sont-elles mieux ou moins bien dotées dans ce bassin ?</h2>
+      <h2 v-if="!selectedBassin">Comment les bassins d'emploi sont-ils couverts dans ce département ?</h2>
+      <h2 v-else>Comment les communes sont-elles couvertes dans ce bassin ?</h2>
 
       <div class="chart_container">
 
@@ -36,7 +36,8 @@
 
     <div class="vueTerritoire_container">
 
-      <h2>Certaines thématiques d'insertion sont-elles moins bien couvertes ?</h2>
+        <h2 v-if="!selectedBassin">Comment les thématiques sont-elles couvertes dans ce département ?</h2>
+        <h2 v-else>Comment les thématiques sont-elles couvertes dans ce bassin ?</h2>
       
 
       <div class="chart_container">
