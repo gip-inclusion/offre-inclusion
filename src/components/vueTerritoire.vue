@@ -15,7 +15,7 @@
         <div class="map_container">
           <div class="map_title">Répartition de l'offre par densité de population</div>
           <ColorMap />
-          <div class="map_legend">Nombre de services  pour 10 000 habitants par commune</div>
+          <div class="map_legend">Services pour 100 demandeurs d'emploi par commune</div>
         </div>
 
       </div>

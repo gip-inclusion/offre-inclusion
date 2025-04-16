@@ -128,8 +128,8 @@
         // Normalize counts by population
         for (const inseeCode in this.communeCounts) {
           const populationEntry = population.find(entry => entry.insee === inseeCode);
-          if (populationEntry) {
-            this.communeCounts[inseeCode] = (this.communeCounts[inseeCode] / populationEntry.population) * 10000; // Per 1000 inhabitants
+          if (populationEntry&&populationEntry.population>0) {
+            this.communeCounts[inseeCode] = (this.communeCounts[inseeCode] / populationEntry.population) * 100; // Per 1000 inhabitants
           }
         }
         
@@ -150,7 +150,7 @@
             const communeName = feature.properties.com_name_upper
             const serviceCount = this.communeCounts[inseeCode] || 0
             layer.bindTooltip(
-              `${communeName}<br> ${serviceCount.toFixed(2)} services pour 10 000 habitants`
+              `${communeName}<br> ${serviceCount.toFixed(2)} services pour 100 demandeurs d'emploi`
             )
           }
         }).addTo(this.colorMap)

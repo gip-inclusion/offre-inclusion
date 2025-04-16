@@ -8,12 +8,12 @@
       <div v-if="!selectedThematique" class="filter_rappel">Toutes les thématiques</div>
       <div v-if="selectedThematique" class="filter_rappel">{{formatThemeName(selectedThematique)}}</div>
 
-      <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 10 000 habitants en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
+      <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 100 demandeurs d'emploi en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
       <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> de services que la moyenne</div>
       <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> de services que la moyenne</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{ zeroText }}</span> couvrant cette thématique</div>
 
-      <div class="legende_text">Nombre de services pour 10 000 habitants par commune
+      <div class="legende_text">Services par commune pour 100 demandeurs d'emploi
         <span class="legende_btn">(en savoir plus sur l'indicateur)</span>
         <div class="legende_tooltip">L'indicateur mesure pour chaque commune le nombre de services par habitants dans le département.</div>
       </div>
@@ -563,7 +563,7 @@ export default {
               },
               title: {
                 display: true,
-                text: 'Services pour 10 000 habitants'
+                text: 'Services pour 100 demandeurs d\'emploi'
               }
             }
           }
@@ -661,8 +661,8 @@ export default {
       // Calculate services per 1000 inhabitants
       for (const inseeCode in communeCount) {
           const populationEntry = population.find(entry => entry.insee === inseeCode);
-          if (populationEntry) {
-            communeCount[inseeCode] = ((communeCount[inseeCode] / populationEntry.population) * 10000).toFixed(1); // Per 1000 inhabitants
+          if (populationEntry&&populationEntry.population>0) {
+            communeCount[inseeCode] = ((communeCount[inseeCode] / populationEntry.population) * 100).toFixed(1); // Per 1000 inhabitants
           }else{
             communeCount[inseeCode] = 0;
           }
@@ -761,7 +761,7 @@ export default {
               displayColors: false,
               callbacks: {
                 label: function(context) {
-                  return context.parsed.y + ' services pour 10 000 habitants';
+                  return context.parsed.y + ' services pour 100 demandeurs d\'emploi';
                 }
               }
             },
@@ -813,7 +813,7 @@ export default {
               },
               title: {
                 display: true,
-                text: 'services pour 10 000 habitants'
+                text: 'services pour 100 demandeurs d\'emploi'
               },
               min: 0,
               max: Math.max(1, Math.max(...counts) > 10 ? Math.ceil(Math.max(...counts) / 10) * 10 : Math.max(...counts))
