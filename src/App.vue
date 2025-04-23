@@ -3,9 +3,14 @@
     <div id="wrapper">
       <div class="intro">
         <h2>Informations sur ce tableau</h2>
-        Cet outil vous accompagne dans l'analyse de l'offre d'insertion dans les territoires. Vous pouvez analyser la répartition de l'offre sur un territoire et identifier les zones ou thématiques moins dotées en offre. L'outil propose également des indicateurs clés utiles à la rédaction de vos rapports d'analyse.
+        Cet outil vous accompagne dans l'analyse de l'offre d'insertion dans les territoires. Vous pouvez analyser la répartition de l'offre par territoire ou thématiques. L'outil propose également des indicateurs clés utiles à la rédaction de vos rapports d'analyse.
         <br><br>
-        À noter que cet outil n'est pas un catalogue d'offre d'insertion. Pour consulter dans le détail les offres d'insertion sur un territoire, vous êtes invités à utiliser <a href="https://dora.inclusion.beta.gouv.fr/" target="_blank">l'outil DORA</a>. Par ailleurs, l'outil s'appuie sur les données de <a href="https://data.inclusion.gouv.fr/" target="_blank">data·inclusion</a>. De ce fait, il valorise uniquement les offres d'insertion référencées sur le produit. L'outil doit ainsi être utilisé avec précaution puisque l'ensemble de l'offre d'insertion existante n'est pas référencée.
+        ⚠️ Remarques : 
+        <ul>
+          <li>Les informations présentées s'appuient sur les données de <a href="https://data.inclusion.gouv.fr/" target="_blank">data·inclusion</a>, qui recense les services d’insertion sociale et professionnelle en France. Ce référencement n’étant pas encore complet, il est nécessaire d’utiliser l’outil avec précaution. La répartition de l’offre présentée doit être considérée comme un indicateur mais non pas comme la réalité du terrain.</li>
+          <li>La capacité d’accueil des services référencés n’est pas prise en compte.</li>
+          <li>Cet outil n'est pas un catalogue d'offre d'insertion. Pour consulter dans le détail les offres d'insertion sur un territoire, vous êtes invités à utiliser <a href="https://dora.inclusion.beta.gouv.fr/" target="_blank">l'outil DORA</a>.</li>
+        </ul>
       </div>
 
       <div class="locfiltres_container">
@@ -147,6 +152,10 @@ export default {
         a{
           color:black;
           text-decoration: underline;
+        }
+        ul{
+          margin-left: 25px;
+          max-width: 90%;
         }
       }
       .locfiltres_container{
