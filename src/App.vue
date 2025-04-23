@@ -3,7 +3,7 @@
     <div id="wrapper">
       <div class="intro">
         <h2>Informations sur ce tableau</h2>
-        Cet outil vous accompagne dans l'analyse de l'offre d'insertion dans les territoires. Vous pouvez analyser la répartition de l'offre par territoire ou thématiques. L'outil propose également des indicateurs clés utiles à la rédaction de vos rapports d'analyse.
+        Cet outil vous accompagne dans l'analyse de l'offre d'insertion dans les territoires. Vous pouvez analyser la répartition de l'offre par territoire ou thématique. L'outil propose également des indicateurs clés utiles à la rédaction de vos rapports d'analyse.
         <br><br>
         ⚠️ Remarques : 
         <ul>

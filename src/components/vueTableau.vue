@@ -19,7 +19,7 @@
           </div>
           <div class="chiffre_box">
               <span class="chiffre">{{ populationRatio.toFixed(1).toLocaleString() }}</span>
-              <span class="text">services pour<br>10 000 habitants</span>
+              <span class="text">services pour<br>100 demandeurs d'emploi</span>
           </div>
       </div>
     </div>

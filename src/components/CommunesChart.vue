@@ -8,7 +8,7 @@
       <div v-if="!selectedThematique" class="filter_rappel">Toutes les thématiques</div>
       <div v-if="selectedThematique" class="filter_rappel">{{formatThemeName(selectedThematique)}}</div>
 
-      <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(0).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 100 demandeurs d'emploi en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
+      <div class="average_text">{{ selectedBassin ? "Dans ce bassin, chaque commune est couverte" : "Dans ce département, les bassins ont des communes couvertes" }} par <span class="highlight">{{average > 1 ? average.toFixed(1).toLocaleString()+"&nbsp;services" : "moins de 1&nbsp;service" }}</span> pour 100 demandeurs d'emploi en moyenne <span v-if="selectedThematique">pour cette thématique</span></div>
       <div class="top_text" v-if="positiveCount > 0"><span class="highlight">{{ positiveText }}</span> de services que la moyenne</div>
       <div class="flop_text" v-if="negativeCount > 0"><span class="highlight">{{ negativeText }}</span> de services que la moyenne</div>
       <div class="zero_text" v-if="zeroCount > 0"><span class="highlight">{{ zeroText }}</span> couvrant cette thématique</div>
