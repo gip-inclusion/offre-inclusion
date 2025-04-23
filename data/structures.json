@@ -1,0 +1,1934 @@
+[
+  {
+    "ID": "3c3b9edd-bfcd-4bbd-ada5-45ddf2ec5425",
+    "Nom": "AGENCE ACTION LOGEMENT",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "dc9f52fc-b699-4816-990f-bc9fb8977014",
+    "Nom": "AGENCE ACTION LOGEMENT",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "1c6c4850-765f-4d7c-b194-ae3b4112e3b2",
+    "Nom": "MISSION LOCALE NORD",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "5d8253d5-4253-430e-b173-037a1005e61c",
+    "Nom": "COMMUNE DE SAINT ANDRE",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "00b1e0dd-3208-4a46-ad32-04d683c74695",
+    "Nom": "CROIX ROUGE FRANCAISE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "010de8ed-bdd4-4345-9637-9125de44f247",
+    "Nom": "PéPé José l'atelier culinaire",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "EI"
+  },
+  {
+    "ID": "0154f912-8aeb-4b74-9f7e-3905c25c1d78",
+    "Nom": "WEBCUP CAMPUS SAINT-DENIS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "035dbb27-e60e-4618-8b03-9d26da324ed5",
+    "Nom": "ESPACE SOCIO EDUCATIF LA MONTAGNE ESE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "0404faf6-306b-440a-8002-4efa30ab7d74",
+    "Nom": "ASSOC FEMININE EST CONTRE TRISTESSE TYRANNIE TRAUMATISME",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "049b73d5-b43a-4a82-bbf8-c4ac2cd43a42",
+    "Nom": "Agence France Travail SAINT PAUL REUNION",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "06c8c752-ebd2-40be-8ebd-f03a77ea262c",
+    "Nom": "MISSION LOCALE NORD Antenne Sainte-Marie",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "0db2eb6b-678d-48c8-a968-0bbe3956dcc1",
+    "Nom": "Adie Saint-Paul (La Réunion) - Association pour le droit à l’initiative économique",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "0f667724-b5d7-4db6-80c9-41f343873e35",
+    "Nom": "SHLMR",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "13583f39-6c89-471c-a6b4-292d6f306659",
+    "Nom": "COMMUNE DE CILAOS MAIRIE",
+    "Commune": "Cilaos",
+    "Code Insee": "97424",
+    "Typologie": ""
+  },
+  {
+    "ID": "181e0dfd-729a-4aa7-857d-662775886a6c",
+    "Nom": "COMMUNE DE TROIS BASSINS MAIRIE",
+    "Commune": "Les Trois-Bassins",
+    "Code Insee": "97423",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "18b6b6c5-4b96-4842-beaa-abfe048d2992",
+    "Nom": "CENTRE COMMUNAL D'ACTION SOCIALE DE LA POSSESSION",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "23ca88a6-b4d5-430f-900c-f56020e738c4",
+    "Nom": "Mission Locale Nord Antenne Sainte-Suzanne",
+    "Commune": "Sainte-Suzanne",
+    "Code Insee": "97420",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "23fc31a6-1426-4ea7-9fdc-ca7b934aac2e",
+    "Nom": "MIO - Antenne de Saint-Paul",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "25983864-70a6-45cc-b48c-54895bebf404",
+    "Nom": "COMMUNE DU TAMPON MAIRIE",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "2726db94-f7c4-40bd-b517-09f631757965",
+    "Nom": "COMMUNE DE SAINT JOSEPH",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "278e6647-fe12-4517-bfac-8a068c5e0f17",
+    "Nom": "C C A S SAINTE MARIE",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "2de0e916-5bf2-4c22-9507-1691f54e0499",
+    "Nom": "Agence France Travail LE TAMPON",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "2e045bf6-679a-4078-a4f7-0960eeba8946",
+    "Nom": "COMMUNAUTE INTERCOMMUNALE DES VILLES SOLIDAIRES CIVIS",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "306d8e66-bc71-48a9-9155-147586c61f4f",
+    "Nom": "ASSOCIATION POUR LE DEVELOPPEMENT DES RESSOURCERIE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "EI"
+  },
+  {
+    "ID": "314741db-5cae-4da8-a8bc-2fae0e95778e",
+    "Nom": "CENTRE COMMUNAL D'ACTION SOCIALE CCAS",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "32bdef1e-2020-4f40-9abf-fedde7330dd3",
+    "Nom": "UNION DEPARTEMENTALE ASS FAMILIALE REUNI UDAF-REUNION",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": ""
+  },
+  {
+    "ID": "335f266c-6510-4082-b7b5-4af376a945cb",
+    "Nom": "WEBCUP CAMPUS DE SAINT-PIERRE",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "391aac34-4499-4414-a0c2-b5b1bd47ca47",
+    "Nom": "ASS NAT GEST FOND INSERT PROFES HANDICAP AGEFIPH",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "3af58174-8164-495a-a8a5-edd551a4d323",
+    "Nom": "L'ACADEMIE DES CAMELIAS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "CS"
+  },
+  {
+    "ID": "3e51dbe3-7faf-4233-962c-90eb1f68aea2",
+    "Nom": "CHAMBRE DE COMMERCE ET D'INDUSTRIE DE LA REUNION CCI",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "CCONS"
+  },
+  {
+    "ID": "3fad910d-9bd0-4560-b7b6-60e4ca4fe0cc",
+    "Nom": "CTRE INTERCOMMUNAL D'ACTION SOCIALE CIAS",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "427b8a1c-8930-4d95-93a0-1a925e814215",
+    "Nom": "MIO - Plateforme de la Saline",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "4cbe571c-2293-4572-8154-6a56580b5c00",
+    "Nom": "MIO - Plateforme du Guillaume",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "571b7577-9672-436b-b9e0-57a2bdd5193c",
+    "Nom": "VIEN A ZOT",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "57a5d930-9dc2-4d11-a583-694989107057",
+    "Nom": "Agence France Travail SAINT DENIS REUNION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "58a534d4-1ce9-4714-8d09-dfcc363044bc",
+    "Nom": "MIO - Permanence du Plate",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "5c935b4c-d172-46e7-8fca-b41f735a4db3",
+    "Nom": "Agence France Travail SAINTE CLOTILDE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "5ea19ace-40e0-4e70-b0bc-ebb83e47de1a",
+    "Nom": "Agence France Travail RAVINE DES CABRIS",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "60988d2a-89e3-49f5-95c9-d36dccc533ad",
+    "Nom": "LE SAVOIR FER",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "65a030c5-50e1-405c-b5e5-bd4931179d04",
+    "Nom": "CROIX ROUGE FRANCAISE CRF MAISON D'ENFANTS LES FILAOS",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "6633822a-0d65-4c20-897a-5735ffee075e",
+    "Nom": "Mission Locale Est Réunion",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "663d430a-fe69-4634-bc87-1ccb0aedd429",
+    "Nom": "MIO - Pôle Administratif et de Citoyenneté - La Rivière des Galets",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "68a58bf2-9985-4312-8b7c-fb97c06240c4",
+    "Nom": "COMMUNE DE SAINT LEU MAIRIE",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": ""
+  },
+  {
+    "ID": "6a9cba09-f43e-4b62-8726-2bdebca5d16f",
+    "Nom": "SOC FORMATION EMPLOI INSERTION FEI FORMATION EMPLOI INSERTION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "6d9c234f-6afd-44d5-8deb-9af1ed56e782",
+    "Nom": "COMMUNE DE LA PETITE ILE",
+    "Commune": "Petite-Île",
+    "Code Insee": "97405",
+    "Typologie": ""
+  },
+  {
+    "ID": "6dabba75-ac92-45d1-b853-ed80c1763c42",
+    "Nom": "MAISON DE L'EMPLOI DU NORD DE LA REUNION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "MDE"
+  },
+  {
+    "ID": "706f52ab-9267-4bc8-b205-d80d1d11bdbd",
+    "Nom": "Adie Saint-Denis (La Réunion) - Association pour le droit à l’initiative économique",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "702ae93b-8f8d-4abe-bc25-17b97e127e32",
+    "Nom": "FAB LAB DE L’EST H3O",
+    "Commune": "Bras-Panon",
+    "Code Insee": "97402",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "737a95e5-3405-433e-9054-ab6184a082df",
+    "Nom": "COLLECTIF MOUFIA BOIS DE NEFLES",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "7489e35f-8f38-4a0f-b1c2-b9b6444d9369",
+    "Nom": "Agence France Travail SAINTE MARIE REUNION",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "765c0b9d-8709-402c-aaab-b59c9af23913",
+    "Nom": "Cyber Espace - Association BOSKA",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "795fa10b-8e59-4565-854f-6c550fb60ab4",
+    "Nom": "ASS AIDE & PROTECT ENFANCE & JEUNESSE",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "7b69b1df-382c-4f8b-92f3-292f27eef799",
+    "Nom": "AFIE-PTC",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "7bdedd23-0ffc-4344-8e87-83a928c84315",
+    "Nom": "CTRE COM ACTION SOCIALE DE SAINTE ROSE",
+    "Commune": "Sainte-Rose",
+    "Code Insee": "97419",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "7ee94a85-69b6-42f2-8689-5400b5867cf9",
+    "Nom": "CTRE COM ACTION SOCIALE DE SAINT BENOIT CCAS CCAS",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "80df69e7-e22c-487b-aaee-ec3aa7195413",
+    "Nom": "DT SUD OUEST",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "81c3052f-c24f-4603-813f-56ccda58aa49",
+    "Nom": "Agence France Travail DU MOULIN",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "83a35397-d845-431d-b99d-ad79c5ddd8fb",
+    "Nom": "ASSOCIATION DEPARTEMENTALE D'AMIS ET PARENTS DE PERSONNES HANDICAPEES MENTALES ADAPEI ADAPEI ESAT GEORGES MOY DE LACROIX",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "87f8e923-e5ea-4b71-9b19-725bb62e8d2d",
+    "Nom": "Association Locale d'Insertion par l'Économique (ALIE)",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "955d1352-7250-4504-9eb8-38c9a4ff075a",
+    "Nom": "PREFECTURE DE LA REUNION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "8ebde851-bf1e-4919-9f2a-d0d2ca665deb",
+    "Nom": "Mission Locale Nord Antenne Sainte-Clotilde",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "902e7f6b-cb13-4021-9c4c-008f92a7ba4d",
+    "Nom": "ASSOCIATION SOLIDARITE FAMILLE DIONYSIENNE ASFD",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "902edba1-2f13-4fbe-b899-cfdb122bd1f0",
+    "Nom": "SOLIDARNUM",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "96410275-1090-41a3-b93b-1e77f3433d58",
+    "Nom": "ASSOCIATION DES JEUNES MAJEURS EN DYNAMIQUE",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": ""
+  },
+  {
+    "ID": "97e6dcaa-abe2-4672-adc6-5593adbda70b",
+    "Nom": "Adie Saint-Pierre (La Réunion) - Association pour le droit à l’initiative économique",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "981d232e-d639-432e-8509-608f48ca5615",
+    "Nom": "Agence France Travail SAINT PIERRE REUNION",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "98913faf-31bd-4edc-9820-fbed1ba1959b",
+    "Nom": "Adie Le Tampon (La Réunion) - Association pour le droit à l’initiative économique",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "996329c8-f7f0-4eb2-977a-3b18867e5108",
+    "Nom": "ABDESS",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "99ba334a-1797-4cfc-8e91-a404bf8331ab",
+    "Nom": "MIO - Antenne de Saint-Leu",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "a31d6bba-c61f-4808-b2f7-287d35ccfc9e",
+    "Nom": "Mission Locale Sud Réunion",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "a4ea18a0-0fc7-4c8f-bef7-d8941cc696c9",
+    "Nom": "Mission Locale Nord SASSE des Camélias",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "a75d663e-d22e-40f9-a158-a0cc05a8ea2e",
+    "Nom": "Agence France Travail L'EPERON",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "a7a9287d-a58f-4c5a-92ab-44113d42d696",
+    "Nom": "COMMUNE DE LA POSSESSION",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "a9407801-5a80-49bd-a91f-40b48f31f75b",
+    "Nom": "CAP EMPLOI 974",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "CAP_EMPLOI"
+  },
+  {
+    "ID": "ae5ff295-ac32-4579-b02e-602f1f89abad",
+    "Nom": "Adie Saint-André (La Réunion) - Association pour le droit à l’initiative économique",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "b00395c5-b4b6-4b58-b178-956d21aa812a",
+    "Nom": "E2C La Réunion - Saint-Denis",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": ""
+  },
+  {
+    "ID": "b1172664-f7f2-4af4-8b81-167b4a003f31",
+    "Nom": "MIO - Plateforme de Plateau Caillou",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "b27a8a15-3e12-4fa5-a01c-ee9d4afeb6a5",
+    "Nom": "CANAL NUMERIQUE JEUNESSE OCEAN INDIEN",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "b3fe6334-e92f-4ef5-b6d6-fdc17efc5e53",
+    "Nom": "WEBCUP LA POSSESSION",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "b4f07bb9-940e-4c1c-9454-16ae5305248c",
+    "Nom": "ASS REUNIONNAISE EDUCATION POPULAIRE AREP",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "b614422d-a356-45b9-b87f-16120b29d228",
+    "Nom": "Espace multiservices des ARAUCARIAS",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "b6988a38-54ef-4439-a124-df4634d54a0a",
+    "Nom": "ASSOCIATION LOCALE INSERTION ECONOMIQUE ALIE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "b7276994-a72e-40cd-bdeb-22ba7b30bd5a",
+    "Nom": "Association Run Action",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "bbdb228d-f2d2-4af6-8b9f-b54490b198bb",
+    "Nom": "Adie Saint-Pierre (La Réunion) - Association pour le droit à l’initiative économique",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "c1e153df-c12b-49de-a8ae-2818506f2cd3",
+    "Nom": "Agence France Travail SAINT ANDRE",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "c364f2b3-f086-4bb2-83e2-a731f34320da",
+    "Nom": "Agence France Travail SAINT BENOIT",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "c3af33f5-5c5a-488e-acc3-1587b0d67886",
+    "Nom": "COMMUNE DE SAINT PIERRE MAIRIE",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "c510e980-7267-4c24-8bca-8c2993f7c453",
+    "Nom": "ASSOCIATION REUNIONNAISE POUR LE DEVELOPPEMENT DE L'INSERTION ET DE L'EMPLOI (ARDIE)",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "c6f18ae6-38e6-415b-a19e-38de383f9e2e",
+    "Nom": "DT NORD EST",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "c85f7ef9-91a6-4107-818d-670235e34a57",
+    "Nom": "APPRENTIS D'AUTEUIL OCEAN INDIEN",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "c8e8ff7f-6405-4ec0-acd5-462474255afe",
+    "Nom": "WEBCUP CAMPUS SAINT-PAUL",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ACI"
+  },
+  {
+    "ID": "c99b7233-a838-40c8-b9a9-feabb7b8ea13",
+    "Nom": "ASSOCIATION FAMILIALE CATHOLIQUE ST JOSEPH OUVRIER DES CAMELIAS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "ca3f0828-ff55-420e-99d7-8d03acf25091",
+    "Nom": "MISSION LOCALE NORD - La Réunion",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "d3c6e19e-e81c-4e17-b113-7d22e063b164",
+    "Nom": "ASSOCIATION DEVELOPPEMENT SECTEUR SALINE",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "d3ef6c90-5c43-432b-bc19-4f0e80ab12c7",
+    "Nom": "SPL AFPAR",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "OF"
+  },
+  {
+    "ID": "d44a295c-2544-4635-a9bb-7be132bdaa62",
+    "Nom": "Emmaüs Agame",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "d4724869-bf4d-4a6d-b7ab-554783fcf4cf",
+    "Nom": "ASSOCIATION DES MAISONS DE LA FAMILLE AMAFAR-EPE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "d47af412-5d3f-4867-bea2-4199e977bbce",
+    "Nom": "ASSOCIATION CHANTIER ECOLE OCEAN INDIEN",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "d47c6217-065e-4143-b0c7-d8ec2cae8ef1",
+    "Nom": "Mission Intercommunale Ouest",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "d567160b-d0ee-4458-ae4d-c9ebddcc2da2",
+    "Nom": "MIO - Permanence de la Possession",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "d6b1188e-0086-4727-bc8b-2788c9b8e057",
+    "Nom": "Agence France Travail SAINT LEU REUNION",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "d9be8f39-01d8-4107-b687-3e9139f5b912",
+    "Nom": "ASSOCIATION DES PARENTS D'ELEVES DU PRIMAIRE AU SUPERIEUR DU TAMPON APEPS TAMPON",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "dade06bc-20ad-4666-a6e3-76a8415dc51d",
+    "Nom": "COMMUNE DE SAINT BENOIT",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "PIJ_BIJ"
+  },
+  {
+    "ID": "ded48ab6-2d74-4940-b041-fb99953060d4",
+    "Nom": "ROULE MON Z'AVIRONS",
+    "Commune": "Les Avirons",
+    "Code Insee": "97401",
+    "Typologie": ""
+  },
+  {
+    "ID": "e0c28baa-df63-4417-b9e2-6180f96ed3fa",
+    "Nom": "LA PLAINE LE POSSIBLE",
+    "Commune": "La Plaine-des-Palmistes",
+    "Code Insee": "97406",
+    "Typologie": ""
+  },
+  {
+    "ID": "e51811c4-9fbf-4f0d-a31a-faa813797e11",
+    "Nom": "EMERGENCE-OI",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "e926210b-69c2-4dd0-a988-8dd03d70874d",
+    "Nom": "Agence France Travail SAINT JOSEPH",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "e986e379-e4fe-4507-b61a-ded93f3f5d60",
+    "Nom": "ASSOCIATION CANEBIE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "eb4ac3da-7db0-46ab-a987-ab992a7193e3",
+    "Nom": "MIIR MAISON DE L'INSERTION ET DE L'INCLUSION A LA",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "EI"
+  },
+  {
+    "ID": "eb815e63-f525-4b77-b3f0-83a9dfa92b07",
+    "Nom": "EMMAUS GRAND SUD FONDATEUR ABBE PIERRE EMMAUS GRAND SUD",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": ""
+  },
+  {
+    "ID": "ec68368a-b2fa-4c12-a8ad-faec12139925",
+    "Nom": "CTRE COM ACTION SOCIALE L'ENTRE DEUX",
+    "Commune": "Entre-Deux",
+    "Code Insee": "97403",
+    "Typologie": ""
+  },
+  {
+    "ID": "f34a21ee-1f28-4d5f-9579-2b0213225414",
+    "Nom": "Geiq Agri 974",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "GEIQ"
+  },
+  {
+    "ID": "f55dc6b1-5cdc-4772-a655-40fa80f7614b",
+    "Nom": "Agence France Travail LA POSSESSION",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "f6b8ba6c-d958-41f4-8d15-7b4e725c5040",
+    "Nom": "APPRENTIS D'AUTEUIL OCEAN INDIEN",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "f9138f31-4633-49e1-b4b7-f7e3f5c295fe",
+    "Nom": "FRANCE TRAVAIL DIRECTION REGIONALE LA REUNION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "fabb5435-b081-4939-94b8-b1949de71fc6",
+    "Nom": "L.A. PLATEFORME",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "Autre"
+  },
+  {
+    "ID": "fd7102ae-9c2c-4206-9e13-96f75fdc15d6",
+    "Nom": "MIO - Le Port",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "ff2fdff6-3fb2-418a-80d8-1596e73aeeb5",
+    "Nom": "MIO - Permanence de la Chaloupe",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "REU0010",
+    "Nom": "Agence France Travail LA POSSESSION",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0015",
+    "Nom": "Agence France Travail SAINT PAUL REUNION",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0016",
+    "Nom": "Agence France Travail L'EPERON",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0018",
+    "Nom": "Agence France Travail SAINT LEU REUNION",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0023",
+    "Nom": "Agence France Travail SAINT PIERRE REUNION",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0024",
+    "Nom": "Agence France Travail RAVINE DES CABRIS",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0025",
+    "Nom": "Agence France Travail SAINT JOSEPH",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0028",
+    "Nom": "Agence France Travail LE TAMPON",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0036",
+    "Nom": "Agence France Travail DU MOULIN",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0040",
+    "Nom": "Agence France Travail SAINT DENIS REUNION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0042",
+    "Nom": "Agence France Travail SAINT ANDRE",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0043",
+    "Nom": "Agence France Travail SAINT BENOIT",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0044",
+    "Nom": "Agence France Travail SAINTE CLOTILDE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "REU0046",
+    "Nom": "Agence France Travail SAINTE MARIE REUNION",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "FT"
+  },
+  {
+    "ID": "Aidants-Connect_0aaabc4c-12a8-4fc1-a74f-0c82395f124e",
+    "Nom": "CYBERBASE BOIS OLIVES",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_0bbbe0d6-a368-4035-926c-ea9663488bcc",
+    "Nom": "Mairie de St Leu",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "Aidants-Connect_1192053c-6a9d-469c-a3aa-d3f79e51763f__Conseiller-Numerique_62c51f97c9ce0606dcdcfd1f",
+    "Nom": "ASSOCIATION CULTURELLE ET SOCIALE DE L'OCEAN INDIEN",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_1363f131-0795-4d90-a245-1dbdb318a8b3__Conseiller-Numerique_63e9c4ad561e1c06f3aed7a1",
+    "Nom": "Emergence-OI",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_1bfa5947-2047-4014-a8ae-77d1cf56364f",
+    "Nom": "MAISON FRANCE SERVICES (MFS) SAINT-PHILIPPE",
+    "Commune": "Saint-Philippe",
+    "Code Insee": "97417",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_1d61d90e-c6a0-49f6-a09f-98bb5fad978e",
+    "Nom": "ORIAPA",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_1dba41a5-93a0-47e6-af99-1f373fdef96c",
+    "Nom": "Assistantes sociales Réunion (ASR)",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_1ff8b69b-79d5-4dc0-9f13-f411b4bf8fe5",
+    "Nom": "CCAS SAINTE-MARIE",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_20838f54-6d99-47a6-b741-305da5831a28",
+    "Nom": "AGAME, insertion par l'informatique",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_23e58fdf-ebe0-471a-8848-a127495fb270",
+    "Nom": "Cyberbase de Saint Louis",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_26d6af06-7c93-4329-905b-b797c658944a",
+    "Nom": "ESF Réunion",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_31b7deb7-25f8-4a5a-9b30-fa19057fe68f",
+    "Nom": "Médiathèque du Sud Sauvage",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "BIB"
+  },
+  {
+    "ID": "Aidants-Connect_2b8768ed-f9da-4112-801e-323552a64547",
+    "Nom": "Médiathèque Intercommunale Aimé Césaire",
+    "Commune": "Sainte-Suzanne",
+    "Code Insee": "97420",
+    "Typologie": "BIB"
+  },
+  {
+    "ID": "Aidants-Connect_35e070bb-aa91-4674-9275-7dacba4a1630",
+    "Nom": "ASSOCIATION MAINS D'ESPOIR",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_3939c53a-a956-465b-a7fd-36d1a1f90863",
+    "Nom": "MAISON FRANCE SERVICES DE CILAOS",
+    "Commune": "Cilaos",
+    "Code Insee": "97424",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_3b9849fb-6565-4966-891a-2edc96408b88",
+    "Nom": "CSAPA/CAARUD La Kaz'Oté!",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_3c0db2cf-052d-4ce2-be04-db9ff7f158d8",
+    "Nom": "AFIE-PTC",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_3d79f0c5-356e-4be9-b8bf-546860985ed3",
+    "Nom": "ASSOCIATION AFECT",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_3f10230c-bc87-4bb1-9bf3-aed0af94f1df",
+    "Nom": "France services chemin ceinture Saint Benoit",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_44bb5f76-8331-479b-9dcf-faff4f1877a7",
+    "Nom": "France Services de Piton des Goyaves",
+    "Commune": "Petite-Île",
+    "Code Insee": "97405",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_499ca97b-f0ba-4d70-9ec0-f0918a56d0ad",
+    "Nom": "MISSION LOCALE SUD",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ML"
+  },
+  {
+    "ID": "Aidants-Connect_4eb1caa0-974b-4f3d-9f4c-c202ad00df8f",
+    "Nom": "ASSOCIATION SOLIDARITE FAMILLE DIONYSIENNE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_4f10aa30-2e8a-4f21-853a-b3608b1d75f8",
+    "Nom": "CCAS de Saint-Joseph",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_52a987d1-09bd-4d4b-bd8c-497b8a1d49a4",
+    "Nom": "ARDIE",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_53368ac9-32ad-4860-8584-34388c509a15",
+    "Nom": "Village Desprez",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_58065ad1-9dfe-4bcd-8fb6-f365b49ea1aa",
+    "Nom": "Cyberbase de Cilaos",
+    "Commune": "Cilaos",
+    "Code Insee": "97424",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_581b2f52-5982-448c-9c66-f01f5b37e297",
+    "Nom": "ARAJUFA FRANCE VICTIMES REUNION",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_5b91b51d-9663-4c07-b8f0-afa02d67f5cc",
+    "Nom": "ROULÉ MON Z'AVIRONS",
+    "Commune": "Les Avirons",
+    "Code Insee": "97401",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_5d89d9a7-05d4-4a93-8364-ec0b2f94ce30",
+    "Nom": "Association des femmes et enfants victimes de violence AFEVV",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_5dfbefb5-6b2f-4b80-b907-ca37a37bf86f",
+    "Nom": "Association Lire Dire Écrire",
+    "Commune": "Entre-Deux",
+    "Code Insee": "97403",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_6a9a9a69-df39-43c8-be67-af335e0960b9",
+    "Nom": "FAMILLES RURALES FEDERATION DE LA REUNION",
+    "Commune": "Entre-Deux",
+    "Code Insee": "97403",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_6ef4fa08-b568-4190-83d7-24460df74cd2",
+    "Nom": "M@n Mon Assistant Numérique La Réunion ouest",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_713913ca-fb9d-46c9-81f0-be83617f0c13",
+    "Nom": "Cyberbase de Etang Salé",
+    "Commune": "L'Étang-Salé",
+    "Code Insee": "97404",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_73854a73-94dc-4490-a3f1-3623738a0d2b",
+    "Nom": "EPSMR",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_7a3c8809-2f3e-416e-82d4-784d2c43ae2b",
+    "Nom": "POLE NTIC ASSOCIATION WAR DOMAIN",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_7e4400fa-a76b-4744-b50b-e29dda036093__Aidants-Connect_88c9eedb-bfc7-4a01-b1f9-654db2a6a150",
+    "Nom": "Association Boska",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_7ea1e6fc-f168-42df-848f-3f9bc8524b91",
+    "Nom": "CCAS DE BRAS-PANON",
+    "Commune": "Bras-Panon",
+    "Code Insee": "97402",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_81bdfbb5-5a30-4bf0-9096-ac783590d51a__Aidants-Connect_d0c64f81-dbac-43b3-8f11-8dcdd118ec26",
+    "Nom": "Centre Intercommunal d'Action Sociale de Saint Pierre",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "CIAS"
+  },
+  {
+    "ID": "Aidants-Connect_87a69298-35bc-4efd-86e3-7e3a858ed8db__France-Services_1850",
+    "Nom": "France services La Poste de Saint-Philippe",
+    "Commune": "Saint-Philippe",
+    "Code Insee": "97417",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_880c6f28-4bc2-4530-bba7-4c6495010178",
+    "Nom": "GCSMS ACT Un chez soi d'abord Réunion",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_90485f16-a803-4efb-b497-ca474d38daaf",
+    "Nom": "CCAS de Saint-Louis (La Réunion)",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_905bfaa8-e732-4a5b-a769-3d4f3c159eaa",
+    "Nom": "PROGRAMME DE REUSSITE EDUCATIVE CAISSE DES ECOLES DE SAINT DENIS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_91fd3069-ae38-43b2-a1ba-20340abf8b48",
+    "Nom": "Département de La Réunion",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_95b399bc-4e10-4eb7-829a-0e33cb4c996c",
+    "Nom": "SOLIHA REUNION",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_962d3395-27c9-474c-a46d-3f2d49adf7a9",
+    "Nom": "ASSOCIATION ANKRAGE CPCV",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_96b010aa-b2dc-4f1a-b23b-5524a425918a",
+    "Nom": "CCAS DE SAINT-ANDRE",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_9719b791-6370-452f-b181-d9e1b1a013f4",
+    "Nom": "Mairie de Saint-Paul",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "Aidants-Connect_9913b6f1-5ee1-4fe1-9819-cccea7658f33",
+    "Nom": "CYBERBASE LIGNE PARADIS",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_9c43575d-8639-40a2-9269-4f764edf55e9",
+    "Nom": "centre social et socioculturel de l'ostl de saint-pierre",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "CS"
+  },
+  {
+    "ID": "Aidants-Connect_9c682f6a-f088-41fc-ac57-44018b88ba15",
+    "Nom": "association agir pour l insertion",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_9da3e227-fb16-459c-af68-f55d810d7c8d",
+    "Nom": "centre de rééducation Ste Clotilde",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_a8f4f58d-a3a3-4bfd-9c31-6af438963269",
+    "Nom": "HANGARS NUMERIQUES",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_ac389707-5c9c-4a0c-878d-4352d4ef173f__Aidants-Connect_cdd005d5-00d7-4a13-8eae-804314f2c943",
+    "Nom": "Association collectif d'animation de Sainte-Marie (COASM)",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_ad0485b5-e8a3-447b-a15e-a0d54232ea9c",
+    "Nom": "Maison de l'Emploi du Nord de La Réunion",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "MDE"
+  },
+  {
+    "ID": "Aidants-Connect_afb8f18e-606d-48b9-91d6-ca38286fa36b",
+    "Nom": "CCAS SALAZIE",
+    "Commune": "Salazie",
+    "Code Insee": "97421",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_b0509ca6-ebf9-4b9e-8cd8-a6338ea86b32",
+    "Nom": "ASSOCIATION AZOT SERVICES",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_b1fb3724-8b48-474e-be03-e3bba48d08e2",
+    "Nom": "LE SAVOIR FER",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_b523dee1-ddd5-41a9-a89f-d051f8e3cc87__Aidants-Connect_fad2e1c7-fc17-4c76-a7cb-1edf08d7bae8",
+    "Nom": "CCAS DE SAINT-BENOIT",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_b8cfa9bd-a60c-4787-a562-57a454033d2e__France-Services_3242",
+    "Nom": "France services de Saint-Louis - AORA Médiation",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_be80560e-9116-4be6-ba63-6d80a32f008b",
+    "Nom": "APSM",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_bf26da0a-678a-4f63-9276-203409976fea",
+    "Nom": "CCAS Saint-Paul",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_bf893907-5939-4827-b0a8-36103ff08e54",
+    "Nom": "Mairie de La possession/Maison france Services",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_c641eea8-2a28-428e-a23f-33a6307996ec",
+    "Nom": "Cyberbase de St Pierre Centre Ville",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_ca925ee0-5e4c-4a16-bd77-85c18ce82a58",
+    "Nom": "Association de gestion du coeur de ville de Saint-Joseph",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_cdaadcf8-5815-47b7-88bd-e1f0a0ffe373",
+    "Nom": "Maison France Services du Tampon",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_cdba0a4c-ba0c-483d-a775-26fc221bfac9",
+    "Nom": "ASSOCIATION FARFAR",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_cf47eb5c-6e94-474b-b339-e86069097518",
+    "Nom": "Association Réunionnaise d'Education Populaire",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_dc6cf1d0-700c-4aa6-9675-90287e256939",
+    "Nom": "Centre Social de La Palissade",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "CS"
+  },
+  {
+    "ID": "Aidants-Connect_e519a532-ca46-4ab3-aca2-116c1d06f688",
+    "Nom": "Cyberbase de Petite Ile",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_e8126558-8fb8-47be-a855-e5115e408629",
+    "Nom": "Association des Jeunes Majeurs en Dynamique",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Aidants-Connect_eaf1d9bb-7efe-4186-bd63-2019ae54ebe9",
+    "Nom": "CINOR - MDS BRULE - BIAL & BIAP",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_f157a121-7b32-4a29-b5ae-5a1751d24ad4",
+    "Nom": "MAISON FRANCE SERVICE DE SAINT PIERRE",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Aidants-Connect_f252df3a-d90c-4995-b932-91e3b2dc1363__Conseiller-Numerique_62e8b9bf9e670c06de836db1",
+    "Nom": "Casec Cressonniere",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": ""
+  },
+  {
+    "ID": "Aidants-Connect_f75cb934-9f56-43a5-bc73-e58f2f8de3f3",
+    "Nom": "CCAS de la Plaine-des-Palmistes",
+    "Commune": "La Plaine-des-Palmistes",
+    "Code Insee": "97406",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Aidants-Connect_fd3d40b0-3ad8-4041-9314-f7d290644df2",
+    "Nom": "L'AS DES DEVOIRS",
+    "Commune": "Sainte-Suzanne",
+    "Code Insee": "97420",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_62abfef88255a806e299cf4e",
+    "Nom": "COMMUNE DE SAINT PHILIPPE",
+    "Commune": "Saint-Philippe",
+    "Code Insee": "97417",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "Conseiller-Numerique_62ad95928255a806e299dd3a",
+    "Nom": "Bibliothèque Intercommunale Alain Lorraine",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "BIB"
+  },
+  {
+    "ID": "Conseiller-Numerique_62ad96488255a806e299dd3e",
+    "Nom": "Bibliothèque Intercommunale Alain Peters",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "BIB"
+  },
+  {
+    "ID": "Conseiller-Numerique_62c2b2a53e465606de19c3b7",
+    "Nom": "CCAS DE SAINT-LOUIS (LA REUNION)",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Conseiller-Numerique_62c4385bc9ce0606dcdcf70e__dora_a2d1f6f5-97bc-4c53-a0b2-744d90ac5bd1",
+    "Nom": "ASS AIDE & PROTECT ENFANCE & JEUNESSE",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_62f3396aa97f6105b212e093",
+    "Nom": "CTRE COM ACTION SOCIALE L'ENTRE DEUX",
+    "Commune": "Entre-Deux",
+    "Code Insee": "97403",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Conseiller-Numerique_62ff447f19ed1006e01a9a88__Coop-numérique_267bdba7-abc6-4d14-93d3-9d4585088d81",
+    "Nom": "ASSOCIATION FAMILIALE CATHOLIQUE DES CAMELIAS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_6318266247709f06f2e6c8a0",
+    "Nom": "LE SAVOIR FER",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_637f073fcda0b706f03db9d0",
+    "Nom": "COMMUNE DE L'ETANG SALE",
+    "Commune": "L'Étang-Salé",
+    "Code Insee": "97404",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "Conseiller-Numerique_6380469c4acda506f71c26a1",
+    "Nom": "Commune de Saint-Paul",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "Conseiller-Numerique_63901db63dc00406ef7a89a4",
+    "Nom": "ASSOCIATION DE GESTION DU COEUR DE VILLE DE SAINT-JOSEPH",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_63bb9e6eb9422006f053498d",
+    "Nom": "COMMUNE DE SAINT ANDRE",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "MUNI"
+  },
+  {
+    "ID": "Conseiller-Numerique_63bd2c89b9422006f0535f3d",
+    "Nom": "MAISON FRANCE SERVICES BEAUSEJOUR",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Conseiller-Numerique_63be46f3b9422006f0537057",
+    "Nom": "ACADIS (CCAS) PONT NEUF",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Conseiller-Numerique_63d0edfde6d6a806f25624c1",
+    "Nom": "WEBCUP",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64913edc7d775e05b6179eac",
+    "Nom": "Résidence SEMADER Gare Routière",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64d0c19d2b50ef070d1e6466",
+    "Nom": "Maison Célestin",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64d0c3312b50ef070d1e648b",
+    "Nom": "Case Combava",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64d0c5412b50ef070d1e64b4",
+    "Nom": "Les Cerisiers",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64d0c6a92b50ef070d1e64d6",
+    "Nom": "LCR L'EPERON",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64d0c7372b50ef070d1e64dd",
+    "Nom": "Maison pour tous",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_64e89629a902030712f8e5d1__Coop-numérique_e7ec7010-8abd-4271-ba16-645886d86209",
+    "Nom": "Résidence GUFFLET",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_6540cfb0e7f22e070add2502__Conseiller-Numerique_6540d25ce7f22e070add2584",
+    "Nom": "Case macabit",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_65454b87e7f22e070add57ac",
+    "Nom": "ASSOCIATION POUR LE TRAVAIL ORGANISE ET UTILE AU TERRITOIRE 974",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_6571b538c574d307093d09e3",
+    "Nom": "ASSOCIATION DES JEUNES MAJEURS EN DYNAMIQUE",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_6572a264b24d20070bab5022__Coop-numérique_09511e72-86f5-406c-be24-e00fdb5f7b44",
+    "Nom": "L'ACADEMIE DES CAMELIAS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_6572eb8ab24d20070bab5755",
+    "Nom": "ASSOCIATION SOLIDARITE FAMILLE DIONYSIENNE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_6572eb93b24d20070bab5757",
+    "Nom": "ASSOCIATION SOLIDARITE FAMILLE DIONYSIENNE",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_6572fac0b24d20070bab5a85__Coop-numérique_121dae62-840b-41e8-8a3c-165bfc8d110a",
+    "Nom": "Service Urbanisme",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_65a90d606eb21105d9578bb3__Coop-numérique_7cb3c89c-8316-45ee-af15-ee0c70acb53d",
+    "Nom": "Résidence Benoîte Boulard",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_6633341bb8e06a075debd891__France-Services_3016",
+    "Nom": "Maison france service",
+    "Commune": "Salazie",
+    "Code Insee": "97421",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Conseiller-Numerique_667e86ced40b03062dd54cd1__Coop-numérique_59b0d011-2a73-4310-970d-42fdfdd9a8b8",
+    "Nom": "MAISON FRANCE SERVICES 23 eme KM",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Conseiller-Numerique_66a346dce5dcdf12c50cac2f__Coop-numérique_5d011052-a827-467d-8a84-da41b4c41016",
+    "Nom": "Ecole Bouvet",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Conseiller-Numerique_66c56f2da83b6c0bbc218dab",
+    "Nom": "CTRE COM ACTION SOCIALE DE SAINTE MARIE",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "CCAS"
+  },
+  {
+    "ID": "Conseiller-Numerique_66c6e50ea83b6c0bbc219b02__Coop-numérique_72bfcc5b-d533-4c4f-89ca-44c656bbbdff__dora_d257898e-fc49-43f4-ac52-3ca29b6f8965",
+    "Nom": "Webcup Campus La Possession",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Conseiller-Numerique_66f62f932200130bbe8ca7f9__Coop-numérique_c6fff7ab-31a4-4eb8-a397-ff9e8c0f08fd",
+    "Nom": "LCR Bel Air",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Coop-numérique_09511e72-86f5-406c-be24-e00fdb5f7b44",
+    "Nom": "L'ACADEMIE DES CAMELIAS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Coop-numérique_121dae62-840b-41e8-8a3c-165bfc8d110a",
+    "Nom": "Service Urbanisme",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Coop-numérique_267bdba7-abc6-4d14-93d3-9d4585088d81",
+    "Nom": "ASSOCIATION FAMILIALE CATHOLIQUE DES CAMELIAS",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Coop-numérique_59b0d011-2a73-4310-970d-42fdfdd9a8b8",
+    "Nom": "MAISON FRANCE SERVICES 23 eme KM",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "Coop-numérique_5d011052-a827-467d-8a84-da41b4c41016",
+    "Nom": "Ecole Bouvet",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": ""
+  },
+  {
+    "ID": "Coop-numérique_72bfcc5b-d533-4c4f-89ca-44c656bbbdff",
+    "Nom": "Webcup Campus La Possession",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "ASSO"
+  },
+  {
+    "ID": "Coop-numérique_7cb3c89c-8316-45ee-af15-ee0c70acb53d",
+    "Nom": "Résidence Benoîte Boulard",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Coop-numérique_c6fff7ab-31a4-4eb8-a397-ff9e8c0f08fd",
+    "Nom": "LCR Bel Air",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "Coop-numérique_e7ec7010-8abd-4271-ba16-645886d86209",
+    "Nom": "Résidence GUFFLET",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": ""
+  },
+  {
+    "ID": "France-Services_1724",
+    "Nom": "France services de Sainte-Marie - Beauséjour",
+    "Commune": "Sainte-Marie",
+    "Code Insee": "97418",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_1851",
+    "Nom": "France services du Tampon - 23éme",
+    "Commune": "Le Tampon",
+    "Code Insee": "97422",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_1987",
+    "Nom": "France services Saint-Pierre",
+    "Commune": "Saint-Pierre",
+    "Code Insee": "97416",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_1988",
+    "Nom": "France services Sainte-Suzanne - Village Desprez",
+    "Commune": "Sainte-Suzanne",
+    "Code Insee": "97420",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2000",
+    "Nom": "France services La Possession - Dos d'Âne",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2306",
+    "Nom": "Bus France services Zot Kamyon Nimerik",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2311",
+    "Nom": "France services de Saint-Denis - Le Brûlé",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2553",
+    "Nom": "France services de Saint-Benoît - Maison de Quartier de Chemin de Ceinture",
+    "Commune": "Saint-Benoît",
+    "Code Insee": "97410",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2554",
+    "Nom": "France services de La Possession - La Nouvelle - Mafate",
+    "Commune": "La Possession",
+    "Code Insee": "97408",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2687",
+    "Nom": "France services Plaine des Palmistes",
+    "Commune": "La Plaine-des-Palmistes",
+    "Code Insee": "97406",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2688",
+    "Nom": "France services de Saint-Louis",
+    "Commune": "Saint-Louis",
+    "Code Insee": "97414",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2689",
+    "Nom": "Bus France services Lélà",
+    "Commune": "Saint-Denis",
+    "Code Insee": "97411",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2863",
+    "Nom": "France services de Saint Leu - Plate",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2864",
+    "Nom": "France services de Saint Leu - La Chaloupe",
+    "Commune": "Saint-Leu",
+    "Code Insee": "97413",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2934",
+    "Nom": "France services de Saint-Paul - Bellemène",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2951",
+    "Nom": "France services de Saint-André - Fayard",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_2967",
+    "Nom": "France services du Port - Rivière des Galets",
+    "Commune": "Le Port",
+    "Code Insee": "97407",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_3004",
+    "Nom": "France services de Saint-André - Rivière du Mât les Bas",
+    "Commune": "Saint-André",
+    "Code Insee": "97409",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_3021",
+    "Nom": "France services de Saint-Paul - Tan Rouge",
+    "Commune": "Saint-Paul",
+    "Code Insee": "97415",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_562",
+    "Nom": "France services de Saint-Joseph - Jean-Petit",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_563",
+    "Nom": "France services de Saint-Joseph - Lianes",
+    "Commune": "Saint-Joseph",
+    "Code Insee": "97412",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_645",
+    "Nom": "France services de Petite-Île - Piton des Goyaves",
+    "Commune": "Petite-Île",
+    "Code Insee": "97405",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_869",
+    "Nom": "France services Cilaos",
+    "Commune": "Cilaos",
+    "Code Insee": "97424",
+    "Typologie": "RFS"
+  },
+  {
+    "ID": "France-Services_870",
+    "Nom": "France services Les Avirons",
+    "Commune": "Les Avirons",
+    "Code Insee": "97401",
+    "Typologie": "RFS"
+  }
+]
